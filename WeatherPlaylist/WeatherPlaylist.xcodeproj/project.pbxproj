@@ -19,6 +19,8 @@
 		DA637F682B1F1F6200BB3612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SpotifyAPI.xcconfig; path = WeatherPlaylist/SpotifyAPI.xcconfig; sourceTree = "<group>"; };
+		DA637F752B1F331F00BB3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 		DA637F5A2B1F1F6200BB3612 = {
 			isa = PBXGroup;
 			children = (
+				DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */,
 				DA637F652B1F1F6200BB3612 /* WeatherPlaylist */,
 				DA637F642B1F1F6200BB3612 /* Products */,
 			);
@@ -51,6 +54,7 @@
 		DA637F652B1F1F6200BB3612 /* WeatherPlaylist */ = {
 			isa = PBXGroup;
 			children = (
+				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
 				DA637F682B1F1F6200BB3612 /* ContentView.swift */,
 				DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */,
@@ -147,6 +151,7 @@
 /* Begin XCBuildConfiguration section */
 		DA637F6F2B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -197,7 +202,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -210,6 +215,7 @@
 		};
 		DA637F702B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -254,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -275,6 +281,7 @@
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherPlaylist/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +311,7 @@
 				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WeatherPlaylist/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
