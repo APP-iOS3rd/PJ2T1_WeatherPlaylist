@@ -36,6 +36,8 @@
 		DA637F8D2B2041D900BB3612 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */; };
 		DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8F2B20435800BB3612 /* ImageModifier.swift */; };
 		DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6506142B20475C003CF417 /* WeatherLogic.swift */; };
+		DAF051AE2B209B4900D3D460 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051AD2B209B4900D3D460 /* CachedImage.swift */; };
+		DAF051B02B20A14400D3D460 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051AF2B20A14400D3D460 /* View+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		DA637F8F2B20435800BB3612 /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
 		DA6506142B20475C003CF417 /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
+		DAF051AD2B209B4900D3D460 /* CachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
+		DAF051AF2B20A14400D3D460 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,10 +150,10 @@
 		DA637F652B1F1F6200BB3612 /* WeatherPlaylist */ = {
 			isa = PBXGroup;
 			children = (
+				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
 				DA637F782B201BE200BB3612 /* Source */,
 				DA637F772B201BD400BB3612 /* Resource */,
-				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F7A2B201BFB00BB3612 /* Views */,
 				DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */,
 				DA637F6C2B1F1F6400BB3612 /* Preview Content */,
@@ -180,6 +184,7 @@
 				DA6506162B204AAB003CF417 /* Singleton */,
 				DA637F8E2B20434B00BB3612 /* ViewModifier */,
 				DA637F7E2B201C2C00BB3612 /* Extensions */,
+				DAF051AD2B209B4900D3D460 /* CachedImage.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */,
 				DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */,
 				DA29F7DE2B206F8A003085B9 /* Font+Extensions.swift */,
+				DAF051AF2B20A14400D3D460 /* View+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA29F7DF2B206F8A003085B9 /* Font+Extensions.swift in Sources */,
+				DAF051AE2B209B4900D3D460 /* CachedImage.swift in Sources */,
 				DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */,
 				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
@@ -346,6 +353,7 @@
 				DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */,
 				DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */,
 				DA29F7C92B206E39003085B9 /* BottomDrawerModifier.swift in Sources */,
+				DAF051B02B20A14400D3D460 /* View+Extensions.swift in Sources */,
 				DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherPlaylist/Preview Content\"";
-				DEVELOPMENT_TEAM = C32HZ8W6CA;
+				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherPlaylist/Info.plist;
@@ -516,7 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherPlaylist/Preview Content\"";
-				DEVELOPMENT_TEAM = C32HZ8W6CA;
+				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherPlaylist/Info.plist;
