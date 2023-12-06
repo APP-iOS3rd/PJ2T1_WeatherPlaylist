@@ -38,6 +38,8 @@
 		DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6506142B20475C003CF417 /* WeatherLogic.swift */; };
 		DAF051AE2B209B4900D3D460 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051AD2B209B4900D3D460 /* CachedImage.swift */; };
 		DAF051B02B20A14400D3D460 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051AF2B20A14400D3D460 /* View+Extensions.swift */; };
+		DAF051B22B20A53800D3D460 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051B12B20A53800D3D460 /* APIProtocol.swift */; };
+		DAF051B42B20A9F300D3D460 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051B32B20A9F300D3D460 /* UserRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +77,8 @@
 		DA6506142B20475C003CF417 /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 		DAF051AD2B209B4900D3D460 /* CachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 		DAF051AF2B20A14400D3D460 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		DAF051B12B20A53800D3D460 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		DAF051B32B20A9F300D3D460 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,8 @@
 				DA637F8E2B20434B00BB3612 /* ViewModifier */,
 				DA637F7E2B201C2C00BB3612 /* Extensions */,
 				DAF051AD2B209B4900D3D460 /* CachedImage.swift */,
+				DAF051B12B20A53800D3D460 /* APIProtocol.swift */,
+				DAF051B32B20A9F300D3D460 /* UserRequest.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -336,6 +342,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA29F7DF2B206F8A003085B9 /* Font+Extensions.swift in Sources */,
+				DAF051B22B20A53800D3D460 /* APIProtocol.swift in Sources */,
+				DAF051B42B20A9F300D3D460 /* UserRequest.swift in Sources */,
 				DAF051AE2B209B4900D3D460 /* CachedImage.swift in Sources */,
 				DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */,
 				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
