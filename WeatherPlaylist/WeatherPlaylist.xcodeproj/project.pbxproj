@@ -11,6 +11,8 @@
 		DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F682B1F1F6200BB3612 /* ContentView.swift */; };
 		DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */; };
 		DA637F6E2B1F1F6400BB3612 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */; };
+		DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F7C2B201C1F00BB3612 /* MyPageView.swift */; };
+		DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,8 +21,10 @@
 		DA637F682B1F1F6200BB3612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SpotifyAPI.xcconfig; path = WeatherPlaylist/SpotifyAPI.xcconfig; sourceTree = "<group>"; };
+		DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		DA637F752B1F331F00BB3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DA637F7C2B201C1F00BB3612 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +41,6 @@
 		DA637F5A2B1F1F6200BB3612 = {
 			isa = PBXGroup;
 			children = (
-				DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */,
 				DA637F652B1F1F6200BB3612 /* WeatherPlaylist */,
 				DA637F642B1F1F6200BB3612 /* Products */,
 			);
@@ -54,9 +57,11 @@
 		DA637F652B1F1F6200BB3612 /* WeatherPlaylist */ = {
 			isa = PBXGroup;
 			children = (
-				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
-				DA637F682B1F1F6200BB3612 /* ContentView.swift */,
+				DA637F782B201BE200BB3612 /* Source */,
+				DA637F772B201BD400BB3612 /* Resource */,
+				DA637F752B1F331F00BB3612 /* Info.plist */,
+				DA637F7A2B201BFB00BB3612 /* Views */,
 				DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */,
 				DA637F6C2B1F1F6400BB3612 /* Preview Content */,
 			);
@@ -69,6 +74,55 @@
 				DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DA637F772B201BD400BB3612 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F792B201BEE00BB3612 /* Configuration */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DA637F782B201BE200BB3612 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F7E2B201C2C00BB3612 /* Extensions */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		DA637F792B201BEE00BB3612 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		DA637F7A2B201BFB00BB3612 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F7B2B201C0B00BB3612 /* MypageView */,
+				DA637F682B1F1F6200BB3612 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA637F7B2B201C0B00BB3612 /* MypageView */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F7C2B201C1F00BB3612 /* MyPageView.swift */,
+			);
+			path = MypageView;
+			sourceTree = "<group>";
+		};
+		DA637F7E2B201C2C00BB3612 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +195,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
 				DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */,
+				DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
