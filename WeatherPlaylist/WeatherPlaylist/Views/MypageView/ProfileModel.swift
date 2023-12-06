@@ -9,7 +9,7 @@ import Foundation
 //MARK: - 임시 프로필 모델
 struct ProfileModel {
     let name: String
-    let image: UIImage?
+    let image: URL?
     init() {
         self.name = "닉네임"
         self.image = nil
@@ -18,7 +18,7 @@ struct ProfileModel {
         self.name = name
         self.image = nil
     }
-    init(name: String, image: UIImage) {
+    init(name: String, image: URL) {
         self.name = name
         self.image = image
     }

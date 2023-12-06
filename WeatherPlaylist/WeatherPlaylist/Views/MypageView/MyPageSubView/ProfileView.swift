@@ -11,7 +11,32 @@ struct ProfileView: View {
     @EnvironmentObject var viewModel: ProfileViewModel
     var body: some View {
         HStack{
-            Image(uiImage: viewModel.profileModel.image ?? UIImage(systemName: "car")!)
+            AsyncImage(url: viewModel.profileModel.image) {phase in
+                switch phase {
+                case .success(let image) :
+                    ProfileImage(image: image)
+                case .empty, .failure(_):
+                    ProfileImage()
+                @unknown default:
+                    ProfileImage()
+                }
+            }
+            Text(viewModel.profileModel.name)
+                .font(.system(size: 18))
+            Spacer()
+        }.padding(.horizontal,25)
+    }
+}
+#Preview {
+    ProfileView()
+        .environmentObject(ProfileViewModel())
+}
+
+struct ProfileImage: View {
+    @State var image: Image?
+    var body: some View {
+        if let image = image {
+            image                
                 .resizable()
                 .frame(width: 40, height: 40)
                 .overlay(
@@ -21,15 +46,17 @@ struct ProfileView: View {
                 )
                 .cornerRadius(20)
                 .padding(.trailing,13)
-            Text(viewModel.profileModel.name)
-            Spacer()
-            Button(action: {}, label: {
-                Text("수정")
-            })
-        }.padding(.horizontal,25)
+        } else {
+            Image(uiImage: .emptyImage)
+                .resizable()
+                .frame(width: 40, height: 40)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.gray, lineWidth: 0.8)
+                        .foregroundStyle(Color.clear)
+                )
+                .cornerRadius(20)
+                .padding(.trailing,13)
+        }
     }
-}
-#Preview {
-    ProfileView()
-        .environmentObject(ProfileViewModel())
 }

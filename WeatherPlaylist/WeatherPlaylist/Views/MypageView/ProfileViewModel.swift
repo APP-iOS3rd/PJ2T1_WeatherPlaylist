@@ -18,17 +18,17 @@ final class ProfileViewModel: ObservableObject {
     private func fetchModel() {
         self.playlistModelList = [PlaylistModel(id: "1",
                                                 title: "즐거운 믹스",
-                                               singers: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
+                                                singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
                                   PlaylistModel(id: "2",
                                                          title: "즐거운 믹스",
-                                                        singers: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
+                                                        singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
                                   PlaylistModel(id: "3",
                                                          title: "즐거운 믹스",
-                                                        singers: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
+                                                singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
                                   PlaylistModel(id: "4",
                                                          title: "즐거운 믹스",
-                                                        singers: ["슈퍼비", "디핵", "기리보이", "기타등등"])
+                                                singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"])
                          ]
         self.profileModel = .init(name: "김나무")
-    }
+    }    
 }

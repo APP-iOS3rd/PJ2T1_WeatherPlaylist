@@ -22,13 +22,15 @@ struct PlaylistScrollView: View {
                 LazyHStack {
                     ForEach(viewModel.playlistModelList) { model in
                         VStack(alignment:.leading) {
-                            Rectangle()
+                            Image(uiImage: model.thumbNail ?? .emptyImg)
+                                .resizable()
                                 .frame(width: 100,height: 100)
                             Text(model.title)
-                            Text(model.singers.reduce(""){$0 + ", " + $1})
+                            Text(model.singerStr)
                                 .lineLimit(1)
                         }.frame(width: 100)
                         .padding(.vertical,20)
+                        .padding(.horizontal,10)
                     }
                 }
             }.padding(.leading, 25)
@@ -36,4 +38,8 @@ struct PlaylistScrollView: View {
                 .aspectRatio(contentMode: .fit)
         }
     }
+}
+#Preview {
+    PlaylistScrollView(title: "저장한 플레이리스트")
+        .environmentObject(ProfileViewModel())
 }

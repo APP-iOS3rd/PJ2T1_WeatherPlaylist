@@ -18,6 +18,9 @@
 		DA637F872B20238500BB3612 /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F862B20238500BB3612 /* PlaylistModel.swift */; };
 		DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F882B20255A00BB3612 /* ProfileModel.swift */; };
 		DA637F8B2B20281B00BB3612 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */; };
+		DA637F8D2B2041D900BB3612 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */; };
+		DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8F2B20435800BB3612 /* ImageModifier.swift */; };
+		DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6506142B20475C003CF417 /* WeatherLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +38,9 @@
 		DA637F862B20238500BB3612 /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
 		DA637F882B20255A00BB3612 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		DA637F8F2B20435800BB3612 /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
+		DA6506142B20475C003CF417 /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 		DA637F782B201BE200BB3612 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				DA6506162B204AAB003CF417 /* Singleton */,
+				DA637F8E2B20434B00BB3612 /* ViewModifier */,
 				DA637F7E2B201C2C00BB3612 /* Extensions */,
 			);
 			path = Source;
@@ -135,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */,
+				DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -146,6 +155,22 @@
 				DA637F842B20236600BB3612 /* PlaylistScrollView.swift */,
 			);
 			path = MyPageSubView;
+			sourceTree = "<group>";
+		};
+		DA637F8E2B20434B00BB3612 /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F8F2B20435800BB3612 /* ImageModifier.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		DA6506162B204AAB003CF417 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				DA6506142B20475C003CF417 /* WeatherLogic.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,11 +247,14 @@
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
 				DA637F872B20238500BB3612 /* PlaylistModel.swift in Sources */,
 				DA637F8B2B20281B00BB3612 /* ProfileViewModel.swift in Sources */,
+				DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */,
 				DA637F832B201DB300BB3612 /* ProfileView.swift in Sources */,
 				DA637F852B20236600BB3612 /* PlaylistScrollView.swift in Sources */,
 				DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */,
+				DA637F8D2B2041D900BB3612 /* UIImage+Extensions.swift in Sources */,
 				DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */,
 				DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */,
+				DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
