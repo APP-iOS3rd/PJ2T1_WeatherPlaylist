@@ -7,13 +7,16 @@
 
 import SwiftUI
 
-struct PlayControllerView: View {
+struct PlaylistControllerView: View {
     var isLikePlaylist: Bool
+    var pushAddButton: () -> Void
+    var pushPlayButton: () -> Void
+    var pushLikeButton: () -> Void
     
     var body: some View {
         HStack(alignment: .center, spacing: 57) {
             Button {
-                print("push ADD BUTTON")
+                pushPlayButton()
             } label: {
                 Image(systemName: "plus")
                     .foregroundStyle(.black)
@@ -21,7 +24,7 @@ struct PlayControllerView: View {
             }
             
             Button {
-                print("push PLAY BUTTON")
+                pushPlayButton()
             } label: {
                 Image(systemName: "play.fill")
                     .foregroundStyle(.black)
@@ -29,7 +32,7 @@ struct PlayControllerView: View {
             }
             
             Button {
-                print("push HEART BUTTON")
+                pushLikeButton()
             } label: {
                 Image(systemName: isLikePlaylist ? "heart.fill" : "heart")
                     .foregroundStyle(.black)

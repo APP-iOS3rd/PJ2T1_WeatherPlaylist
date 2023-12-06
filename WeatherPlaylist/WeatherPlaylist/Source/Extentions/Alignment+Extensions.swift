@@ -9,5 +9,6 @@ import Foundation
 import SwiftUI
 
 extension Alignment {
-    static let playlistCoverImageAlignment = Alignment(horizontal: .playlistCoverImageHorizon.playlistCoverImageAlignment, vertical: .playlistCoverImageVertical.playlistCoverImageAlignment)
+    static let playlistCoverImageAlignment = Alignment(horizontal: .playlistCoverImageHorizon.playlistCoverImageAlignment, 
+                                                       vertical: .playlistCoverImageVertical.playlistCoverImageAlignment)
 }
