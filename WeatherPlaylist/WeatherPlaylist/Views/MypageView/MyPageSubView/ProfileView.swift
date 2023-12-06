@@ -8,12 +8,20 @@
 import Foundation
 import SwiftUI
 struct ProfileView: View {
+    @EnvironmentObject var viewModel: ProfileViewModel
     var body: some View {
         HStack{
-            Circle()
+            Image(uiImage: viewModel.profileModel.image ?? UIImage(systemName: "car")!)
+                .resizable()
                 .frame(width: 40, height: 40)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.gray, lineWidth: 0.8)
+                        .foregroundStyle(Color.clear)
+                )
+                .cornerRadius(20)
                 .padding(.trailing,13)
-            Text("닉네임")
+            Text(viewModel.profileModel.name)
             Spacer()
             Button(action: {}, label: {
                 Text("수정")
@@ -23,4 +31,5 @@ struct ProfileView: View {
 }
 #Preview {
     ProfileView()
+        .environmentObject(ProfileViewModel())
 }

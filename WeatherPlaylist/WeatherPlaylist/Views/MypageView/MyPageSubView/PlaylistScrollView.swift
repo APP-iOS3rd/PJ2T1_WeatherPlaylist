@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 struct PlaylistScrollView: View {
+    @EnvironmentObject var viewModel: ProfileViewModel
     @State var title: String
-    @State var models: [PlaylistModel]
     var body: some View {
         VStack {
             HStack {
@@ -20,7 +20,7 @@ struct PlaylistScrollView: View {
                 .padding(.bottom,-10)
             ScrollView(.horizontal) {
                 LazyHStack {
-                    ForEach(models) { model in
+                    ForEach(viewModel.playlistModelList) { model in
                         VStack(alignment:.leading) {
                             Rectangle()
                                 .frame(width: 100,height: 100)

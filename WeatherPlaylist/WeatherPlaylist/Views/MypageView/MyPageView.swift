@@ -8,23 +8,13 @@
 import SwiftUI
 
 struct MyPageView: View {
+    @StateObject var viewModel: ProfileViewModel = .init()
     var body: some View {
         VStack {
             ProfileView()
-            PlaylistScrollView(title: "저장한 플레이리스트",
-                               models: [PlaylistModel(id: "1",
-                                                      title: "즐거운 믹스",
-                                                     singers: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
-                                        PlaylistModel(id: "2",
-                                                               title: "즐거운 믹스",
-                                                              singers: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
-                                        PlaylistModel(id: "3",
-                                                               title: "즐거운 믹스",
-                                                              singers: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
-                                        PlaylistModel(id: "4",
-                                                               title: "즐거운 믹스",
-                                                              singers: ["슈퍼비", "디핵", "기리보이", "기타등등"])
-                               ])
+                .environmentObject(viewModel)
+            PlaylistScrollView(title: "저장한 플레이리스트")
+            .environmentObject(viewModel)
             VStack(alignment: .leading){
                 Text("설정")
                 HStack{
