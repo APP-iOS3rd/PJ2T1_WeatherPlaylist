@@ -7,15 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
-=======
-		01579C182B20587200C94E3E /* PlayMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01579C172B20587200C94E3E /* PlayMusicView.swift */; };
-		016196D22B205D3B00E14E92 /* BottomDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016196D12B205D3B00E14E92 /* BottomDrawer.swift */; };
-		016196D42B205D7000E14E92 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016196D32B205D7000E14E92 /* CustomCorners.swift */; };
-		016196D62B205DC100E14E92 /* DrawerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016196D52B205DC100E14E92 /* DrawerExtension.swift */; };
-		016196D82B205DE600E14E92 /* BottomDrawerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016196D72B205DE600E14E92 /* BottomDrawerModifier.swift */; };
-		DA33C3E12B20534900B19D2F /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA33C3E02B20534900B19D2F /* Font+Extensions.swift */; };
->>>>>>> parent of 7941737 ([Feat] : Main, Detail View 구현 (#3))
+		DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */; };
+		DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C32B206E39003085B9 /* DrawerExtension.swift */; };
+		DA29F7C82B206E39003085B9 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C42B206E39003085B9 /* CustomCorners.swift */; };
+		DA29F7C92B206E39003085B9 /* BottomDrawerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C52B206E39003085B9 /* BottomDrawerModifier.swift */; };
+		DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C62B206E39003085B9 /* BottomDrawer.swift */; };
 		DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */; };
 		DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F682B1F1F6200BB3612 /* ContentView.swift */; };
 		DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */; };
@@ -33,23 +29,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
-		01579C172B20587200C94E3E /* PlayMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicView.swift; sourceTree = "<group>"; };
-		016196D12B205D3B00E14E92 /* BottomDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomDrawer.swift; sourceTree = "<group>"; };
-		016196D32B205D7000E14E92 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
-		016196D52B205DC100E14E92 /* DrawerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerExtension.swift; sourceTree = "<group>"; };
-		016196D72B205DE600E14E92 /* BottomDrawerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomDrawerModifier.swift; sourceTree = "<group>"; };
-		DA33C3D72B20533100B19D2F /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
-		DA33C3D82B20533100B19D2F /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
-		DA33C3D92B20533100B19D2F /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
-		DA33C3DA2B20533100B19D2F /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		DA33C3DB2B20533100B19D2F /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
-		DA33C3DC2B20533100B19D2F /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
-		DA33C3DD2B20533100B19D2F /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
-		DA33C3DE2B20533100B19D2F /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
-		DA33C3DF2B20533100B19D2F /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
-		DA33C3E02B20534900B19D2F /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
->>>>>>> parent of 7941737 ([Feat] : Main, Detail View 구현 (#3))
+		DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayMusicView.swift; sourceTree = "<group>"; };
+		DA29F7C32B206E39003085B9 /* DrawerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerExtension.swift; sourceTree = "<group>"; };
+		DA29F7C42B206E39003085B9 /* CustomCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
+		DA29F7C52B206E39003085B9 /* BottomDrawerModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomDrawerModifier.swift; sourceTree = "<group>"; };
+		DA29F7C62B206E39003085B9 /* BottomDrawer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomDrawer.swift; sourceTree = "<group>"; };
 		DA637F632B1F1F6200BB3612 /* WeatherPlaylist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherPlaylist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPlaylistApp.swift; sourceTree = "<group>"; };
 		DA637F682B1F1F6200BB3612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,53 +64,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-<<<<<<< HEAD
-=======
-		01579C162B2057D800C94E3E /* PlayMusicView */ = {
+		DA29F7BE2B206E26003085B9 /* PlayMusicView */ = {
 			isa = PBXGroup;
 			children = (
-				01579C172B20587200C94E3E /* PlayMusicView.swift */,
+				DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */,
 			);
 			path = PlayMusicView;
 			sourceTree = "<group>";
 		};
-		016196D02B205D2200E14E92 /* BottomDrawer */ = {
+		DA29F7C12B206E39003085B9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				016196D12B205D3B00E14E92 /* BottomDrawer.swift */,
-				016196D32B205D7000E14E92 /* CustomCorners.swift */,
-				016196D52B205DC100E14E92 /* DrawerExtension.swift */,
-				016196D72B205DE600E14E92 /* BottomDrawerModifier.swift */,
-			);
-			path = BottomDrawer;
-			sourceTree = "<group>";
-		};
-		016196D92B2063EB00E14E92 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				016196D02B205D2200E14E92 /* BottomDrawer */,
+				DA29F7C22B206E39003085B9 /* BottomDrawer */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		DA33C3D62B20532000B19D2F /* Font */ = {
+		DA29F7C22B206E39003085B9 /* BottomDrawer */ = {
 			isa = PBXGroup;
 			children = (
-				DA33C3D92B20533100B19D2F /* Pretendard-Black.otf */,
-				DA33C3DC2B20533100B19D2F /* Pretendard-Bold.otf */,
-				DA33C3DD2B20533100B19D2F /* Pretendard-ExtraBold.otf */,
-				DA33C3DB2B20533100B19D2F /* Pretendard-ExtraLight.otf */,
-				DA33C3DE2B20533100B19D2F /* Pretendard-Light.otf */,
-				DA33C3DF2B20533100B19D2F /* Pretendard-Medium.otf */,
-				DA33C3D72B20533100B19D2F /* Pretendard-Regular.otf */,
-				DA33C3DA2B20533100B19D2F /* Pretendard-SemiBold.otf */,
-				DA33C3D82B20533100B19D2F /* Pretendard-Thin.otf */,
-				DA33C3E02B20534900B19D2F /* Font+Extensions.swift */,
+				DA29F7C32B206E39003085B9 /* DrawerExtension.swift */,
+				DA29F7C42B206E39003085B9 /* CustomCorners.swift */,
+				DA29F7C52B206E39003085B9 /* BottomDrawerModifier.swift */,
+				DA29F7C62B206E39003085B9 /* BottomDrawer.swift */,
 			);
-			path = Font;
+			path = BottomDrawer;
 			sourceTree = "<group>";
 		};
->>>>>>> parent of 7941737 ([Feat] : Main, Detail View 구현 (#3))
 		DA637F5A2B1F1F6200BB3612 = {
 			isa = PBXGroup;
 			children = (
@@ -146,18 +110,10 @@
 		DA637F652B1F1F6200BB3612 /* WeatherPlaylist */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
 				DA637F782B201BE200BB3612 /* Source */,
 				DA637F772B201BD400BB3612 /* Resource */,
 				DA637F752B1F331F00BB3612 /* Info.plist */,
-=======
-				DA33C3D62B20532000B19D2F /* Font */,
-				DA637F752B1F331F00BB3612 /* Info.plist */,
-				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
-				DA637F782B201BE200BB3612 /* Source */,
-				DA637F772B201BD400BB3612 /* Resource */,
->>>>>>> parent of 7941737 ([Feat] : Main, Detail View 구현 (#3))
 				DA637F7A2B201BFB00BB3612 /* Views */,
 				DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */,
 				DA637F6C2B1F1F6400BB3612 /* Preview Content */,
@@ -202,8 +158,8 @@
 		DA637F7A2B201BFB00BB3612 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				016196D92B2063EB00E14E92 /* Components */,
-				01579C162B2057D800C94E3E /* PlayMusicView */,
+				DA29F7C12B206E39003085B9 /* Components */,
+				DA29F7BE2B206E26003085B9 /* PlayMusicView */,
 				DA637F7B2B201C0B00BB3612 /* MypageView */,
 				DA637F682B1F1F6200BB3612 /* ContentView.swift */,
 			);
@@ -327,21 +283,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */,
+				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
 				DA637F872B20238500BB3612 /* PlaylistModel.swift in Sources */,
-				016196D22B205D3B00E14E92 /* BottomDrawer.swift in Sources */,
-				016196D42B205D7000E14E92 /* CustomCorners.swift in Sources */,
-				01579C182B20587200C94E3E /* PlayMusicView.swift in Sources */,
+				DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */,
+				DA29F7C82B206E39003085B9 /* CustomCorners.swift in Sources */,
 				DA637F8B2B20281B00BB3612 /* ProfileViewModel.swift in Sources */,
 				DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */,
 				DA637F832B201DB300BB3612 /* ProfileView.swift in Sources */,
-				016196D62B205DC100E14E92 /* DrawerExtension.swift in Sources */,
 				DA637F852B20236600BB3612 /* PlaylistScrollView.swift in Sources */,
 				DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */,
 				DA637F8D2B2041D900BB3612 /* UIImage+Extensions.swift in Sources */,
+				DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */,
 				DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */,
 				DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */,
-				016196D82B205DE600E14E92 /* BottomDrawerModifier.swift in Sources */,
+				DA29F7C92B206E39003085B9 /* BottomDrawerModifier.swift in Sources */,
 				DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
