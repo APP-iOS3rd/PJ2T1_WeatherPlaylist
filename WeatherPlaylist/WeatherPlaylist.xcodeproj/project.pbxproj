@@ -12,6 +12,16 @@
 		DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F682B1F1F6200BB3612 /* ContentView.swift */; };
 		DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */; };
 		DA637F6E2B1F1F6400BB3612 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */; };
+		DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F7C2B201C1F00BB3612 /* MyPageView.swift */; };
+		DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */; };
+		DA637F832B201DB300BB3612 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F822B201DB300BB3612 /* ProfileView.swift */; };
+		DA637F852B20236600BB3612 /* PlaylistScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F842B20236600BB3612 /* PlaylistScrollView.swift */; };
+		DA637F872B20238500BB3612 /* PlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F862B20238500BB3612 /* PlaylistModel.swift */; };
+		DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F882B20255A00BB3612 /* ProfileModel.swift */; };
+		DA637F8B2B20281B00BB3612 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */; };
+		DA637F8D2B2041D900BB3612 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */; };
+		DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8F2B20435800BB3612 /* ImageModifier.swift */; };
+		DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6506142B20475C003CF417 /* WeatherLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +40,18 @@
 		DA637F682B1F1F6200BB3612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SpotifyAPI.xcconfig; path = WeatherPlaylist/SpotifyAPI.xcconfig; sourceTree = "<group>"; };
+		DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		DA637F752B1F331F00BB3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DA637F7C2B201C1F00BB3612 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		DA637F822B201DB300BB3612 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		DA637F842B20236600BB3612 /* PlaylistScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistScrollView.swift; sourceTree = "<group>"; };
+		DA637F862B20238500BB3612 /* PlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistModel.swift; sourceTree = "<group>"; };
+		DA637F882B20255A00BB3612 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		DA637F8F2B20435800BB3612 /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
+		DA6506142B20475C003CF417 /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +85,6 @@
 		DA637F5A2B1F1F6200BB3612 = {
 			isa = PBXGroup;
 			children = (
-				DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */,
 				DA637F652B1F1F6200BB3612 /* WeatherPlaylist */,
 				DA637F642B1F1F6200BB3612 /* Products */,
 			);
@@ -85,7 +104,9 @@
 				DA33C3D62B20532000B19D2F /* Font */,
 				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
-				DA637F682B1F1F6200BB3612 /* ContentView.swift */,
+				DA637F782B201BE200BB3612 /* Source */,
+				DA637F772B201BD400BB3612 /* Resource */,
+				DA637F7A2B201BFB00BB3612 /* Views */,
 				DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */,
 				DA637F6C2B1F1F6400BB3612 /* Preview Content */,
 			);
@@ -98,6 +119,87 @@
 				DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DA637F772B201BD400BB3612 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F792B201BEE00BB3612 /* Configuration */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DA637F782B201BE200BB3612 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DA6506162B204AAB003CF417 /* Singleton */,
+				DA637F8E2B20434B00BB3612 /* ViewModifier */,
+				DA637F7E2B201C2C00BB3612 /* Extensions */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		DA637F792B201BEE00BB3612 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		DA637F7A2B201BFB00BB3612 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F7B2B201C0B00BB3612 /* MypageView */,
+				DA637F682B1F1F6200BB3612 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA637F7B2B201C0B00BB3612 /* MypageView */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F812B201D8600BB3612 /* MyPageSubView */,
+				DA637F7C2B201C1F00BB3612 /* MyPageView.swift */,
+				DA637F882B20255A00BB3612 /* ProfileModel.swift */,
+				DA637F862B20238500BB3612 /* PlaylistModel.swift */,
+				DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */,
+			);
+			path = MypageView;
+			sourceTree = "<group>";
+		};
+		DA637F7E2B201C2C00BB3612 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */,
+				DA637F8C2B2041D900BB3612 /* UIImage+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DA637F812B201D8600BB3612 /* MyPageSubView */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F822B201DB300BB3612 /* ProfileView.swift */,
+				DA637F842B20236600BB3612 /* PlaylistScrollView.swift */,
+			);
+			path = MyPageSubView;
+			sourceTree = "<group>";
+		};
+		DA637F8E2B20434B00BB3612 /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				DA637F8F2B20435800BB3612 /* ImageModifier.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
+		DA6506162B204AAB003CF417 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				DA6506142B20475C003CF417 /* WeatherLogic.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,8 +273,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA33C3E12B20534900B19D2F /* Font+Extensions.swift in Sources */,
+				DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
+				DA637F872B20238500BB3612 /* PlaylistModel.swift in Sources */,
+				DA637F8B2B20281B00BB3612 /* ProfileViewModel.swift in Sources */,
+				DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */,
+				DA637F832B201DB300BB3612 /* ProfileView.swift in Sources */,
+				DA637F852B20236600BB3612 /* PlaylistScrollView.swift in Sources */,
 				DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */,
+				DA637F8D2B2041D900BB3612 /* UIImage+Extensions.swift in Sources */,
+				DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */,
+				DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */,
+				DA6506152B20475C003CF417 /* WeatherLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
