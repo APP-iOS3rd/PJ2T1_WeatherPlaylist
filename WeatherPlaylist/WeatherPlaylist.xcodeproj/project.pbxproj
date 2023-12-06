@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641745A32B20538C00D1BFB4 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6417459F2B20538B00D1BFB4 /* ToggleView.swift */; };
+		641745A42B20538C00D1BFB4 /* StarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641745A02B20538B00D1BFB4 /* StarShape.swift */; };
+		641745A52B20538C00D1BFB4 /* MyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641745A12B20538C00D1BFB4 /* MyToggleStyle.swift */; };
+		641745A62B20538C00D1BFB4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641745A22B20538C00D1BFB4 /* MainView.swift */; };
+		641745AA2B20541700D1BFB4 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641745A82B20541700D1BFB4 /* DetailView.swift */; };
+		641745AB2B20541700D1BFB4 /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641745A92B20541700D1BFB4 /* MusicCell.swift */; };
+		641745AF2B20543000D1BFB4 /* PlayFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641745AE2B20543000D1BFB4 /* PlayFooterCell.swift */; };
+		641745B22B2054F900D1BFB4 /* DisPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641745B12B2054F900D1BFB4 /* DisPlayView.swift */; };
 		DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */; };
 		DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F682B1F1F6200BB3612 /* ContentView.swift */; };
 		DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */; };
@@ -14,12 +22,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6417459F2B20538B00D1BFB4 /* ToggleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
+		641745A02B20538B00D1BFB4 /* StarShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarShape.swift; sourceTree = "<group>"; };
+		641745A12B20538C00D1BFB4 /* MyToggleStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToggleStyle.swift; sourceTree = "<group>"; };
+		641745A22B20538C00D1BFB4 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		641745A82B20541700D1BFB4 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		641745A92B20541700D1BFB4 /* MusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicCell.swift; sourceTree = "<group>"; };
+		641745AE2B20543000D1BFB4 /* PlayFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayFooterCell.swift; sourceTree = "<group>"; };
+		641745B12B2054F900D1BFB4 /* DisPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisPlayView.swift; sourceTree = "<group>"; };
 		DA637F632B1F1F6200BB3612 /* WeatherPlaylist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherPlaylist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPlaylistApp.swift; sourceTree = "<group>"; };
 		DA637F682B1F1F6200BB3612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SpotifyAPI.xcconfig; path = WeatherPlaylist/SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		DA637F752B1F331F00BB3612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -34,10 +49,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6417459C2B20536B00D1BFB4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				641745A72B20541700D1BFB4 /* Detail  */,
+				6417459D2B20538B00D1BFB4 /* MainView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6417459D2B20538B00D1BFB4 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				641745B02B2054BC00D1BFB4 /* PlayListDisplay */,
+				641745AC2B20543000D1BFB4 /* PlayFooter */,
+				6417459E2B20538B00D1BFB4 /* Toggle */,
+				641745A22B20538C00D1BFB4 /* MainView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		6417459E2B20538B00D1BFB4 /* Toggle */ = {
+			isa = PBXGroup;
+			children = (
+				6417459F2B20538B00D1BFB4 /* ToggleView.swift */,
+				641745A02B20538B00D1BFB4 /* StarShape.swift */,
+				641745A12B20538C00D1BFB4 /* MyToggleStyle.swift */,
+			);
+			path = Toggle;
+			sourceTree = "<group>";
+		};
+		641745A72B20541700D1BFB4 /* Detail  */ = {
+			isa = PBXGroup;
+			children = (
+				641745A82B20541700D1BFB4 /* DetailView.swift */,
+				641745A92B20541700D1BFB4 /* MusicCell.swift */,
+			);
+			path = "Detail ";
+			sourceTree = "<group>";
+		};
+		641745AC2B20543000D1BFB4 /* PlayFooter */ = {
+			isa = PBXGroup;
+			children = (
+				641745AD2B20543000D1BFB4 /* Views */,
+			);
+			path = PlayFooter;
+			sourceTree = "<group>";
+		};
+		641745AD2B20543000D1BFB4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				641745AE2B20543000D1BFB4 /* PlayFooterCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		641745B02B2054BC00D1BFB4 /* PlayListDisplay */ = {
+			isa = PBXGroup;
+			children = (
+				641745B12B2054F900D1BFB4 /* DisPlayView.swift */,
+			);
+			path = PlayListDisplay;
+			sourceTree = "<group>";
+		};
 		DA637F5A2B1F1F6200BB3612 = {
 			isa = PBXGroup;
 			children = (
-				DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */,
 				DA637F652B1F1F6200BB3612 /* WeatherPlaylist */,
 				DA637F642B1F1F6200BB3612 /* Products */,
 			);
@@ -54,6 +131,7 @@
 		DA637F652B1F1F6200BB3612 /* WeatherPlaylist */ = {
 			isa = PBXGroup;
 			children = (
+				6417459C2B20536B00D1BFB4 /* Views */,
 				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
 				DA637F682B1F1F6200BB3612 /* ContentView.swift */,
@@ -142,7 +220,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
+				641745A42B20538C00D1BFB4 /* StarShape.swift in Sources */,
+				641745A62B20538C00D1BFB4 /* MainView.swift in Sources */,
+				641745AB2B20541700D1BFB4 /* MusicCell.swift in Sources */,
+				641745AF2B20543000D1BFB4 /* PlayFooterCell.swift in Sources */,
+				641745AA2B20541700D1BFB4 /* DetailView.swift in Sources */,
+				641745A52B20538C00D1BFB4 /* MyToggleStyle.swift in Sources */,
+				641745A32B20538C00D1BFB4 /* ToggleView.swift in Sources */,
 				DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */,
+				641745B22B2054F900D1BFB4 /* DisPlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +237,6 @@
 /* Begin XCBuildConfiguration section */
 		DA637F6F2B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -215,7 +300,6 @@
 		};
 		DA637F702B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA637F742B1F329E00BB3612 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
