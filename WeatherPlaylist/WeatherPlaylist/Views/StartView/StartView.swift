@@ -21,8 +21,9 @@ struct StartView: View {
             } else {
                 LaunchView()
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                            withAnimation { isLoading.toggle() }
+                        DispatchQueue.main.asyncAfter(
+                            deadline: .now() + 3, 
+                            execute: { withAnimation { isLoading.toggle() }
                         })
                     }
             }

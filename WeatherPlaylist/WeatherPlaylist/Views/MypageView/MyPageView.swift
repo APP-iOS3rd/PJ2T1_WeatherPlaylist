@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyPageView: View {
     @StateObject var viewModel: ProfileViewModel = .init()
-    @StateObject var weather: WeatherLogic = .shared
+    @ObservedObject var weather: WeatherLogic = .shared
     var body: some View {
             VStack {
                 ProfileView()
@@ -20,8 +20,10 @@ struct MyPageView: View {
                     .environmentObject(viewModel)
                 VStack(alignment: .leading){
                     Text("설정")
+                        .font(.bold14)
                     HStack{
                         Text("날씨 반영 설정")
+                            .font(.regular14)
                         Spacer()
                         Toggle(isOn: $weather.isChecking, label: {})
                     }

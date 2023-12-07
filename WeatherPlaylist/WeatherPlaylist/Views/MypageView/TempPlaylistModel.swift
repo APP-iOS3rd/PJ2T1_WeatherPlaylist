@@ -8,7 +8,7 @@ import UIKit
 import Foundation
 #if DEBUG
 //MARK: - 임시로 만든 모델
-struct PlaylistModel: Identifiable {
+struct TempPlaylistModel: Identifiable {
     var thumbNail: UIImage?
     var id: String
     var title: String

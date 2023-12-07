@@ -15,5 +15,4 @@ public class WeatherLogic: ObservableObject {
             print(self.isChecking ? "체크중" : "체크해제")
         }
     }
-    
 }
