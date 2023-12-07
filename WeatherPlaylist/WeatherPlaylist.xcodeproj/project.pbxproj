@@ -11,6 +11,7 @@
 		28A621952B213FAF00575D16 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A621942B213FAF00575D16 /* LoginView.swift */; };
 		28A621972B21400700575D16 /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 28A621962B21400700575D16 /* SpotifyAPI.xcconfig */; };
 		28A621992B21404E00575D16 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A621982B21404E00575D16 /* StartView.swift */; };
+		28A6219C2B21421300575D16 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 28A6219B2B21421300575D16 /* SpotifyiOS */; };
 		DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */; };
 		DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C32B206E39003085B9 /* DrawerExtension.swift */; };
 		DA29F7C82B206E39003085B9 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C42B206E39003085B9 /* CustomCorners.swift */; };
@@ -85,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A6219C2B21421300575D16 /* SpotifyiOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +286,9 @@
 			dependencies = (
 			);
 			name = WeatherPlaylist;
+			packageProductDependencies = (
+				28A6219B2B21421300575D16 /* SpotifyiOS */,
+			);
 			productName = WeatherPlaylist;
 			productReference = DA637F632B1F1F6200BB3612 /* WeatherPlaylist.app */;
 			productType = "com.apple.product-type.application";
@@ -312,6 +317,9 @@
 				Base,
 			);
 			mainGroup = DA637F5A2B1F1F6200BB3612;
+			packageReferences = (
+				28A6219A2B21421300575D16 /* XCRemoteSwiftPackageReference "ios-sdk" */,
+			);
 			productRefGroup = DA637F642B1F1F6200BB3612 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -582,6 +590,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		28A6219A2B21421300575D16 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		28A6219B2B21421300575D16 /* SpotifyiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28A6219A2B21421300575D16 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = SpotifyiOS;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DA637F5B2B1F1F6200BB3612 /* Project object */;
 }

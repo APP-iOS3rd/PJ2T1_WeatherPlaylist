@@ -9,30 +9,24 @@ import SwiftUI
 
 struct StartView: View {
     
-    @State var isLoading: Bool = true
+    @State var isLoading: Bool = false
     
     var body: some View {
         
         ZStack {
-            
-            // 1) CHANGED: zIndex added
-            // 앱 화면
-            LoginView()
-            
-            // Launch Screen
             if isLoading {
-                // 2) CHANGED: transition and zIndex added
-                LaunchView().transition(.opacity).zIndex(1)
+                LoginView()
+                    .transition(.opacity)
+                    .zIndex(1)
+            } else {
+                LaunchView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                            withAnimation { isLoading.toggle() }
+                        })
+                    }
             }
-            
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                // 3) CHANGED: withAnimation added
-                withAnimation { isLoading.toggle() }
-            })
-        }
-        
     }
 }
 
