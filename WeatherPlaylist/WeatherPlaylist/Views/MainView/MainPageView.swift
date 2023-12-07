@@ -54,7 +54,7 @@ struct MainPageView: View {
  
 
 extension MainPageView {
-    private var headerView: some View{
+    private var topView: some View{
         HStack {
             Text(mainTitle)
                 .font(.bold28)
