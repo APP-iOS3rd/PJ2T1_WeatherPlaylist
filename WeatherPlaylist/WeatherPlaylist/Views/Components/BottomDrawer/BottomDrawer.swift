@@ -39,8 +39,32 @@ struct EdgesBottomDrawerView<Content: View, DrawerContent: View, PullUpView: Vie
             content()
                 .blur(radius: getBlurRadius())
                 .ignoresSafeArea()
+            
             GeometryReader { proxy -> AnyView in
                 let height = proxy.frame(in: .global).height
+                let dragGesture = DragGesture()
+                    .updating(self.$gestureOffset, body: { value, out, _ in
+                        out = value.translation.height
+                        DispatchQueue.main.async {
+                            // 바닥 공간 안보이게 변경
+                            if abs(gestureOffset + lastOffset) < height - self.bottomDrawerHeight {
+                                self.offset = gestureOffset + lastOffset
+                            }
+                        }
+                    })
+                    .onEnded({ value in
+                        let maxHeight = height - self.bottomDrawerHeight
+                        withAnimation {
+                            if -offset > maxHeight / 2 {
+                                offset = -maxHeight
+                            } else {
+                                offset = 0
+                            }
+                        }
+                        self.lastOffset = offset
+                    })
+                
+                
                 return AnyView(
                     ZStack {
                         Color.white
@@ -50,31 +74,23 @@ struct EdgesBottomDrawerView<Content: View, DrawerContent: View, PullUpView: Vie
                                 .frame(height: self.bottomDrawerHeight)
                                 .clipShape(CustomCorners(corners: [.topLeft, .topRight], radius: self.drawerTopCornersRadius))
                             drawerContent()
-                        }
-                        .frame(maxHeight: .infinity, alignment: .top)
-                    }
-                    .offset(y: height - self.bottomDrawerHeight)
-                    .offset(y: -offset > 0 ? offset : 0)
-                    .gesture(
-                        DragGesture()
-                            .updating(self.$gestureOffset, body: { value, out, _ in
-                                out = value.translation.height
-                                DispatchQueue.main.async {
-                                    self.offset = gestureOffset + lastOffset
-                                }
-                            })
-                            .onEnded({ value in
-                                let maxHeight = height - self.bottomDrawerHeight
-                                withAnimation {
-                                    if -offset > maxHeight / 2 {
-                                        offset = -maxHeight
-                                    } else {
-                                        offset = 0
+                        }.frame(maxHeight: .infinity, alignment: .top)
+                    }.offset(y: height - self.bottomDrawerHeight)
+                        .offset(y: -offset > 0 ? offset : 0)
+                        .gesture(
+                            dragGesture.simultaneously(with: TapGesture()
+                                .onEnded{ _ in
+                                    DispatchQueue.main.async {
+                                        if self.offset == 0  {
+                                            withAnimation(.easeIn) {
+                                                self.offset = -(height - self.bottomDrawerHeight)
+                                                self.lastOffset = self.offset
+                                            }
+                                        }
                                     }
-                                }
-                                self.lastOffset = offset
-                            })
-                    )
+                                })
+
+                        )
                 )
             }
             .ignoresSafeArea(.all, edges: self.ignoreTopSafeAreas ? [.top, .bottom] : [.bottom])

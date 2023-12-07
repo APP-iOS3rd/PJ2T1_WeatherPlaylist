@@ -26,7 +26,7 @@ extension APIProtocol {
         guard let token = UserDefaults.standard.string(forKey: "token") else {
             return ["Content-Type": "application/json"]
         }
-        
+
         return ["Authorization": "Bearer \(token)",
                 "Content-Type": "application/json"]
     }
@@ -66,7 +66,6 @@ extension APIRequestProtocol {
             
             switch httpResponse.statusCode {
             case 200...299:
-                // 성공적인 상태 코드
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(Response.self, from: data)
                 return .success(decodedResponse)
@@ -79,7 +78,6 @@ extension APIRequestProtocol {
             case 500...505 :
                 return .failure(.httpError(.serverError))
             default:
-                // 에러 상태 코드
                 return .failure(.httpError(.serverError))
             }
         } catch let urlError as URLError {

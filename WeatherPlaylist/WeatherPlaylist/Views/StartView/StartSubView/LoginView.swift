@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State var showWK = false
     
+
     
     var body: some View {
         NavigationView {
@@ -31,6 +32,7 @@ struct LoginView: View {
                                     .clear,
                                     .colorBlack
                                 ]
+
                                 ),
                                 startPoint: .top,
                                 endPoint: .bottom
@@ -122,3 +124,4 @@ struct signUptButton: ButtonStyle {
 //#Preview {
 //    LoginView()
 //}
+

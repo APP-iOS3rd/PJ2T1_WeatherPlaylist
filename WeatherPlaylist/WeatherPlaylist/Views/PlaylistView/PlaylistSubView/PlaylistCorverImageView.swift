@@ -23,16 +23,20 @@ struct PlaylistCorverImageView: View {
                                 computeValue: {
                     d in d[.bottom] - 115
                 })
-                .frame(width: 260, height: 248)
-            
-            AsyncImage(url: URL(string: coverImageUrl)) { image in
-                image
-                    .resizable()
-            } placeholder: {
-                ProgressView()
+                .aspectRatio(contentMode: .fit)
+                .padding(.horizontal,75)
+            CachedImage(url: URL(string: coverImageUrl)) { phase in
+                switch phase {
+                case .success(let image) :
+                    image
+                        .resizable()
+                case .failure(_), .empty:                 ProgressView()
+                }
             }
-            .frame(width: 261, height: 253)
+            .aspectRatio(contentMode: .fit)
+            .padding(.horizontal,75)
         }
+            .aspectRatio(contentMode: .fit)
         .padding(.bottom, 18)
     }
 }
