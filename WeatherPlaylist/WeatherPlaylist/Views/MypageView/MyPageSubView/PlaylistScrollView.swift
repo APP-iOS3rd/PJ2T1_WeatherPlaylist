@@ -14,6 +14,7 @@ struct PlaylistScrollView: View {
         VStack {
             HStack {
                 Text(title)
+                    .font(.bold20)
                 Spacer()
             }.padding(.leading, 25)
                 .padding(.top, 50)
@@ -24,9 +25,12 @@ struct PlaylistScrollView: View {
                         VStack(alignment:.leading) {
                             Image(uiImage: model.thumbNail ?? .emptyImg)
                                 .resizable()
+                                .aspectRatio(contentMode: .fit)
                                 .frame(width: 100,height: 100)
                             Text(model.title)
+                                .font(.bold14)
                             Text(model.singerStr)
+                                .font(.light10)
                                 .lineLimit(1)
                         }.frame(width: 100)
                         .padding(.vertical,20)
