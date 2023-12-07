@@ -10,7 +10,9 @@ import SwiftUI
 struct MainPageView: View {
     
     @State private var menutap = false
-    @State var isLightMode: Bool = false
+    @State var isLightMode: Bool = true
+    
+    @State var mainTitle: String = "화창한 날엔 이 노래 어때요?"
  
     var body: some View {
         NavigationView {
@@ -18,12 +20,14 @@ struct MainPageView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
                         headerView
-                        MusicSection()
-                        //.padding(.bottom, 30) // 하단리스트 여백
+                        PlaylistVertical()
+                        PlaylistVertical() 
+                        PlaylistHorizontal()
+                       
                     }
-                    .padding()
-                }
-                
+                    .padding(.bottom,40)
+                   
+                } 
                 // 재생중인 음악
                 PlayFooterCell(musicImage: "album2",
                                isLightMode: $isLightMode)
@@ -50,32 +54,15 @@ struct MainPageView: View {
  
 
 extension MainPageView {
-    
     private var headerView: some View{
         HStack {
-            Text("화창한 날엔 이 노래 어때요?")
+            Text(mainTitle)
                 .font(.bold28)
-            Spacer()
+                .frame(width: 300,alignment: .leading)
         }
+        .frame(maxWidth: .infinity,alignment: .leading)
+        .padding()
     }
 }
 
-
-struct MusicSection: View {
-    var body: some View {
-        Section{
-            HStack{
-                VStack(alignment: .leading){
-                    Text("추천 리스트")
-                        .font(.regular16)
-                    Text("맞춤 믹스 : Giommy")
-                        .font(.bold20)
-                }
-                Spacer()
-            }.padding(.vertical)
-            
-            // DisplayView
-        }
-    }
-}
  
