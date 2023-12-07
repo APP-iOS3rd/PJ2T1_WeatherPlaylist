@@ -41,6 +41,7 @@ struct PlaylistControllerView: View {
         }
     }
 }
+
 #Preview {
     PlaylistControllerView(isLikePlaylist: false, pushAddButton: {}, pushPlayButton: {}, pushLikeButton: {})
 }

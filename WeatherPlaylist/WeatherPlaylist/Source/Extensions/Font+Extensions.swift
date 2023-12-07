@@ -33,8 +33,8 @@ extension Font {
     static let regular18: Font = .custom(FontType.Regular.rawValue, size: 18)
     
     // Light
-    static let light14: Font = .custom(FontType.Light.rawValue, size: 14)
 
+    static let light14: Font = .custom(FontType.Light.rawValue, size: 14)
     static let light10: Font = .custom(FontType.Light.rawValue, size: 10)
     //appFont
     static func appFont(for type : FontType, size: CGFloat) -> Font? {

@@ -53,6 +53,7 @@ final class HTTPManager<T>: APIRequestProtocol where T: Decodable{
             case .success(let response) :
                 return response
             case .failure(let error) :
+
 //                switch error {
 //                case .urlError(_):
 //
@@ -69,6 +70,7 @@ final class HTTPManager<T>: APIRequestProtocol where T: Decodable{
         }
     }
 }
+
 //MARK: - 이런식
 struct UserData: Decodable{
     let id: UUID

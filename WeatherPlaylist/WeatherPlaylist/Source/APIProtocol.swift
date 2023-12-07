@@ -26,6 +26,7 @@ extension APIProtocol {
         guard let token = UserDefaults.standard.string(forKey: "token") else {
             return ["Content-Type": "application/json"]
         }
+
         return ["Authorization": "Bearer \(token)",
                 "Content-Type": "application/json"]
     }
