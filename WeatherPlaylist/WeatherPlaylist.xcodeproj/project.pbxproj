@@ -11,6 +11,10 @@
 		28A621A22B214BE900575D16 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A6219F2B214BE900575D16 /* LoginView.swift */; };
 		28A621A32B214BE900575D16 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A621A02B214BE900575D16 /* LaunchView.swift */; };
 		28A621A62B214C2700575D16 /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 28A621A52B214C2700575D16 /* SpotifyAPI.xcconfig */; };
+		28A621A92B21514000575D16 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 28A621A82B21514000575D16 /* SpotifyiOS */; };
+		28A621AE2B21578300575D16 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A621AD2B21578300575D16 /* AuthManager.swift */; };
+		28A621B02B21583800575D16 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A621AF2B21583800575D16 /* AuthView.swift */; };
+		28A621B22B21654300575D16 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A621B12B21654300575D16 /* StartViewModel.swift */; };
 		DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */; };
 		DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C32B206E39003085B9 /* DrawerExtension.swift */; };
 		DA29F7C82B206E39003085B9 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C42B206E39003085B9 /* CustomCorners.swift */; };
@@ -51,6 +55,9 @@
 		28A6219F2B214BE900575D16 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		28A621A02B214BE900575D16 /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		28A621A52B214C2700575D16 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
+		28A621AD2B21578300575D16 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		28A621AF2B21583800575D16 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		28A621B12B21654300575D16 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayMusicView.swift; sourceTree = "<group>"; };
 		DA29F7C32B206E39003085B9 /* DrawerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerExtension.swift; sourceTree = "<group>"; };
 		DA29F7C42B206E39003085B9 /* CustomCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
@@ -93,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28A621A92B21514000575D16 /* SpotifyiOS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +112,8 @@
 			children = (
 				28A621A42B214BFE00575D16 /* StartSubView */,
 				28A6219E2B214BE900575D16 /* StartView.swift */,
+				28A621AD2B21578300575D16 /* AuthManager.swift */,
+				28A621B12B21654300575D16 /* StartViewModel.swift */,
 			);
 			path = StartView;
 			sourceTree = "<group>";
@@ -113,6 +123,7 @@
 			children = (
 				28A6219F2B214BE900575D16 /* LoginView.swift */,
 				28A621A02B214BE900575D16 /* LaunchView.swift */,
+				28A621AF2B21583800575D16 /* AuthView.swift */,
 			);
 			path = StartSubView;
 			sourceTree = "<group>";
@@ -304,6 +315,9 @@
 			dependencies = (
 			);
 			name = WeatherPlaylist;
+			packageProductDependencies = (
+				28A621A82B21514000575D16 /* SpotifyiOS */,
+			);
 			productName = WeatherPlaylist;
 			productReference = DA637F632B1F1F6200BB3612 /* WeatherPlaylist.app */;
 			productType = "com.apple.product-type.application";
@@ -320,6 +334,7 @@
 				TargetAttributes = {
 					DA637F622B1F1F6200BB3612 = {
 						CreatedOnToolsVersion = 15.0.1;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -332,6 +347,9 @@
 				Base,
 			);
 			mainGroup = DA637F5A2B1F1F6200BB3612;
+			packageReferences = (
+				28A621A72B21514000575D16 /* XCRemoteSwiftPackageReference "ios-sdk" */,
+			);
 			productRefGroup = DA637F642B1F1F6200BB3612 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -371,10 +389,12 @@
 				DA29F7DF2B206F8A003085B9 /* Font+Extensions.swift in Sources */,
 				DAF051B22B20A53800D3D460 /* APIProtocol.swift in Sources */,
 				DAF051B42B20A9F300D3D460 /* UserRequest.swift in Sources */,
+				28A621AE2B21578300575D16 /* AuthManager.swift in Sources */,
 				DAF051AE2B209B4900D3D460 /* CachedImage.swift in Sources */,
 				DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */,
 				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
 				28A621A22B214BE900575D16 /* LoginView.swift in Sources */,
+				28A621B02B21583800575D16 /* AuthView.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
 				DA637F872B20238500BB3612 /* TempPlaylistModel.swift in Sources */,
 				28A621A12B214BE900575D16 /* StartView.swift in Sources */,
@@ -387,6 +407,7 @@
 				DA637F852B20236600BB3612 /* PlaylistScrollView.swift in Sources */,
 				DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */,
 				DA637F8D2B2041D900BB3612 /* UIImage+Extensions.swift in Sources */,
+				28A621B22B21654300575D16 /* StartViewModel.swift in Sources */,
 				DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */,
 				DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */,
 				DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */,
@@ -523,6 +544,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -542,10 +564,13 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likelion.WeatherPlaylist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeatherPlaylist/Views/StartView/WeatherPlaylist-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -556,6 +581,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -575,10 +601,12 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.likelion.WeatherPlaylist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "WeatherPlaylist/Views/StartView/WeatherPlaylist-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -606,6 +634,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		28A621A72B21514000575D16 /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		28A621A82B21514000575D16 /* SpotifyiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28A621A72B21514000575D16 /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = SpotifyiOS;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DA637F5B2B1F1F6200BB3612 /* Project object */;
 }
