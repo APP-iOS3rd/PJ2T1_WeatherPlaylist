@@ -10,28 +10,29 @@ import SwiftUI
 struct MainPageView: View {
     
     @State private var menutap = false
-    @State var isLightMode: Bool = false
+    @State var isLightMode: Bool = true
+    
+    @State var mainTitle: String = "화창한 날엔 이 노래 어때요?"
  
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
-                        headerView
-                        MusicSection()
-                        //.padding(.bottom, 30) // 하단리스트 여백
+                        topView
+                        PlaylistVertical(sectionTitle:"추천 리스트",sectionSubTitle: "맞춤 믹스: Gloomy")
+                        PlaylistHorizontal()
+                        PlaylistVertical(sectionTitle:"",sectionSubTitle: "어제 들어봤던 노래 다시 들어봐요")
+                    
                     }
-                    .padding()
-                }
-                
+                    .padding(.bottom,40)
+                } 
                 // 재생중인 음악
                 PlayFooterCell(musicImage: "album2",
                                isLightMode: $isLightMode)
-               
             }
         }
     }
-    
     
     @ViewBuilder private var background: some View {
         if isLightMode {
@@ -50,32 +51,22 @@ struct MainPageView: View {
  
 
 extension MainPageView {
-    
-    private var headerView: some View{
+    private var topView: some View{
         HStack {
-            Text("화창한 날엔 이 노래 어때요?")
+            Text(mainTitle)
                 .font(.bold28)
-            Spacer()
-        }
-    }
-}
-
-
-struct MusicSection: View {
-    var body: some View {
-        Section{
-            HStack{
-                VStack(alignment: .leading){
-                    Text("추천 리스트")
-                        .font(.regular16)
-                    Text("맞춤 믹스 : Giommy")
-                        .font(.bold20)
-                }
-                Spacer()
-            }.padding(.vertical)
+                .frame(width: 200,alignment: .leading)
+            Spacer() 
+            NavigationLink {
+               MyPageView()
+            }label: {
+                Rectangle()
+                    .frame(width:75,height: 75)
+            }
+                
             
-            // DisplayView
         }
+        .frame(maxWidth: .infinity,alignment: .leading)
+        .padding()
     }
 }
- 
