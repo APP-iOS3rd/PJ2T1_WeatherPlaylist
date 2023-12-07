@@ -61,6 +61,7 @@ struct EdgesBottomDrawerView<Content: View, DrawerContent: View, PullUpView: Vie
                                 out = value.translation.height
                                 DispatchQueue.main.async {
                                     self.offset = gestureOffset + lastOffset
+                                    //여기서 뭔가 처리하면 되려나..?
                                 }
                             })
                             .onEnded({ value in

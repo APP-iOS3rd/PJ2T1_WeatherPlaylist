@@ -8,23 +8,28 @@
 import Foundation
 
 // MARK: 임시 모델
-struct PlaylistModel: Identifiable {
+struct PlaylistModel: Identifiable, Hashable {
     var id: String
     var songName: String
     var artist: String
     var coverImage: String
     var songTime: Int
 }
-
+struct PlayListInfo {
+    var playlistName: String
+    var playlistDescription: String
+    var coverImageUrl: String
+    var isLikePlaylist: Bool
+}
 // MARK: 더미 데이터 생성을 위한 클래스
 class PlaylistDummyManager {
     var list: [PlaylistModel] = []
     
     init() {
-        self.list = setPlaylist()
+        self.list = fetchPlaylist()
     }
     
-    func setPlaylist() -> [PlaylistModel] {
+    func fetchPlaylist() -> [PlaylistModel] {
         return [
             PlaylistModel(id: "aaa",
                           songName: "title",

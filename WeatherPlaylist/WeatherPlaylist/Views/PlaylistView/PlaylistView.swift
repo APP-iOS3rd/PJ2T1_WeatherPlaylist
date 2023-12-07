@@ -8,36 +8,49 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    var playlistName: String
-    var playlistDescription: String
-    var coverImageUrl: String
-    var isLikePlaylist: Bool
-    
     let dummyData = PlaylistDummyManager().list
-    
+    @State var playlistInfo: PlayListInfo = .init(playlistName: "aaaa",
+                                                  playlistDescription: "aaaaaaa",
+                                                  coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                                                  isLikePlaylist: false)
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            PlaylistCorverImageView(coverImageUrl: coverImageUrl)
-            
-            LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
-                Section {
-                    ForEach(dummyData) { song in
-                        PlaylistRowView(id: song.id,
-                                        songName: song.songName,
-                                        artist: song.artist,
-                                        coverImage: song.coverImage,
-                                        songTime: song.songTime)
+        NavigationStack {
+            VStack {
+                HeaderView()
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    PlaylistCorverImageView(coverImageUrl: playlistInfo.coverImageUrl)
+                    
+                    LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
+                        Section {
+                            ForEach(dummyData) { song in
+                                NavigationLink(destination: {
+                                    PlayMusicView(temp: song)
+                                        .navigationBarBackButtonHidden()
+                                }) {
+                                    PlaylistRowView(id: song.id,
+                                                    songName: song.songName,
+                                                    artist: song.artist,
+                                                    coverImage: song.coverImage,
+                                                    songTime: song.songTime)
+                                }
+                                
+                            }
+                        } header: {
+                            PlaylistStickyHeader(playlistInfo: playlistInfo)
+                            
+                            
+                        }
                     }
-                } header: {
-                    PlaylistStickyHeader(playlistName: playlistName,
-                                         playlistDescription: playlistDescription,
-                                         isLikePlaylist: isLikePlaylist)
                 }
+                .padding(EdgeInsets(top: 0,
+                                    leading: 24,
+                                    bottom: 0,
+                                    trailing: 24))
             }
         }
-        .padding(EdgeInsets(top: 32,
-                            leading: 24,
-                            bottom: 0,
-                            trailing: 24))
     }
+}
+#Preview {
+    PlaylistView()
 }

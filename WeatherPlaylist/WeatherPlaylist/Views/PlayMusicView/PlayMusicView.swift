@@ -8,41 +8,41 @@
 import SwiftUI
 
 struct PlayMusicView: View {
+    @State var temp: PlaylistModel
     var body: some View {
-        ZStack{
-            VStack{
-                headerView
-                musicImageView
-                musicSlider
-                musicController
-                Spacer()
-                    .scaleEffect(0)
+        NavigationStack {
+            HeaderView(title: "에너지 충전 슈퍼믹스")
+            ZStack{
+                VStack{
+                    musicImageView
+                    musicSlider
+                    musicController
+                    Spacer()
+                        .scaleEffect(0)
+                }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
-        }
-        .toolbar(.hidden, for:.tabBar)
-        .navigationBarBackButtonHidden(true)
-        
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-        .background(Color.white.edgesIgnoringSafeArea(.bottom))
-        .bottomDrawerView(
-            bottomDrawerHeight: 80,
-            drawerTopCornersRadius: 16,
-            ignoreTopSafeAres: false) {
-                bottomDrawer
-            } pullUpView: { shouldGoUp in
-                // Drawer pull up 시
-                ZStack {
-                    Color.gray.opacity(0.9)
-                    if shouldGoUp {
-                        Image(systemName: "chevron.down")
-                            .foregroundColor(Color.white)
-                    } else {
-                        Image(systemName: "chevron.up")
-                            .foregroundColor(Color.white)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+            .background(Color.white.edgesIgnoringSafeArea(.bottom))
+            .bottomDrawerView(
+                bottomDrawerHeight: 80,
+                drawerTopCornersRadius: 16,
+                ignoreTopSafeAres: false) {
+                    bottomDrawer
+                } pullUpView: { shouldGoUp in
+                    // Drawer pull up 시
+                    ZStack {
+                        Color.gray.opacity(0.9)
+                        if shouldGoUp {
+                            Image(systemName: "chevron.down")
+                                .foregroundColor(Color.white)
+                        } else {
+                            Image(systemName: "chevron.up")
+                                .foregroundColor(Color.white)
+                        }
                     }
                 }
-            }
+        }
     }
      
 //    func moveArtist(from source: IndexSet, to destination: Int) {
@@ -54,51 +54,23 @@ struct PlayMusicView: View {
 //    }
 }
 
-#Preview {
-    PlayMusicView()
-}
+//#Preview {
+//    PlayMusicView()
+//}
 
 extension PlayMusicView {
-    
-    private var headerView: some View{
-        HStack {
-            Button{
-             // modal 닫기
-             //  self.presentationMode.wrappedValue.dismiss()
-            } label:{
-                Image(systemName: "chevron.left")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width:20,height: 20)
-                    .scaleEffect(1)
-                    .foregroundColor(.black)
-            }
- 
-            Spacer()
-            Text("에너지 충전 믹스")
-            Spacer()
-            // right tool button 추가시
-//              Image(systemName: "magnifyingglass")
-//              .resizable()
-//                .scaledToFit()
-//                .frame(height: 20)
-        }
-        .frame(height: 20)
-        .scaleEffect(1)
-        .padding(.top,80)
-        .padding(.bottom, 20)
-        .padding(.horizontal, 12)
-    }
     
     private var musicImageView: some View{
         VStack{
             // Image 로드시,
-//            AsyncImage(url: URL(string: )){image in
-//                image.resizable()
-//            } placeholder: {
-//                ProgressView()
-//            }
-            Rectangle()
+            CachedImage(url: nil){ phase in
+                switch phase {
+                case .success(let image) :
+                    image.resizable()
+                case .empty, .failure(_) :
+                    ProgressView()
+                }
+            }
             .scaledToFill()
             .frame(maxWidth:340, maxHeight: 340)
             .clipShape(Rectangle())
@@ -109,17 +81,16 @@ extension PlayMusicView {
             HStack{
                 VStack{
                     Text("title")
-                        .font(.system(size: 28))
-                        .fontWeight(.bold)
+                        .font(.bold28)
                         .frame(maxWidth: .infinity,alignment: .leading)
                     Text("artist")
-                        .font(.system(size: 18))
-                        .frame(maxWidth: .infinity,alignment: .leading)
+                        .font(.regular18)                        .frame(maxWidth: .infinity,alignment: .leading)
                 }
                 Image(systemName: "heart")
                     .resizable()
                     .scaledToFit()
                     .frame(width:20,height: 20)
+                    //MARK: - 살짝 커졌다 작아지는 애니메이션?
                     .scaleEffect(1)
                 
             }.padding(.vertical,24)
@@ -134,8 +105,10 @@ extension PlayMusicView {
         VStack{
             HStack{
                 Text("0:00")
+                    .font(.medium16)
                 Spacer()
                 Text("3:00")
+                    .font(.medium16)
             }
             .font(.system(size: 16))
             .fontWeight(.medium)
@@ -147,6 +120,14 @@ extension PlayMusicView {
                     .frame(width: .infinity, height: 4)
                     .foregroundColor(Color.gray)
                     .opacity(0.3)
+                    .overlay(
+                        HStack {
+                            //프로그래스바?
+                            Rectangle()
+                                .frame(width: 100, height: 4)
+                            Spacer()
+                        }
+                    )
             }
             .padding(.horizontal)
         }
@@ -163,27 +144,32 @@ extension PlayMusicView {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 22)
+                    .onTapGesture {}
                 Spacer()
                 Image(systemName: "backward.end.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 24)
+                    .onTapGesture {}
                 Spacer()
                 Image(systemName: "play.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 32)
+                    .onTapGesture {}
                      
                 Spacer()
                 Image(systemName: "forward.end.fill")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 24)
+                    .onTapGesture {}
                 Spacer()
                 Image(systemName: "repeat")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 22)
+                    .onTapGesture {}
                 
             }.padding()
         }
