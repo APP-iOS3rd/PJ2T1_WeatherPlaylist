@@ -19,23 +19,19 @@ struct MainPageView: View {
             ZStack(alignment: .bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
-                        headerView
-                        PlaylistVertical()
-                        PlaylistVertical() 
+                        topView
+                        PlaylistVertical(sectionTitle:"추천 리스트",sectionSubTitle: "맞춤 믹스: Gloomy") 
                         PlaylistHorizontal()
-                       
+                        PlaylistVertical(sectionTitle:"",sectionSubTitle: "어제 들어봤던 노래 다시 들어봐요")
                     }
                     .padding(.bottom,40)
-                   
                 } 
                 // 재생중인 음악
                 PlayFooterCell(musicImage: "album2",
                                isLightMode: $isLightMode)
-               
             }
         }
     }
-    
     
     @ViewBuilder private var background: some View {
         if isLightMode {
@@ -64,5 +60,3 @@ extension MainPageView {
         .padding()
     }
 }
-
- 

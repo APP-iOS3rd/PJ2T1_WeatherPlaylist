@@ -38,7 +38,7 @@ struct PlaylistVertical: View {
             }.padding()
              
             displayContent
-                .frame(height: 200)
+                .frame(height: 220)
                 .padding(.top,8)
 
         }
@@ -58,7 +58,7 @@ extension PlaylistVertical {
                         ForEach(0..<10) { index in
                             GeometryReader { geo in
                                 NavigationLink {
-                                    //DetailView()
+                                    PlaylistView()
                                 }label: {
                                     VStack{
     //                                        Image(uiImage:self.images[index % 7])
@@ -76,13 +76,13 @@ extension PlaylistVertical {
                                         Text("title")
                                             .font(.title3)
                                             .fontWeight(.bold)
-                                            .foregroundColor(Color.white)
+                                            .foregroundColor(Color.black)
                                             .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
                                         
                                         Text("artist")
                                             .font(.subheadline)
                                             .fontWeight(.light)
-                                            .foregroundColor(Color.white)
+                                            .foregroundColor(Color.black)
                                             .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
                                         
                                     }
