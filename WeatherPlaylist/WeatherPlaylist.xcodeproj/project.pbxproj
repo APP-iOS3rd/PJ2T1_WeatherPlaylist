@@ -10,7 +10,6 @@
 		014DFB322B215BF400B155EE /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB312B215BF400B155EE /* MainPageView.swift */; };
 		014DFB342B215D9100B155EE /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB332B215D9100B155EE /* Color+Extensions.swift */; };
 		014DFB382B215E5900B155EE /* PlayFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB372B215E5900B155EE /* PlayFooterCell.swift */; };
-		014DFB432B216C5200B155EE /* DisplayContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB422B216C5200B155EE /* DisplayContent.swift */; };
 		014DFB452B21779700B155EE /* PlaylistVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB442B21779700B155EE /* PlaylistVertical.swift */; };
 		014DFB472B2177DB00B155EE /* PlaylistHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB462B2177DB00B155EE /* PlaylistHorizontal.swift */; };
 		28A621A12B214BE900575D16 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A6219E2B214BE900575D16 /* StartView.swift */; };
@@ -66,7 +65,6 @@
 		014DFB312B215BF400B155EE /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		014DFB332B215D9100B155EE /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		014DFB372B215E5900B155EE /* PlayFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFooterCell.swift; sourceTree = "<group>"; };
-		014DFB422B216C5200B155EE /* DisplayContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayContent.swift; sourceTree = "<group>"; };
 		014DFB442B21779700B155EE /* PlaylistVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVertical.swift; sourceTree = "<group>"; };
 		014DFB462B2177DB00B155EE /* PlaylistHorizontal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHorizontal.swift; sourceTree = "<group>"; };
 		28A6219E2B214BE900575D16 /* StartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				014DFB312B215BF400B155EE /* MainPageView.swift */,
-				014DFB422B216C5200B155EE /* DisplayContent.swift */,
 				014DFB442B21779700B155EE /* PlaylistVertical.swift */,
 				014DFB462B2177DB00B155EE /* PlaylistHorizontal.swift */,
 			);
@@ -461,7 +458,6 @@
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
 				DA637F872B20238500BB3612 /* TempPlaylistModel.swift in Sources */,
 				DADECABB2B2149F5008ADA03 /* Alignment+Extensions.swift in Sources */,
-				014DFB432B216C5200B155EE /* DisplayContent.swift in Sources */,
 				28A621A12B214BE900575D16 /* StartView.swift in Sources */,
 				DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */,
 				28A621A32B214BE900575D16 /* LaunchView.swift in Sources */,
