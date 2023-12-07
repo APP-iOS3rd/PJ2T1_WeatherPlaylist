@@ -117,7 +117,7 @@ extension PlayMusicView {
             
             HStack{
                 Rectangle()
-                    .frame(width: .infinity, height: 4)
+                    .frame(width: .screenWidth - 40, height: 4)
                     .foregroundColor(Color.gray)
                     .opacity(0.3)
                     .overlay(

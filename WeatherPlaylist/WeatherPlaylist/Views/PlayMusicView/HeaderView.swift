@@ -37,7 +37,7 @@ struct HeaderView: View {
         }
         .frame(height: 20)
         .scaleEffect(1)
-//        .padding(.top,80)
+        .padding(.top,20)
         .padding(.bottom, 20)
         .padding(.horizontal, 12)
     }
