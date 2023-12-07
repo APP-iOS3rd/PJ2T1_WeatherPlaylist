@@ -20,9 +20,10 @@ struct MainPageView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
                         topView
-                        PlaylistVertical(sectionTitle:"추천 리스트",sectionSubTitle: "맞춤 믹스: Gloomy") 
+                        PlaylistVertical(sectionTitle:"추천 리스트",sectionSubTitle: "맞춤 믹스: Gloomy")
                         PlaylistHorizontal()
                         PlaylistVertical(sectionTitle:"",sectionSubTitle: "어제 들어봤던 노래 다시 들어봐요")
+                    
                     }
                     .padding(.bottom,40)
                 } 
@@ -54,7 +55,16 @@ extension MainPageView {
         HStack {
             Text(mainTitle)
                 .font(.bold28)
-                .frame(width: 300,alignment: .leading)
+                .frame(width: 200,alignment: .leading)
+            Spacer() 
+            NavigationLink {
+               MyPageView()
+            }label: {
+                Rectangle()
+                    .frame(width:75,height: 75)
+            }
+                
+            
         }
         .frame(maxWidth: .infinity,alignment: .leading)
         .padding()
