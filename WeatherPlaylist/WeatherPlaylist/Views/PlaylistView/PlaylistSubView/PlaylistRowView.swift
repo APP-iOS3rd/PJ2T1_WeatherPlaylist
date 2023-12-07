@@ -28,12 +28,12 @@ struct PlaylistRowView: View {
             
             VStack(alignment: .leading) {
                 Text(songName)
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.bold16)
                 HStack {
                     Text(artist)
-                        .font(.system(size: 14, weight: .light))
+                        .font(.light14)
                     Text(changeTimeIntToString(songTime))
-                        .font(.system(size: 14, weight: .light))
+                        .font(.light14)
                 }
             }
             Spacer()
