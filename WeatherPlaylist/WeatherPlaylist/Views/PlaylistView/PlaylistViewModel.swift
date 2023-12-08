@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: 임시 모델
+
 struct PlaylistModel: Identifiable, Hashable {
     var id: String
     var songName: String
@@ -15,6 +16,7 @@ struct PlaylistModel: Identifiable, Hashable {
     var coverImage: String
     var songTime: Int
 }
+
 struct PlayListInfo {
     var playlistName: String
     var playlistDescription: String
@@ -26,6 +28,7 @@ class PlaylistDummyManager {
     var list: [PlaylistModel] = []
     
     init() {
+
         self.list = fetchPlaylist()
     }
     

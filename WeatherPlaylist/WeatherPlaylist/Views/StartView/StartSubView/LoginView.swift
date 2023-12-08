@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State var showWK = false
+    
+
     
     var body: some View {
         NavigationView {
@@ -28,7 +31,8 @@ struct LoginView: View {
                                 gradient: Gradient( colors: [
                                     .clear,
                                     .colorBlack
-                                    ]
+                                ]
+
                                 ),
                                 startPoint: .top,
                                 endPoint: .bottom
@@ -51,22 +55,55 @@ struct LoginView: View {
                         
                         
                         Spacer()
-                        NavigationLink {
-                            EmptyView()
-                        } label: {
-                            HStack {
-                                Text("스포티파이로 시작하기")
-                                    .font(.custom(FontType.SemiBold.rawValue, size: 20))
-                                    .foregroundStyle(.black)
-                            }
-                        }
+                        
+                        Button(action: {
+                            self.showWK.toggle()
+                            
+                        }, label: {
+                            Text("스포티파이로 시작하기")
+                                .font(.custom(FontType.SemiBold.rawValue, size: 20))
+                                .foregroundStyle(.black)
+                                .sheet(isPresented: $showWK) {
+                                    AuthView()
+                                }
+                        })
                         .buttonStyle(signUptButton())
                         Spacer()
+                        
+
+
+                        
+                        //                        NavigationLink {
+                        //                            EmptyView()
+                        //                        } label: {
+                        //                            HStack {
+                        //                                Text("스포티파이로 시작하기")
+                        //                                    .font(.custom(FontType.SemiBold.rawValue, size: 20))
+                        //                                    .foregroundStyle(.black)
+                        //                            }
+                        //                        }
+                        //                        .buttonStyle(signUptButton())
+                        //                        Spacer()
+                        //                    }
                     }
                 }
             }
         }
     }
+    func didTapSignIn() {
+        var vc = AuthView()
+        vc.completionHandler = { success in
+            DispatchQueue.main.async {
+                self.handleSignIn(success: success)
+            }
+            
+        }
+    }
+    
+    private func handleSignIn(success: Bool) {
+        
+    }
+    
 }
 
 
@@ -83,7 +120,8 @@ struct signUptButton: ButtonStyle {
 }
 
 
+//
+//#Preview {
+//    LoginView()
+//}
 
-#Preview {
-    LoginView()
-}
