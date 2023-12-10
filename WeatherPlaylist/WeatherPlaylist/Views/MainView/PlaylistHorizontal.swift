@@ -11,7 +11,7 @@ struct PlaylistHorizontal: View {
     @State var sectionTitle: String = ""
     @State var sectionSubTitle: String = "추천 선곡"
     
-    let dummyData = PlaylistDummyManager().list.prefix(4)
+    let dummyData = MusicListDummyManager().list.prefix(4)
     @State var playlistInfo: PlayListInfo = .init(playlistName: "aaaa",
                                                   playlistDescription: "aaaaaaa",
                                                   coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",

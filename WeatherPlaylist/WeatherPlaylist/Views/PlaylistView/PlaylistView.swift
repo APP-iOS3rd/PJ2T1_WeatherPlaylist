@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PlaylistView: View {
     @StateObject var viewModel: PlaylistViewModel = .init()
-    
     var body: some View {
         NavigationStack {
             VStack {
