@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		014DFB322B215BF400B155EE /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB312B215BF400B155EE /* MainPageView.swift */; };
 		014DFB342B215D9100B155EE /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB332B215D9100B155EE /* Color+Extensions.swift */; };
 		014DFB382B215E5900B155EE /* PlayFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB372B215E5900B155EE /* PlayFooterCell.swift */; };
@@ -139,6 +140,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+
 		014DFB302B215BD300B155EE /* MainView */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +180,23 @@
 				283CBA9E2B26A95300A97BBE /* StartSubView */,
 			);
 			path = StartView;
+			sourceTree = "<group>";
+		};
+		64279A232B21B09E00065F24 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				64279A242B21B0C900065F24 /* MusicModel.swift */,
+				64279A282B21B69200065F24 /* RecommendedPlayListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		64279A2A2B21B96800065F24 /* MainViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				64279A262B21B14E00065F24 /* MainPageViewModel.swift */,
+			);
+			path = MainViewModel;
 			sourceTree = "<group>";
 		};
 		64279A232B21B09E00065F24 /* Models */ = {
