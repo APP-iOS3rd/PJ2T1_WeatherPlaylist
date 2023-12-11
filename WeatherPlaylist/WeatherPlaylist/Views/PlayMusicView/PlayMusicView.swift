@@ -11,6 +11,8 @@ struct PlayMusicView: View {
 //    @State var temp: MusicModel
     @State var temp: PlaylistTrackModel
     
+    @Environment(\.dismiss) var dismiss
+    
     @State private var isShowingPlayer = false
     @StateObject var viewModel: PlayMusicViewModel  = .init()
     
@@ -48,6 +50,13 @@ struct PlayMusicView: View {
                     }
                 }
         }
+        .gesture(
+            DragGesture().onEnded{ value in
+                if value.location.y - value.startLocation.y > 150 {
+                    dismiss()
+                }
+            }
+        )
         
         .background(Color.lightBg)
     }
