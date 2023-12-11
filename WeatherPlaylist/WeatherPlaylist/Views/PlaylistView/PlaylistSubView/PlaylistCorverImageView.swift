@@ -30,7 +30,8 @@ struct PlaylistCorverImageView: View {
                 case .success(let image) :
                     image
                         .resizable()
-                case .failure(_), .empty:                 ProgressView()
+                case .failure(_), .empty:
+                    ProgressView()
                 }
             }
             .aspectRatio(contentMode: .fit)
