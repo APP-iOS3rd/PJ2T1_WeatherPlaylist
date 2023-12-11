@@ -10,26 +10,28 @@ import SwiftUI
 struct PlaylistView: View {
     @StateObject var viewModel: PlaylistViewModel = .init()
     
+    @State var isLightMode: Bool = true
+    @State private var isShowingPlayer = false
+    
     var body: some View {
-        NavigationStack {
-            VStack {
-//                HeaderView()
-//                    .background(.cyan)
+        NavigationView {
+            ZStack(alignment:.bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.coverImageUrl)
                     
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
                         Section {
                             ForEach(viewModel.playlist) { song in
-                                NavigationLink(destination: {
+                                PlaylistRowView(id: song.id,
+                                                songName: song.songName,
+                                                artist: song.artist,
+                                                coverImage: song.coverImage,
+                                                songTime: song.songTime)
+                                .onTapGesture {
+                                    self.isShowingPlayer.toggle()
+                                }
+                                .fullScreenCover(isPresented: $isShowingPlayer){
                                     PlayMusicView(temp: song)
-                                        .navigationBarBackButtonHidden()
-                                }) {
-                                    PlaylistRowView(id: song.id,
-                                                    songName: song.songName,
-                                                    artist: song.artist,
-                                                    coverImage: song.coverImage,
-                                                    songTime: song.songTime)
                                 }
                             }
                         } header: {
@@ -42,6 +44,9 @@ struct PlaylistView: View {
                                     leading: 24,
                                     bottom: 0,
                                     trailing: 24))
+                
+                PlayFooterCell(musicImage: "album2",
+                                             isLightMode: $isLightMode)
             }
         }
     }
