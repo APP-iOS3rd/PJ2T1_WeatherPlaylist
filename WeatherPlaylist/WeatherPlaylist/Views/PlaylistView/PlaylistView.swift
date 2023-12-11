@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    
-    @State var isLightMode: Bool = true
-    @State private var isShowingPlayer = false
-    
-    let dummyData = MusicListDummyManager().list
-    @State var playlistInfo: PlayListInfo = .init(playlistName: "aaaa",
-                                                  playlistDescription: "aaaaaaa",
-                                                  coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                                                  isLikePlaylist: false)
+    @StateObject var viewModel: PlaylistViewModel = .init()
     var body: some View {
-        NavigationView {
-            ZStack(alignment:.bottom)  {
-                ScrollView(.vertical, showsIndicators: false) {
-                    PlaylistCorverImageView(coverImageUrl: playlistInfo.coverImageUrl)
+        NavigationStack {
+            VStack {
+//                HeaderView()
+//                    .background(.cyan)
+              ScrollView(.vertical, showsIndicators: false) {
+                    PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.coverImageUrl)
                     
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
          
                         Section {
-                            ForEach(dummyData) { song in
+                            ForEach(viewModel.playlist) { song in
+                                NavigationLink(destination: {
+                                    PlayMusicView(temp: song)
+                                        .navigationBarBackButtonHidden()
+                                }) {
                                     PlaylistRowView(id: song.id,
                                                     songName: song.songName,
                                                     artist: song.artist,
@@ -41,6 +39,11 @@ struct PlaylistView: View {
                             }
                         } header: {
                             PlaylistStickyHeader(playlistInfo: playlistInfo)
+                                }
+                            }
+                        } header: {
+                            PlaylistStickyHeader()
+                                .environmentObject(viewModel)
                         }
                         
                         
@@ -56,12 +59,7 @@ struct PlaylistView: View {
             }
 
         }
-      
-     
-      
-     
-
-        
+//        .toolbar(.hidden)
     }
 }
 //#Preview {

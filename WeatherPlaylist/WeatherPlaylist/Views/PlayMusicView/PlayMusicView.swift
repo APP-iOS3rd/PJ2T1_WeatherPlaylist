@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct PlayMusicView: View {
-    @State var temp: MusicModel
+//    @State var temp: MusicModel
     @StateObject var viewModel: PlayMusicViewModel  = .init()
-    
+    // MARK: PlaylistModel을 TrackModel로 변경하였지만, 기존의 PlaylistTrackModel을 사용하는 부분이 존재하여 주석처리하였습니다.
+    @State var temp: PlaylistTrackModel
+//    @State var temp: PlaylistModel
     var body: some View {
         NavigationStack {
             HeaderView(title: viewModel.playMusicModel.playlistTitle)
