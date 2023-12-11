@@ -22,13 +22,12 @@ extension APIProtocol {
         return "https://api.spotify.com/v1/"
     }
     var headers: [String: String]? {
-        // 토큰을 저장하는 프로세스도 필요합니다
-        guard let token = UserDefaults.standard.string(forKey: "token") else {
-            return ["Content-Type": "application/json"]
+        guard let token = UserDefaults.standard.string(forKey: "Authorization") else {
+            return nil
         }
-        
-        return ["Authorization": "Bearer \(token)",
-                "Content-Type": "application/json"]
+        //토큰이 왜..?
+//        return ["Authorization" : "Bearer BQB_HvjDJmw3naMYFOcOQtjO3J34mCBUwBl3lJTkI57r7hL0R0PJjZ1kybSiBaHj3QwLFp9eVYlcK5hBLYM4ObMqyedoMtgIWNnTP_URnKvf0QTyoO0"]
+        return ["Authorization" : "Bearer \(token)"]
     }
 }
 protocol APIRequestProtocol: APIProtocol {
@@ -56,7 +55,9 @@ extension APIRequestProtocol {
                 let jsonData = try JSONSerialization.data(withJSONObject: parameters)
                 urlRequest.httpBody = jsonData
             }
-            
+            dump(urlRequest.allHTTPHeaderFields)
+            print(urlRequest.url)
+
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
             
             // 에러 처리 - 상태 코드 확인
@@ -66,25 +67,30 @@ extension APIRequestProtocol {
             
             switch httpResponse.statusCode {
             case 200...299:
-                // 성공적인 상태 코드
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(Response.self, from: data)
                 return .success(decodedResponse)
             case 400:
+                print(httpResponse.description)
                 return .failure(.httpError(.badRequestError))
             case 401, 403:
+                
+                // token refresh 하는 로직
                 return .failure(.httpError(.authError))
             case 404:
                 return .failure(.httpError(.notFoundError))
             case 500...505 :
                 return .failure(.httpError(.serverError))
             default:
-                // 에러 상태 코드
                 return .failure(.httpError(.serverError))
             }
         } catch let urlError as URLError {
             return .failure(.urlError(urlError))
         } catch let decodingError as DecodingError {
+            print(decodingError.localizedDescription)
+            print(decodingError.failureReason)
+            print(decodingError.errorDescription)
+
             return .failure(.decodingError(decodingError))
         } catch {
             return .failure(.otherError)
@@ -107,7 +113,7 @@ enum APIError: Error {
         case .urlError(let urlError):
             urlError.localizedDescription
         case .decodingError(let decodingError):
-            decodingError.errorDescription ?? "디코딩 오류"
+            decodingError.failureReason ?? "디코딩 오류"
         case .otherError:
            "알 수 없는 오류입니다."
         case .httpError(let httpError):

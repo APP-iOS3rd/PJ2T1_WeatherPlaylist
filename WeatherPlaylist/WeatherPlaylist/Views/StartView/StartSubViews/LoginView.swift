@@ -2,15 +2,16 @@
 //  LoginView.swift
 //  WeatherPlaylist
 //
-//  Created by 김성엽 on 12/6/23.
+//  Created by 김성엽 on 12/11/23.
 //
 
 import SwiftUI
 
 struct LoginView: View {
+    @State var path: [StackViewType] = []
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             GeometryReader { reader in
                 ZStack {
                     
@@ -28,13 +29,13 @@ struct LoginView: View {
                                 gradient: Gradient( colors: [
                                     .clear,
                                     .colorBlack
-                                    ]
+                                ]
+                                                    
                                 ),
                                 startPoint: .top,
                                 endPoint: .bottom
                             )
                         )
-                    
                     
                     VStack(spacing: 20) {
                         Spacer()
@@ -49,41 +50,45 @@ struct LoginView: View {
                             .font(.custom(FontType.Bold.rawValue, size: 40))
                             .foregroundStyle(.white)
                         
+                        Spacer()
                         
-                        Spacer()
-                        NavigationLink {
-                            EmptyView()
-                        } label: {
-                            HStack {
-                                Text("스포티파이로 시작하기")
-                                    .font(.custom(FontType.SemiBold.rawValue, size: 20))
-                                    .foregroundStyle(.black)
+                        
+                        Button {
+                            if let token = UserDefaults.standard.value(forKey: "Authorization") {
+                                path.append(.secondView)
+                                print(token)
+                            } else {
+                                path.append(.firstView)
                             }
+                            
+                        } label: {
+                            Text("스포티파이로 시작하기")
+                                .font(.custom(FontType.SemiBold.rawValue, size: 20))
+                                .foregroundStyle(.black)
+                                .padding(.vertical, 20)
+                                .padding(.horizontal, 70)
+                                .background(.colorGreen)
+                                .cornerRadius(40)
                         }
-                        .buttonStyle(signUptButton())
                         Spacer()
+                        Button(action: {
+                            UserDefaults.standard.removeObject(forKey: "Authorization")
+                        }, label: {
+                            Text("token 삭제")
+                        })
+                        
+                    }
+                    .navigationDestination(for: StackViewType.self) { stackViewType in
+                        switch stackViewType {
+                        case .firstView:
+                            AuthView()
+                        case .secondView:
+                            MainPageView()
+                                .navigationBarHidden(true)
+                        }
                     }
                 }
             }
         }
     }
-}
-
-
-
-struct signUptButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration
-            .label
-            .padding(.vertical, 20)
-            .padding(.horizontal, 70)
-            .background(.colorGreen)
-            .cornerRadius(40)
-    }
-}
-
-
-
-#Preview {
-    LoginView()
 }

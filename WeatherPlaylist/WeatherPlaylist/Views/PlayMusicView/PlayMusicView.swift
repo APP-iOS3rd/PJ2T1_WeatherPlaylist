@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct PlayMusicView: View {
-    @State var temp: PlaylistModel
+//    @State var temp: MusicModel
+    @State var temp: PlaylistTrackModel
+    
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var isShowingPlayer = false
+    @StateObject var viewModel: PlayMusicViewModel  = .init()
+    
     var body: some View {
         NavigationStack {
-            HeaderView(title: "에너지 충전 슈퍼믹스")
-            ZStack{
-                VStack{
+            HeaderView(title: viewModel.playMusicModel.playlistTitle)
+            ZStack {
+                VStack {
                     musicImageView
                     musicSlider
                     musicController
@@ -23,7 +30,7 @@ struct PlayMusicView: View {
                 .padding(.horizontal)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-            .background(Color.white.edgesIgnoringSafeArea(.bottom))
+           // .background(Color.lightBg)
             .bottomDrawerView(
                 bottomDrawerHeight: 80,
                 drawerTopCornersRadius: 16,
@@ -43,15 +50,24 @@ struct PlayMusicView: View {
                     }
                 }
         }
+        .gesture(
+            DragGesture().onEnded{ value in
+                if value.location.y - value.startLocation.y > 150 {
+                    dismiss()
+                }
+            }
+        )
+        
+        .background(Color.lightBg)
     }
      
-//    func moveArtist(from source: IndexSet, to destination: Int) {
-//          .move(fromOffsets: source, toOffset: destination)
-//    }
-//     
-//    func deleteArtist(at offsets: IndexSet) {
-//         .remove(atOffsets: offsets)
-//    }
+    func moveTrack(from source: IndexSet, to destination: Int) {
+        viewModel.playlistModelList.move(fromOffsets: source, toOffset: destination)
+    }
+
+    func deleteTrack(at offsets: IndexSet) {
+        viewModel.playlistModelList.remove(atOffsets: offsets)
+    }
 }
 
 //#Preview {
@@ -63,13 +79,23 @@ extension PlayMusicView {
     private var musicImageView: some View{
         VStack{
             // Image 로드시,
-            CachedImage(url: nil){ phase in
-                switch phase {
-                case .success(let image) :
-                    image.resizable()
-                case .empty, .failure(_) :
-                    ProgressView()
-                }
+//            CachedImage(url: nil){ phase in
+//                switch phase {
+//                case .success(let image) :
+//                    image.resizable()
+//                case .empty, .failure(_) :
+//                    ProgressView()
+//                }
+//            }
+            AsyncImage(url:
+                        URL(string: viewModel.playMusicModel.coverImage)) {
+                image in
+                image
+                    .resizable()
+                    .padding(8)
+                    
+            } placeholder: {
+                ProgressView()
             }
             .scaledToFill()
             .frame(maxWidth:340, maxHeight: 340)
@@ -80,11 +106,12 @@ extension PlayMusicView {
                 
             HStack{
                 VStack{
-                    Text("title")
+                    Text(viewModel.playMusicModel.songName)
                         .font(.bold28)
                         .frame(maxWidth: .infinity,alignment: .leading)
-                    Text("artist")
-                        .font(.regular18)                        .frame(maxWidth: .infinity,alignment: .leading)
+                    Text(viewModel.playMusicModel.artist)
+                        .font(.regular18)
+                        .frame(maxWidth: .infinity,alignment: .leading)
                 }
                 Image(systemName: "heart")
                     .resizable()
@@ -93,7 +120,8 @@ extension PlayMusicView {
                     //MARK: - 살짝 커졌다 작아지는 애니메이션?
                     .scaleEffect(1)
                 
-            }.padding(.vertical,24)
+            }
+            .padding(.vertical,24)
             .padding(.horizontal)
             
         }
@@ -143,18 +171,21 @@ extension PlayMusicView {
                 Image(systemName: "shuffle")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 22)
                     .onTapGesture {}
                 Spacer()
                 Image(systemName: "backward.end.fill")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 24)
                     .onTapGesture {}
                 Spacer()
                 Image(systemName: "play.fill")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 32)
                     .onTapGesture {}
                      
@@ -162,12 +193,14 @@ extension PlayMusicView {
                 Image(systemName: "forward.end.fill")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 24)
                     .onTapGesture {}
                 Spacer()
                 Image(systemName: "repeat")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 22)
                     .onTapGesture {}
                 
@@ -181,33 +214,33 @@ extension PlayMusicView {
             NavigationView {
                 VStack{
                     List {
-                        // 현재 dummy Data
-                        ForEach(0..<3, id: \.self) { i in
+                        ForEach(viewModel.playlistModelList.indices, id: \.self) { index in
                             HStack{
-//                                        AsyncImage(url: URL(string: )){ image in
-//                                            image.resizable()
-//                                        }placeholder: {
-//                                            ProgressView()
-//                                        }
-                                Rectangle()
+                                
+                                let playlistModel = viewModel.playlistModelList[index]
+                                
+                                AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
+                                   image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
                                 .frame(width: 50, height: 50)
                                 .cornerRadius(4)
 
                                     
                                 VStack(alignment: .leading){
-                                    Text("hihi")
+                                    Text(playlistModel.songName)
                                         .font(.headline)
-                                        .foregroundStyle(.white)
-                                    Text("hihih")
+                                        .foregroundStyle(.colorBlack)
+                                    Text(playlistModel.artist)
                                         .font(.body)
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(.colorBlack)
                                 }
                             }
                             .listRowBackground(Color.gray.opacity(0.7))
-                        }
-                        // list 삭제 이동기능 추가시 사용
-//                                .onMove(perform: moveArtist)
-//                                .onDelete(perform: deleteArtist)
+                        } 
+                        .onMove(perform: moveTrack)
+                        .onDelete(perform: deleteTrack)
                     }
                     .scrollContentBackground(.hidden)
                     

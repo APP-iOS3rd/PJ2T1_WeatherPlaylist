@@ -14,20 +14,19 @@ struct HeaderView: View {
         HStack {
             Button{
                 dismiss()
-             // modal 닫기
-             //  self.presentationMode.wrappedValue.dismiss()
             } label:{
-                Image(systemName: "chevron.left")
+                Image(systemName: "chevron.down")
                     .resizable()
                     .scaledToFit()
                     .frame(width:20,height: 20)
                     .scaleEffect(1)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.colorBlack)
             }
  
             Spacer()
             Text(title)
                 .font(.appFont(for: .Medium, size: 14))
+                .frame(maxWidth:.infinity,alignment: .center)
             Spacer()
             // right tool button 추가시
 //              Image(systemName: "magnifyingglass")
@@ -35,10 +34,6 @@ struct HeaderView: View {
 //                .scaledToFit()
 //                .frame(height: 20)
         }
-        .frame(height: 20)
-        .scaleEffect(1)
-        .padding(.top,20)
-        .padding(.bottom, 20)
         .padding(.horizontal, 12)
     }
 }

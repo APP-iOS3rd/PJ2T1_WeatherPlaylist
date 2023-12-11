@@ -2,7 +2,7 @@
 //  StartView.swift
 //  WeatherPlaylist
 //
-//  Created by 김성엽 on 12/7/23.
+//  Created by 김성엽 on 12/11/23.
 //
 
 import SwiftUI
@@ -22,7 +22,7 @@ struct StartView: View {
                 LaunchView()
                     .onAppear {
                         DispatchQueue.main.asyncAfter(
-                            deadline: .now() + 3, 
+                            deadline: .now() + 3,
                             execute: { withAnimation { isLoading.toggle() }
                         })
                     }
@@ -35,3 +35,4 @@ struct StartView: View {
 #Preview {
     StartView()
 }
+
