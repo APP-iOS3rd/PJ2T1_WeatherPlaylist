@@ -31,7 +31,7 @@ struct Playlists: Codable {
     let limit: Int
     let next: String
     let offset: Int
-    let previous: String
+    let previous: String?
     let total: Int
 }
 

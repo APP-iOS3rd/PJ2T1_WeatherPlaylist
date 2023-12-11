@@ -28,7 +28,7 @@ final class HTTPManager<T>: APIRequestProtocol where T: Decodable{
             method = .get
             self.parameters = parameters
         case .serchPlaylist(let query):
-            path = "search?query=\(query)&type=playlist&locale=en-US%2Cen%3Bq%3D0.9&offset=1&limit=1"
+            path = "search?query=\(query)&type=playlist"
             method = .get
             self.parameters = nil
         case .serchTracks(let id):

@@ -26,8 +26,8 @@ extension APIProtocol {
             return nil
         }
         //토큰이 왜..?
-        return ["Authorization" : "Bearer BQB_HvjDJmw3naMYFOcOQtjO3J34mCBUwBl3lJTkI57r7hL0R0PJjZ1kybSiBaHj3QwLFp9eVYlcK5hBLYM4ObMqyedoMtgIWNnTP_URnKvf0QTyoO0"]
-//        return ["Authorization" : "Bearer \(token)"]
+//        return ["Authorization" : "Bearer BQB_HvjDJmw3naMYFOcOQtjO3J34mCBUwBl3lJTkI57r7hL0R0PJjZ1kybSiBaHj3QwLFp9eVYlcK5hBLYM4ObMqyedoMtgIWNnTP_URnKvf0QTyoO0"]
+        return ["Authorization" : "Bearer \(token)"]
     }
 }
 protocol APIRequestProtocol: APIProtocol {
@@ -87,6 +87,10 @@ extension APIRequestProtocol {
         } catch let urlError as URLError {
             return .failure(.urlError(urlError))
         } catch let decodingError as DecodingError {
+            print(decodingError.localizedDescription)
+            print(decodingError.failureReason)
+            print(decodingError.errorDescription)
+
             return .failure(.decodingError(decodingError))
         } catch {
             return .failure(.otherError)
