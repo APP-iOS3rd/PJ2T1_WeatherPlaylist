@@ -88,6 +88,7 @@ class WeatherAPI: ObservableObject {
     private init() { }
     @Published var weatherInformation = [WeatherTotalData]()
     
+    @Published var userWatherStatus: String = "맑은 아침"
     
     private var apiKey: String? {
         get {
@@ -147,6 +148,9 @@ class WeatherAPI: ObservableObject {
 
                 DispatchQueue.main.async {
                     self.weatherInformation = [json] // Wrap 'json' in an array
+                    
+                    // 파싱이 끝나면 user의 날씨 데이터만 가져오는 로직을 실행
+                    self.feachUserWeatherData()
                 }
             }  catch let error {
                 print(error.localizedDescription)
@@ -155,4 +159,42 @@ class WeatherAPI: ObservableObject {
         }
         task.resume()
     }
+    
+    
+    func feachUserWeatherData(){
+        // 해당 부분에서 파싱된 값 중 싱글 톤 패턴으로 필요한 사용자의 날씨 데이터 가져오는 로직을 처리
+        self.userWatherStatus = self.getWeatherStatus(icon: self.weatherInformation[0].weather[0].icon)
+        // self.userWatherStatus을 이용하여 스포티파이 API 전달 값으로 사용가능
+    
+        
+    }
+    
+    
+    func getWeatherStatus(icon: String) -> String {
+        switch icon {
+        case "01d":
+            return "맑은 아침"
+        case "01n", "02n":
+            return "맑은 밤"
+        case "03d", "04d":
+            return "흐린 아침"
+        case "03n", "04n":
+            return "흐린 밤"
+        case "09d", "10d", "11d":
+            return "비오는 아침"
+        case "09n", "10n", "11n":
+            return "비오는 밤"
+        case "13d":
+            return "눈오는 아침"
+        case "13n":
+            return "눈오는 밤"
+        case "50d":
+            return "안개낀 아침"
+        case "50n":
+            return "안개낀 밤"
+        default:
+            return "알 수 없는 날씨"
+        }
+    }
+
 }

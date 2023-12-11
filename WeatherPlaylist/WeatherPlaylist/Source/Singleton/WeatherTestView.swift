@@ -9,15 +9,21 @@ import SwiftUI
 
 struct WeatherTestView: View {
 
-    @StateObject var network = WeatherAPI.shared
+    @StateObject var weatherData = WeatherAPI.shared
 
     var body: some View {
         NavigationStack {
             List{
-                ForEach(network.weatherInformation, id: \.self) { result in
-                    Text("서울").foregroundStyle(Color.white)
+                ForEach(weatherData.weatherInformation, id: \.self) { result in
+                    // 사용자 위도, 경도
                     Text("위도:\(result.coord.lat) 경도:\(result.coord.lon)").foregroundStyle(Color.black)
-                   
+                    Text(result.weather[0].icon)
+                    
+                    // 사용자 위치 날씨 상태
+                    Text(weatherData.userWatherStatus)
+                    
+                    
+                    // 사용자 위치 날씨 아이콘 
                     AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(result.weather[0].icon)@2x.png")) { image in
                         image.resizable()
                     } placeholder: {
@@ -35,7 +41,7 @@ struct WeatherTestView: View {
             print("위도: \(locationManager.latitude), 경도: \(locationManager.longitude)")
           
             // 사용자 위도, 경도를 전달하여 API 호출
-            network.feachWeatherData(lat: locationManager.latitude, lon: locationManager.longitude)
+            weatherData.feachWeatherData(lat: locationManager.latitude, lon: locationManager.longitude)
         }
     }
    
