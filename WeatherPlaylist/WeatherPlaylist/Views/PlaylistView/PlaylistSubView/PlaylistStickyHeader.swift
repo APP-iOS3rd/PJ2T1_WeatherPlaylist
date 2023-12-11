@@ -26,7 +26,7 @@ struct PlaylistStickyHeader: View {
                 .environmentObject(viewModel)
         }
         .frame(minWidth: 0, maxWidth: .infinity)
-        .background(Rectangle().foregroundStyle(.white))
+        .background(Rectangle().foregroundStyle(Color.colorBg))
         .padding(.bottom, 16)
     }
 }
