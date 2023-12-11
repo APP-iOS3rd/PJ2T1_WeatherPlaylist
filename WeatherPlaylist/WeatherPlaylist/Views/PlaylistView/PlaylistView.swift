@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    let dummyData = MusicListDummyManager().list
-    @State var playlistInfo: PlayListInfo = .init(playlistName: "aaaa",
-                                                  playlistDescription: "aaaaaaa",
-                                                  coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                                                  isLikePlaylist: false)
+    @StateObject var viewModel: PlaylistViewModel = .init()
     var body: some View {
         NavigationStack {
             VStack {
-                HeaderView()
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    PlaylistCorverImageView(coverImageUrl: playlistInfo.coverImageUrl)
+//                HeaderView()
+//                    .background(.cyan)
+              ScrollView(.vertical, showsIndicators: false) {
+                    PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.coverImageUrl)
                     
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
+         
                         Section {
-                            ForEach(dummyData) { song in
+                            ForEach(viewModel.playlist) { song in
                                 NavigationLink(destination: {
                                     PlayMusicView(temp: song)
                                         .navigationBarBackButtonHidden()
@@ -33,24 +30,38 @@ struct PlaylistView: View {
                                                     artist: song.artist,
                                                     coverImage: song.coverImage,
                                                     songTime: song.songTime)
-                                }
-                                
+                                    .onTapGesture {
+                                        self.isShowingPlayer.toggle()
+                                    }
+                                    .fullScreenCover(isPresented: $isShowingPlayer){
+                                        PlayMusicView(temp: song)
+                                    }
                             }
                         } header: {
                             PlaylistStickyHeader(playlistInfo: playlistInfo)
-                            
-                            
+                                }
+                            }
+                        } header: {
+                            PlaylistStickyHeader()
+                                .environmentObject(viewModel)
                         }
+                        
+                        
                     }
                 }
                 .padding(EdgeInsets(top: 0,
                                     leading: 24,
                                     bottom: 0,
                                     trailing: 24))
+                PlayFooterCell(musicImage: "album2",
+                               isLightMode: $isLightMode)
+             
             }
+
         }
+//        .toolbar(.hidden)
     }
 }
-#Preview {
-    PlaylistView()
-}
+//#Preview {
+//    PlaylistView(, checkModal: <#Binding<Bool>#>)
+//}

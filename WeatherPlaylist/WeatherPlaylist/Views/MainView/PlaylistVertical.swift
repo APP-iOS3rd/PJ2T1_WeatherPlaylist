@@ -44,13 +44,13 @@ struct PlaylistVertical: View {
     }
 }
 
-struct PlaylistVertical_Previews: PreviewProvider {
-    static var previews: some View {
-        PlaylistVertical()
-            .environmentObject(MainPageViewModel())
-    }
-}
-
+//struct PlaylistVertical_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PlaylistVertical()
+//            .environmentObject(MainPageViewModel())
+//    }
+//}
+//
 
 
 extension PlaylistVertical {
@@ -71,6 +71,11 @@ extension PlaylistVertical {
                                 GeometryReader { geo in
                                     NavigationLink {
                                         PlaylistView()
+                                            .navigationTitle(recommendedModel.mainTitle)
+//                                            .navigationBarTitleDisplayMode(.inline)
+//                                            .navigationTitle("")
+//                                            .navigationBarHidden(true)
+//                                            .navigationBarBackButtonHidden()
                                     } label: {
                                         VStack {
                                             Rectangle()
