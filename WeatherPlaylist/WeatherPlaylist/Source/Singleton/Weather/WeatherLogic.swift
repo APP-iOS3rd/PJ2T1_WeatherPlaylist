@@ -32,20 +32,20 @@ public class WeatherLogic: ObservableObject {
         }
     }
 
-    @Published var mainTitle: String = "화창한 날엔 이 노래 어때요?"
+    @Published var mainTitle: String = "화창한 날엔\n**이 노래** 어때요?"
 
     private func updateMainTitle() {
         switch userWeather {
         case .sunny:
-            mainTitle = "화창한 날엔 이 노래 어때요?"
+            mainTitle = "화창한 날\n**이 노래** 어때요?"
         case .cloudy:
-            mainTitle = "흐린 날엔 이 노래 어때요?"
+            mainTitle = "흐린 날엔\n**이 노래** 어때요?"
         case .rainy:
-            mainTitle = "비오는 날엔 이 노래 어때요?"
+            mainTitle = "비오는 날엔\n**이 노래** 어때요?"
         case .snowy:
-            mainTitle = "눈오는 날엔 이 노래 어때요?"
+            mainTitle = "눈오는 날엔\n**이 노래** 어때요?"
         case .thunderstorm:
-            mainTitle = "천둥 번개 치는 날엔 이 노래 어때요?"
+            mainTitle = "천둥 번개 치는 날엔\n**이 노래** 어때요?"
         }
     }
 }
