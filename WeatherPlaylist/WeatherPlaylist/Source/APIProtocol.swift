@@ -43,7 +43,7 @@ extension APIRequestProtocol {
     private func isRefreshTokenSuccessed() async -> Bool{
         guard let refreshToken = UserDefaults.standard.string(forKey: "RefreshToken") else {return false}
         let refreshParams = [
-            "grant_type" : "authorization_code",
+            "grant_type" : "refresh_token",
             "refresh_token" : refreshToken]
         
         var components = URLComponents()
@@ -67,10 +67,14 @@ extension APIRequestProtocol {
             case 200...299:
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(AccessToken.self, from: data)
+                UserDefaults.standard.removeObject(forKey: "AccessToken")
+                UserDefaults.standard.removeObject(forKey: "RefreshToken")
                 UserDefaults.standard.setValue(decodedResponse.token, forKey: "AccessToken")
                 UserDefaults.standard.setValue(decodedResponse.refreshToken, forKey: "RefreshToken")
                 return true
             default:
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                print("JSON Response: \(json ?? [:])")
                 return false
             }
         } catch {
@@ -117,6 +121,8 @@ extension APIRequestProtocol {
                 if await isRefreshTokenSuccessed() {
                     return await fetchData()
                 } else {
+                    UserDefaults.standard.removeObject(forKey: "AccessToken")
+                    UserDefaults.standard.removeObject(forKey: "RefreshToken")
                     return .failure(.httpError(.authError))
                 }
                 // token refresh 하는 로직
