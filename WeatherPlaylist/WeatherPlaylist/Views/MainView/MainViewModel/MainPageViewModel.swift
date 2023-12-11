@@ -19,6 +19,8 @@ final class MainPageViewModel: ObservableObject {
     init() {
      //   fetchModel()
         fetchRecommendedList()
+        fetchPlayListModel()
+        
     }
     //MARK: - fetch 로직 구현 전 임시 함수
 //    private func fetchModel() {
@@ -27,6 +29,20 @@ final class MainPageViewModel: ObservableObject {
     
     private func fetchRecommendedList() {
         self.recommendedModelList = RecommendedModelManager().recommendedPlayList
+    }
+    private let manager = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "nice"))
+    func fetchPlayListModel() {
+        Task{ @MainActor in
+            let response = await manager.fetchData()
+            switch response {
+            case .success(let data):
+                self.recommendedModelList = data.toRecommendedPlayListModel()
+                print(data.playlists.items.first?.tracks.href)
+                data.playlists.items.map{$0.tracks.href}
+            case .failure(let error):
+                print(error.errorDescription)
+            }
+        }
     }
     
     

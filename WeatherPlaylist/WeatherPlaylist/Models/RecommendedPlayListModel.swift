@@ -16,7 +16,8 @@ struct RecommendedPlayListModel: Identifiable, Hashable {
     var weatherType: WeatherType
     var mainTitle: String
     var subitle: String
-    
+    var tracks: URL?
+    var image: String?
 }
 
 // MARK: 더미 데이터 생성을 위한 클래스

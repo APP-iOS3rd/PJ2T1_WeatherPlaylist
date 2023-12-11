@@ -43,6 +43,8 @@
 		DA29F7DC2B206F41003085B9 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DA29F7D32B206F41003085B9 /* Pretendard-Regular.otf */; };
 		DA29F7DD2B206F41003085B9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DA29F7D42B206F41003085B9 /* Pretendard-SemiBold.otf */; };
 		DA29F7DF2B206F8A003085B9 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7DE2B206F8A003085B9 /* Font+Extensions.swift */; };
+		DA44E8EC2B26D84A00681AE5 /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DA44E8EB2B26D84A00681AE5 /* SpotifyAPI.xcconfig */; };
+		DA44E8EF2B26DD6000681AE5 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA44E8EE2B26DD6000681AE5 /* SearchResponse.swift */; };
 		DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */; };
 		DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F682B1F1F6200BB3612 /* ContentView.swift */; };
 		DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA637F6A2B1F1F6400BB3612 /* Assets.xcassets */; };
@@ -111,6 +113,8 @@
 		DA29F7D32B206F41003085B9 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		DA29F7D42B206F41003085B9 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		DA29F7DE2B206F8A003085B9 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
+		DA44E8EB2B26D84A00681AE5 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
+		DA44E8EE2B26DD6000681AE5 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		DA637F632B1F1F6200BB3612 /* WeatherPlaylist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherPlaylist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPlaylistApp.swift; sourceTree = "<group>"; };
 		DA637F682B1F1F6200BB3612 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 		64279A232B21B09E00065F24 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DA44E8ED2B26DD5000681AE5 /* NetworkDTO */,
 				64279A242B21B0C900065F24 /* MusicModel.swift */,
 				64279A282B21B69200065F24 /* RecommendedPlayListModel.swift */,
 			);
@@ -232,6 +237,7 @@
 		6AEB1B352B26C73500BA926A /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				DA44E8EB2B26D84A00681AE5 /* SpotifyAPI.xcconfig */,
 				016AE6CF2B26C8F50096CE89 /* SpotifyAPI.xcconfig */,
 			);
 			path = Configuration;
@@ -283,6 +289,14 @@
 				DA29F7D22B206F41003085B9 /* Pretendard-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		DA44E8ED2B26DD5000681AE5 /* NetworkDTO */ = {
+			isa = PBXGroup;
+			children = (
+				DA44E8EE2B26DD6000681AE5 /* SearchResponse.swift */,
+			);
+			path = NetworkDTO;
 			sourceTree = "<group>";
 		};
 		DA637F5A2B1F1F6200BB3612 = {
@@ -503,6 +517,7 @@
 				DA29F7DD2B206F41003085B9 /* Pretendard-SemiBold.otf in Resources */,
 				DA637F6E2B1F1F6400BB3612 /* Preview Assets.xcassets in Resources */,
 				016AE6D02B26C8F50096CE89 /* SpotifyAPI.xcconfig in Resources */,
+				DA44E8EC2B26D84A00681AE5 /* SpotifyAPI.xcconfig in Resources */,
 				DA29F7D62B206F41003085B9 /* Pretendard-Light.otf in Resources */,
 				DA29F7DA2B206F41003085B9 /* Pretendard-ExtraLight.otf in Resources */,
 				DA29F7DB2B206F41003085B9 /* Pretendard-Thin.otf in Resources */,
@@ -540,6 +555,7 @@
 				6A0DF8642B26D4D10032153F /* StartView.swift in Sources */,
 				DADECABB2B2149F5008ADA03 /* Alignment+Extensions.swift in Sources */,
 				016AE6D32B26C9A20096CE89 /* PlayMusicListModel.swift in Sources */,
+				DA44E8EF2B26DD6000681AE5 /* SearchResponse.swift in Sources */,
 				DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */,
 				64279A272B21B14E00065F24 /* MainPageViewModel.swift in Sources */,
 				DADECABB2B2149F5008ADA03 /* Alignment+Extensions.swift in Sources */,
