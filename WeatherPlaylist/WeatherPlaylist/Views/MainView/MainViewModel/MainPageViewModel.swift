@@ -40,7 +40,17 @@ final class MainPageViewModel: ObservableObject {
                 print(data.playlists.items.first?.tracks.href)
                 data.playlists.items.map{$0.tracks.href}
             case .failure(let error):
-                print(error.errorDescription)
+                switch error {
+                case .httpError(let httpError) :
+                    switch httpError {
+                    case .authError :
+                        print("로그아웃됨")
+                    default:
+                        print(error.errorDescription)
+                    }
+                default:
+                    print(error.errorDescription)
+                }
             }
         }
     }

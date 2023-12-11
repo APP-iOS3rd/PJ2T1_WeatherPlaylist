@@ -35,15 +35,11 @@ struct AccessToken: Decodable {
     }
 }
 
-var clientID: String {
-   Bundle.main.object(forInfoDictionaryKey: "ClientID") as? String ?? ""
-}
-var clientSecret: String {
-   Bundle.main.object(forInfoDictionaryKey: "ClientPW") as? String ?? ""
-}
 enum APIConstants {
     static let apiHost = "api.spotify.com"
     static let authHost = "accounts.spotify.com"
+    static let clientID = Bundle.main.object(forInfoDictionaryKey: "ClientID") as? String ?? ""
+    static let clientSecret = Bundle.main.object(forInfoDictionaryKey: "ClientPW") as? String ?? ""
     static let redirectUri = "https://www.naver.com"
     static let responseType = "code"
     static let scopes = "user-read-private"
@@ -54,6 +50,7 @@ enum APIConstants {
         "redirect_uri": redirectUri,
         "scope": scopes
     ]
+
     
 }
 

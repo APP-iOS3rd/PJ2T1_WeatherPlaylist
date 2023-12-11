@@ -92,7 +92,7 @@ struct AuthView: UIViewRepresentable {
             
             guard let url = components.url else { return }
             
-            let auth = Data("\(clientID):\(clientSecret)".utf8).base64EncodedString()
+            let auth = Data("\(APIConstants.clientID):\(APIConstants.clientSecret)".utf8).base64EncodedString()
             var urlRequest = URLRequest(url: url)
             urlRequest.setValue("Basic " + auth, forHTTPHeaderField: "Authorization")
             urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
