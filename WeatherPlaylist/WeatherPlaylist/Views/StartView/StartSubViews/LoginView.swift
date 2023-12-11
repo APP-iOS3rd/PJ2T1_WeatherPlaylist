@@ -84,6 +84,7 @@ struct LoginView: View {
                             AuthView()
                         case .secondView:
                             MainPageView()
+                                .navigationBarHidden(true)
                         }
                     }
                 }

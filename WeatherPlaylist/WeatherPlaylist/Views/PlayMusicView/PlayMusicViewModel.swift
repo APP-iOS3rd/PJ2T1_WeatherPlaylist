@@ -20,10 +20,22 @@ final class PlayMusicViewModel: ObservableObject {
     public func fetchModel() {
         self.playMusicModel = .init()
         self.playlistModelList = [
-             PlayMusicListModel(title: "I Like it", artist: "DeBarage",imgURL: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4"),
-             PlayMusicListModel(title: "Instagram", artist: "DEAN", imgURL: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4"),
-             PlayMusicListModel(title: "Drama", artist: "aespa", imgURL: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4"),
-             PlayMusicListModel(title: "Honesty", artist: "Pionk Sweat$", imgURL: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4")
+             PlayMusicListModel(songName: "I Like it", 
+                                artist: "DeBarage",
+                                coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                                songTime: 200),
+             PlayMusicListModel(songName: "Instagram",
+                                artist: "DEAN",
+                                coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                                songTime: 200),
+             PlayMusicListModel(songName: "Drama",
+                                artist: "aespa",
+                                coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                                songTime: 200),
+             PlayMusicListModel(songName: "Honesty",
+                                artist: "Pionk Sweat$",
+                                coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                                songTime: 200)
          ]
      }
 
