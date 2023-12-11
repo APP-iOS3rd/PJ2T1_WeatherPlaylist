@@ -15,9 +15,11 @@ struct PlaylistView: View {
 //                HeaderView()
 //                    .background(.cyan)
                 ScrollView(.vertical, showsIndicators: false) {
+
                     PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.coverImageUrl)
                     
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
+         
                         Section {
                             ForEach(viewModel.playlist) { song in
                                 NavigationLink(destination: {
@@ -35,17 +37,23 @@ struct PlaylistView: View {
                             PlaylistStickyHeader()
                                 .environmentObject(viewModel)
                         }
+                        
+                        
                     }
                 }
                 .padding(EdgeInsets(top: 0,
                                     leading: 24,
                                     bottom: 0,
                                     trailing: 24))
+                PlayFooterCell(musicImage: "album2",
+                               isLightMode: $isLightMode)
+             
             }
+
         }
 //        .toolbar(.hidden)
     }
 }
-#Preview {
-    PlaylistView()
-}
+//#Preview {
+//    PlaylistView(, checkModal: <#Binding<Bool>#>)
+//}
