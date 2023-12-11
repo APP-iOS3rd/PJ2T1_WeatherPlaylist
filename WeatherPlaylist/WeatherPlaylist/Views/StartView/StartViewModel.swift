@@ -23,21 +23,29 @@ struct AccessToken: Decodable {
     let token: String?
     let type: String?
     let expire: Int?
+    let refreshToken: String?
+    let scope: String?
     
     enum CodingKeys: String, CodingKey {
         case token = "access_token"
         case type = "token_type"
         case expire = "expires_in"
+        case refreshToken = "refresh_token"
+        case scope
     }
 }
 
+var clientID: String {
+   Bundle.main.object(forInfoDictionaryKey: "ClientID") as? String ?? ""
+}
+var clientSecret: String {
+   Bundle.main.object(forInfoDictionaryKey: "ClientPW") as? String ?? ""
+}
 enum APIConstants {
     static let apiHost = "api.spotify.com"
     static let authHost = "accounts.spotify.com"
-    static let clientID = "f154ba1541fe4fe6bd13bc423b1f308b"
-    static let clientSecret = "c8f3316f7b3f448398bd63c0e9c458a3"
     static let redirectUri = "https://www.naver.com"
-    static let responseType = "token"
+    static let responseType = "code"
     static let scopes = "user-read-private"
     
     static var authParams = [
