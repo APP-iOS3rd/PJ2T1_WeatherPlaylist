@@ -18,6 +18,7 @@ struct RecommendedPlayListModel: Identifiable, Hashable {
     var subitle: String
     var tracks: URL?
     var image: String?
+    var singers: String?
 }
 
 // MARK: 더미 데이터 생성을 위한 클래스

@@ -78,6 +78,7 @@ extension APIRequestProtocol {
         }
     }
     func fetchData() async -> Result<Response, APIError> {
+        var failedData: Data? = nil
         do {
             var urlRequest = URLRequest(url: URL(string: url)!)
             urlRequest.httpMethod = method.rawValue
@@ -92,11 +93,9 @@ extension APIRequestProtocol {
                 let jsonData = try JSONSerialization.data(withJSONObject: parameters)
                 urlRequest.httpBody = jsonData
             }
-            dump(urlRequest.allHTTPHeaderFields)
-            print(urlRequest.url)
 
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
-            
+
             // 에러 처리 - 상태 코드 확인
             guard let httpResponse = response as? HTTPURLResponse else {
                 return .failure(.otherError)
@@ -104,8 +103,12 @@ extension APIRequestProtocol {
             
             switch httpResponse.statusCode {
             case 200...299:
+                failedData = data
+
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(Response.self, from: data)
+                failedData = nil
+
                 return .success(decodedResponse)
             case 400:
                 print(httpResponse.description)
@@ -127,6 +130,17 @@ extension APIRequestProtocol {
         } catch let urlError as URLError {
             return .failure(.urlError(urlError))
         } catch let decodingError as DecodingError {
+            if let failed = failedData {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: failed, options: []) as? [String: Any]
+                    print("JSON Response: \(json ?? [:])")
+                    failedData = nil
+                    // Try decoding your model here
+                } catch let error {
+                    failedData = nil
+                    print("Error decoding JSON: \(error)")
+                }
+            }
             print(decodingError.localizedDescription)
             print(decodingError.failureReason)
             print(decodingError.errorDescription)

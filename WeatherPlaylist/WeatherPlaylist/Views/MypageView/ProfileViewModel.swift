@@ -9,26 +9,37 @@ import Foundation
 import Combine
 
 final class ProfileViewModel: ObservableObject {
-    @Published var playlistModelList: [TempPlaylistModel] = []
+    @Published var playlistModelList: [RecommendedPlayListModel] = []
     @Published var profileModel: ProfileModel = .init()
+    @Published var isLoading: Bool = false
+    private let manager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
+    private let userPlaylistManager = HTTPManager<UserPlaylistDTO>(apiType: .getUsersPlayList)
     init() {
         fetchModel()
     }
     //MARK: - fetch 로직 구현 전 임시 함수
     private func fetchModel() {
-        self.playlistModelList = [TempPlaylistModel(id: "1",
-                                                title: "즐거운 믹스",
-                                                singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
-                                  TempPlaylistModel(id: "2",
-                                                         title: "즐거운 믹스",
-                                                        singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
-                                  TempPlaylistModel(id: "3",
-                                                         title: "즐거운 믹스",
-                                                singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"]),
-                                  TempPlaylistModel(id: "4",
-                                                         title: "즐거운 믹스",
-                                                singerList: ["슈퍼비", "디핵", "기리보이", "기타등등"])
-                         ]
-        self.profileModel = .init(name: "김나무")
-    }    
+        isLoading = true
+        Task { @MainActor in
+            let result = await manager.fetchData()
+            switch result {
+            case .success(let response) :
+                isLoading = false
+                guard let imgURL = response.images?.map({$0.url}).first else {return}
+                profileModel = .init(name: response.displayName, image: URL(string: imgURL))
+            case .failure(let error):
+                isLoading = false
+            }
+        }
+        Task { @MainActor in
+            let result = await userPlaylistManager.fetchData()
+            switch result {
+            case .success(let response) :
+                isLoading = false
+                self.playlistModelList = response.toRecommendedPlayListModel()
+            case .failure(let error):
+                isLoading = false
+            }
+        }
+    }
 }
