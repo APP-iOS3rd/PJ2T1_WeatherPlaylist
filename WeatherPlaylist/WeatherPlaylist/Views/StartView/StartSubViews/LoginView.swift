@@ -2,18 +2,16 @@
 //  LoginView.swift
 //  WeatherPlaylist
 //
-//  Created by 김성엽 on 12/6/23.
+//  Created by 김성엽 on 12/11/23.
 //
 
 import SwiftUI
 
 struct LoginView: View {
-    @State var showWK = false
-    
-
+    @State var path: [StackViewType] = []
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             GeometryReader { reader in
                 ZStack {
                     
@@ -32,13 +30,12 @@ struct LoginView: View {
                                     .clear,
                                     .colorBlack
                                 ]
-
+                                                    
                                 ),
                                 startPoint: .top,
                                 endPoint: .bottom
                             )
                         )
-                    
                     
                     VStack(spacing: 20) {
                         Spacer()
@@ -53,75 +50,44 @@ struct LoginView: View {
                             .font(.custom(FontType.Bold.rawValue, size: 40))
                             .foregroundStyle(.white)
                         
-                        
                         Spacer()
                         
-                        Button(action: {
-                            self.showWK.toggle()
+                        
+                        Button {
+                            if let token = UserDefaults.standard.value(forKey: "Authorization") {
+                                path.append(.secondView)
+                                print(token)
+                            } else {
+                                path.append(.firstView)
+                            }
                             
-                        }, label: {
+                        } label: {
                             Text("스포티파이로 시작하기")
                                 .font(.custom(FontType.SemiBold.rawValue, size: 20))
                                 .foregroundStyle(.black)
-                                .sheet(isPresented: $showWK) {
-                                    AuthView()
-                                }
-                        })
-                        .buttonStyle(signUptButton())
+                                .padding(.vertical, 20)
+                                .padding(.horizontal, 70)
+                                .background(.colorGreen)
+                                .cornerRadius(40)
+                        }
                         Spacer()
+                        Button(action: {
+                            UserDefaults.standard.removeObject(forKey: "Authorization")
+                        }, label: {
+                            Text("token 삭제")
+                        })
                         
-
-
-                        
-                        //                        NavigationLink {
-                        //                            EmptyView()
-                        //                        } label: {
-                        //                            HStack {
-                        //                                Text("스포티파이로 시작하기")
-                        //                                    .font(.custom(FontType.SemiBold.rawValue, size: 20))
-                        //                                    .foregroundStyle(.black)
-                        //                            }
-                        //                        }
-                        //                        .buttonStyle(signUptButton())
-                        //                        Spacer()
-                        //                    }
+                    }
+                    .navigationDestination(for: StackViewType.self) { stackViewType in
+                        switch stackViewType {
+                        case .firstView:
+                            AuthView()
+                        case .secondView:
+                            MainPageView()
+                        }
                     }
                 }
             }
         }
     }
-    func didTapSignIn() {
-        var vc = AuthView()
-        vc.completionHandler = { success in
-            DispatchQueue.main.async {
-                self.handleSignIn(success: success)
-            }
-            
-        }
-    }
-    
-    private func handleSignIn(success: Bool) {
-        
-    }
-    
 }
-
-
-
-struct signUptButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration
-            .label
-            .padding(.vertical, 20)
-            .padding(.horizontal, 70)
-            .background(.colorGreen)
-            .cornerRadius(40)
-    }
-}
-
-
-//
-//#Preview {
-//    LoginView()
-//}
-
