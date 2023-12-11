@@ -9,78 +9,6 @@ import Foundation
 
 import SwiftUI
 
-struct WeatherResults: Decodable {
-    let articles: [WeatherTotalData]
-}
-
-// MARK: - Welcome
-struct WeatherTotalData: Decodable, Hashable {
-    static func == (lhs: WeatherTotalData, rhs: WeatherTotalData) -> Bool {
-        return true
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        // Combine hash values of all properties using hasher.combine()
-    }
-    
-    let coord: Coord
-    let weather: [Weather]
-    let main: Main
-    let sys: Sys
-}
-
-// MARK: - Clouds
-struct Clouds: Codable {
-    let all: Int
-}
-
-// MARK: - Coord
-struct Coord: Codable {
-    let lon, lat: Double
-}
-
-// MARK: - Main
-struct Main: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-
-    enum CodingKeys: String, CodingKey {
-        case temp
-        case feelsLike = "feels_like"
-        case tempMin = "temp_min"
-        case tempMax = "temp_max"
-    }
-    /*
-     main.temp온도. 단위 기본값: 켈빈, 미터법: 섭씨, 영국식: 화씨
-     main.feels_like온도. 이 온도 매개변수는 날씨에 대한 인간의 인식을 설명합니다. 단위 기본값: 켈빈, 미터법: 섭씨, 영국식: 화씨
-     main.temp_min현재 최저기온
-     main.temp_max현재 최고온도
-     */
-}
-
-// MARK: - Sys
-struct Sys: Codable {
-    let country: String
-    let sunrise, sunset: Int
-    /*
-     sys.country국가 코드(GB, JP 등)
-     sys.sunrise일출 시간, 유닉스, UTC
-     sys.sunset일몰 시간, 유닉스, UTC
-     */
-}
-
-// MARK: - Weather
-struct Weather: Codable {
-    let id: Int
-    let main, description, icon: String
-    /*
-     weather.id기상 조건 ID
-     weather.main날씨 매개변수 그룹(비, 눈, 구름 ​​등)
-     weather.description그룹 내 날씨 상태.
-     weather.icon날씨 아이콘 ID
-     */
-}
-
-
 
 
 class WeatherAPI: ObservableObject {
@@ -88,6 +16,7 @@ class WeatherAPI: ObservableObject {
     private init() { }
     @Published var weatherInformation = [WeatherTotalData]()
     
+    // ⭐️ 최종 사용자 위치 기준 날씨 상태를 표현해 주는 변수
     @Published var userWatherStatus: String = "맑은 아침"
     
     private var apiKey: String? {
@@ -116,7 +45,7 @@ class WeatherAPI: ObservableObject {
         //print(apiKey)
         guard let apiKey = apiKey else { return }
         
-        //실제 기기에서 돌릴때는 아래 url 사용
+        //⚠️ 실제 기기에서 돌릴 때는 아래 URL 사용
         //let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&appid=\(apiKey)"
         
         let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(37.5125)&lon=\(127.102778)&appid=\(apiKey)"
@@ -141,15 +70,13 @@ class WeatherAPI: ObservableObject {
                 return
             }
             
-//            let str = String(decoding: data, as: UTF8.self)
-//            print(str)
             do {
                 let json = try JSONDecoder().decode(WeatherTotalData.self, from: data)
 
                 DispatchQueue.main.async {
-                    self.weatherInformation = [json] // Wrap 'json' in an array
+                    self.weatherInformation = [json]
                     
-                    // 파싱이 끝나면 user의 날씨 데이터만 가져오는 로직을 실행
+                    // ⭐️ 파싱이 끝나면 user의 날씨 데이터만 가져오는 SettingLogic을 실행
                     self.feachUserWeatherData()
                 }
             }  catch let error {
@@ -160,15 +87,11 @@ class WeatherAPI: ObservableObject {
         task.resume()
     }
     
-    
     func feachUserWeatherData(){
         // 해당 부분에서 파싱된 값 중 싱글 톤 패턴으로 필요한 사용자의 날씨 데이터 가져오는 로직을 처리
         self.userWatherStatus = self.getWeatherStatus(icon: self.weatherInformation[0].weather[0].icon)
         // self.userWatherStatus을 이용하여 스포티파이 API 전달 값으로 사용가능
-    
-        
     }
-    
     
     func getWeatherStatus(icon: String) -> String {
         switch icon {

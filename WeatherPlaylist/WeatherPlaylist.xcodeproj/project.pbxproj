@@ -20,6 +20,7 @@
 		645705332B26D8DB00E8B134 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 645705322B26D8DB00E8B134 /* ApiKeys.plist */; };
 		645705352B26D8F300E8B134 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645705342B26D8F300E8B134 /* WeatherAPI.swift */; };
 		645705372B26D91000E8B134 /* WeatherTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645705362B26D91000E8B134 /* WeatherTestView.swift */; };
+		6457053B2B26E6CF00E8B134 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457053A2B26E6CF00E8B134 /* WeatherModel.swift */; };
 		DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */; };
 		DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C32B206E39003085B9 /* DrawerExtension.swift */; };
 		DA29F7C82B206E39003085B9 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C42B206E39003085B9 /* CustomCorners.swift */; };
@@ -79,6 +80,7 @@
 		645705322B26D8DB00E8B134 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		645705342B26D8F300E8B134 /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		645705362B26D91000E8B134 /* WeatherTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTestView.swift; sourceTree = "<group>"; };
+		6457053A2B26E6CF00E8B134 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayMusicView.swift; sourceTree = "<group>"; };
 		DA29F7C32B206E39003085B9 /* DrawerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerExtension.swift; sourceTree = "<group>"; };
 		DA29F7C42B206E39003085B9 /* CustomCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
@@ -171,6 +173,26 @@
 				28A621A02B214BE900575D16 /* LaunchView.swift */,
 			);
 			path = StartSubView;
+			sourceTree = "<group>";
+		};
+		645705382B26E53000E8B134 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				645705392B26E6A400E8B134 /* Model */,
+				645705342B26D8F300E8B134 /* WeatherAPI.swift */,
+				645705302B26D8D200E8B134 /* LocationManager.swift */,
+				DA6506142B20475C003CF417 /* WeatherLogic.swift */,
+				645705362B26D91000E8B134 /* WeatherTestView.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		645705392B26E6A400E8B134 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6457053A2B26E6CF00E8B134 /* WeatherModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DA29F7BE2B206E26003085B9 /* PlayMusicView */ = {
@@ -348,10 +370,7 @@
 		DA6506162B204AAB003CF417 /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
-				645705342B26D8F300E8B134 /* WeatherAPI.swift */,
-				645705302B26D8D200E8B134 /* LocationManager.swift */,
-				DA6506142B20475C003CF417 /* WeatherLogic.swift */,
-				645705362B26D91000E8B134 /* WeatherTestView.swift */,
+				645705382B26E53000E8B134 /* Weather */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -468,6 +487,7 @@
 				DADECAC82B214A2F008ADA03 /* PlaylistView.swift in Sources */,
 				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
 				28A621A22B214BE900575D16 /* LoginView.swift in Sources */,
+				6457053B2B26E6CF00E8B134 /* WeatherModel.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
 				DA637F872B20238500BB3612 /* TempPlaylistModel.swift in Sources */,
 				DADECABB2B2149F5008ADA03 /* Alignment+Extensions.swift in Sources */,

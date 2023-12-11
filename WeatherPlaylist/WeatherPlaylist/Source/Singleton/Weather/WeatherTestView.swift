@@ -7,6 +7,7 @@
 import SwiftUI
 
 
+// MARK: - 날씨 관련 API TestView
 struct WeatherTestView: View {
 
     @StateObject var weatherData = WeatherAPI.shared
