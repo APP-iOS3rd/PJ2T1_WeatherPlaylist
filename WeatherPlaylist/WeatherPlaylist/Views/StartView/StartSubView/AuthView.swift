@@ -8,39 +8,12 @@
 import WebKit
 import SwiftUI
 
-struct AuthView: UIViewRepresentable {
-
-    public var completionHandler: ((Bool) -> Void)?
+struct AuthView: View {
+    @ObservedObject var viewModel = WebViewModel()
     
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        guard let url = AuthManager.shared.signInURL else { return }
-        // Exchange the code for access token
-        guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: {$0.name == "code"})?.value else {
-            return
-        }
-        webView.isHidden = true
-        print("Code: \(code)")
-    }
-    
-
-    func makeUIView(context: Context) -> WKWebView {
-        guard let url = AuthManager.shared.signInURL else {
-            return WKWebView()
-        }
-        let webView = WKWebView()
+    var body: some View {
         
-        webView.load(URLRequest(url: url))
+        WebView(viewModel: viewModel)
         
-        return webView
-    }
-    
-    func updateUIView(_ webView: WKWebView, context: UIViewRepresentableContext<AuthView>) {
-        guard let url = AuthManager.shared.signInURL else { return }//URL(string: url) else { return }
-        
-        guard let code = URLComponents(string: url.absoluteString)?.queryItems?.first(where: {$0.name == "code"})?.value else {
-            return
-        }
-        
-        webView.load(URLRequest(url: url))
     }
 }

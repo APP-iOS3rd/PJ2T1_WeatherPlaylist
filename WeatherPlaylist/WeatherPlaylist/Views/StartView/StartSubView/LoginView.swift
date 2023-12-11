@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    
     @State var showWK = false
     
 
@@ -69,41 +70,11 @@ struct LoginView: View {
                         })
                         .buttonStyle(signUptButton())
                         Spacer()
-                        
-
-
-                        
-                        //                        NavigationLink {
-                        //                            EmptyView()
-                        //                        } label: {
-                        //                            HStack {
-                        //                                Text("스포티파이로 시작하기")
-                        //                                    .font(.custom(FontType.SemiBold.rawValue, size: 20))
-                        //                                    .foregroundStyle(.black)
-                        //                            }
-                        //                        }
-                        //                        .buttonStyle(signUptButton())
-                        //                        Spacer()
-                        //                    }
                     }
                 }
             }
         }
     }
-    func didTapSignIn() {
-        var vc = AuthView()
-        vc.completionHandler = { success in
-            DispatchQueue.main.async {
-                self.handleSignIn(success: success)
-            }
-            
-        }
-    }
-    
-    private func handleSignIn(success: Bool) {
-        
-    }
-    
 }
 
 

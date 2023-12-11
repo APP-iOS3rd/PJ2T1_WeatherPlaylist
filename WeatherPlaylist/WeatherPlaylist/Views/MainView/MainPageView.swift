@@ -9,10 +9,15 @@ import SwiftUI
 
 struct MainPageView: View {
     
+    @StateObject var viewModel: MainPageViewModel = .init()
+    
     @State private var menutap = false
     @State var isLightMode: Bool = true
     
-    @State var mainTitle: String = "화창한 날엔 이 노래 어때요?"
+    // 싱글톤 패턴으로 날씨 데이터를 가져옴
+    @ObservedObject var weatherLogic = WeatherLogic.shared
+   
+
  
     var body: some View {
         NavigationView {
@@ -20,9 +25,9 @@ struct MainPageView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
                         topView
-                        PlaylistVertical(sectionTitle:"추천 리스트",sectionSubTitle: "맞춤 믹스: Gloomy")
-                        PlaylistHorizontal()
-                        PlaylistVertical(sectionTitle:"",sectionSubTitle: "어제 들어봤던 노래 다시 들어봐요")
+                        PlaylistVertical(viewModel: viewModel)
+                        // PlaylistHorizontal() 곡을 추천 하는 부분이 있어야 하나 의문..
+                        PlaylistVertical(viewModel: viewModel)
                     
                     }
                     .padding(.bottom,40)
@@ -31,6 +36,11 @@ struct MainPageView: View {
                 PlayFooterCell(musicImage: "album2",
                                isLightMode: $isLightMode)
             }
+        }
+        .onAppear {
+            // 뷰가 나타나면서 싱글톤 객체의 속성에 접근 및 변경
+            weatherLogic.isChecking = true
+            weatherLogic.userWeather = .rainy
         }
     }
     
@@ -53,7 +63,8 @@ struct MainPageView: View {
 extension MainPageView {
     private var topView: some View{
         HStack {
-            Text(mainTitle)
+            //💁 날씨에 따라 표시되는 멘트가 다르게 구현
+            Text(weatherLogic.mainTitle)
                 .font(.bold28)
                 .frame(width: 200,alignment: .leading)
             Spacer() 

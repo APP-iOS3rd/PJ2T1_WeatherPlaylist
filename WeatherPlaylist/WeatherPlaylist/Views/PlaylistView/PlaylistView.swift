@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    let dummyData = PlaylistDummyManager().list
+    let dummyData = MusicListDummyManager().list
     @State var playlistInfo: PlayListInfo = .init(playlistName: "aaaa",
                                                   playlistDescription: "aaaaaaa",
                                                   coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
