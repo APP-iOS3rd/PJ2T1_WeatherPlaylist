@@ -16,6 +16,10 @@
 		28A621A22B214BE900575D16 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A6219F2B214BE900575D16 /* LoginView.swift */; };
 		28A621A32B214BE900575D16 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A621A02B214BE900575D16 /* LaunchView.swift */; };
 		28A621A62B214C2700575D16 /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 28A621A52B214C2700575D16 /* SpotifyAPI.xcconfig */; };
+		645705312B26D8D200E8B134 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645705302B26D8D200E8B134 /* LocationManager.swift */; };
+		645705332B26D8DB00E8B134 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 645705322B26D8DB00E8B134 /* ApiKeys.plist */; };
+		645705352B26D8F300E8B134 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645705342B26D8F300E8B134 /* WeatherAPI.swift */; };
+		645705372B26D91000E8B134 /* WeatherTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645705362B26D91000E8B134 /* WeatherTestView.swift */; };
 		DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */; };
 		DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C32B206E39003085B9 /* DrawerExtension.swift */; };
 		DA29F7C82B206E39003085B9 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29F7C42B206E39003085B9 /* CustomCorners.swift */; };
@@ -71,6 +75,10 @@
 		28A6219F2B214BE900575D16 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		28A621A02B214BE900575D16 /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		28A621A52B214C2700575D16 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
+		645705302B26D8D200E8B134 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		645705322B26D8DB00E8B134 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
+		645705342B26D8F300E8B134 /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		645705362B26D91000E8B134 /* WeatherTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTestView.swift; sourceTree = "<group>"; };
 		DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayMusicView.swift; sourceTree = "<group>"; };
 		DA29F7C32B206E39003085B9 /* DrawerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerExtension.swift; sourceTree = "<group>"; };
 		DA29F7C42B206E39003085B9 /* CustomCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				DA637F6D2B1F1F6400BB3612 /* Preview Assets.xcassets */,
+				645705322B26D8DB00E8B134 /* ApiKeys.plist */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -339,7 +348,10 @@
 		DA6506162B204AAB003CF417 /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
+				645705342B26D8F300E8B134 /* WeatherAPI.swift */,
+				645705302B26D8D200E8B134 /* LocationManager.swift */,
 				DA6506142B20475C003CF417 /* WeatherLogic.swift */,
+				645705362B26D91000E8B134 /* WeatherTestView.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -424,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA29F7DD2B206F41003085B9 /* Pretendard-SemiBold.otf in Resources */,
+				645705332B26D8DB00E8B134 /* ApiKeys.plist in Resources */,
 				DA637F6E2B1F1F6400BB3612 /* Preview Assets.xcassets in Resources */,
 				28A621A62B214C2700575D16 /* SpotifyAPI.xcconfig in Resources */,
 				DA29F7D62B206F41003085B9 /* Pretendard-Light.otf in Resources */,
@@ -460,6 +473,7 @@
 				DADECABB2B2149F5008ADA03 /* Alignment+Extensions.swift in Sources */,
 				28A621A12B214BE900575D16 /* StartView.swift in Sources */,
 				DA29F7C02B206E26003085B9 /* PlayMusicView.swift in Sources */,
+				645705352B26D8F300E8B134 /* WeatherAPI.swift in Sources */,
 				28A621A32B214BE900575D16 /* LaunchView.swift in Sources */,
 				014DFB322B215BF400B155EE /* MainPageView.swift in Sources */,
 				DA29F7C82B206E39003085B9 /* CustomCorners.swift in Sources */,
@@ -470,6 +484,7 @@
 				DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */,
 				014DFB382B215E5900B155EE /* PlayFooterCell.swift in Sources */,
 				014DFB452B21779700B155EE /* PlaylistVertical.swift in Sources */,
+				645705312B26D8D200E8B134 /* LocationManager.swift in Sources */,
 				DA637F832B201DB300BB3612 /* ProfileView.swift in Sources */,
 				014DFB342B215D9100B155EE /* Color+Extensions.swift in Sources */,
 				DA637F852B20236600BB3612 /* PlaylistScrollView.swift in Sources */,
@@ -480,6 +495,7 @@
 				DA637F8D2B2041D900BB3612 /* UIkit+Extensions.swift in Sources */,
 				DA29F7C72B206E39003085B9 /* DrawerExtension.swift in Sources */,
 				DA637F7D2B201C1F00BB3612 /* MyPageView.swift in Sources */,
+				645705372B26D91000E8B134 /* WeatherTestView.swift in Sources */,
 				DADECACC2B214A2F008ADA03 /* PlaylistStickyHeader.swift in Sources */,
 				DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */,
 				DA29F7C92B206E39003085B9 /* BottomDrawerModifier.swift in Sources */,
