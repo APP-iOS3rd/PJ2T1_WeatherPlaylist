@@ -12,27 +12,37 @@ struct PlayFooterCell: View {
     var musicImage: String
     @Binding var isLightMode: Bool
     @State private var isShowingPlayer = false
-
     @StateObject var viewModel: PlayMusicViewModel  = .init()
+    
     var body: some View{
     
-        HStack(spacing: 20){
-            Image(musicImage)
-                .resizable()
+        HStack {
+            HStack{
+                AsyncImage(url:
+                            URL(string: viewModel.playMusicModel.coverImage)) {
+                    image in
+                    image
+                        .resizable()
+                        .padding(8)
+                        
+                }
+                placeholder: {
+                    ProgressView()
+                }
                 .scaledToFit()
-                .padding(4)
-                .frame(width: 60)
+                .frame(width: 60,height: 60)
                 .cornerRadius(12)
             
-            VStack(alignment: .leading){
-                Text(viewModel.playMusicModel.title)
-                    .font(.system(size: 18))
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity,alignment: .leading)
-                Text(viewModel.playMusicModel.artist)
-                    .font(.system(size: 14))
-                    .fontWeight(.light)
-                    .frame(maxWidth: .infinity,alignment: .leading)
+                VStack(alignment: .leading){
+                    Text(viewModel.playMusicModel.songName)
+                        .font(.system(size: 18))
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity,alignment: .leading)
+                    Text(viewModel.playMusicModel.artist)
+                        .font(.system(size: 14))
+                        .fontWeight(.light)
+                        .frame(maxWidth: .infinity,alignment: .leading)
+                }
             }.onTapGesture {
                 self.isShowingPlayer.toggle()
             }
@@ -44,9 +54,6 @@ struct PlayFooterCell: View {
                 Image(systemName: "chevron.right.to.line")
             }
             .offset(x: -25, y: 0)
-            
-            
-                
         }
         .background(
             isLightMode ? Color("lightBg") : Color("darkBg")
@@ -64,6 +71,6 @@ struct PlayFooterCell: View {
     }
     
 }
-#Preview {
-    PlayFooterCell(musicImage: "album2", isLightMode: .constant(true))
-}
+//#Preview {
+//    PlayFooterCell(musicImage: "album2", isLightMode: .constant(true))
+//}

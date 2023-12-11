@@ -85,7 +85,7 @@ extension PlayMusicView {
                 
             HStack{
                 VStack{
-                    Text(viewModel.playMusicModel.title)
+                    Text(viewModel.playMusicModel.songName)
                         .font(.bold28)
                         .frame(maxWidth: .infinity,alignment: .leading)
                     Text(viewModel.playMusicModel.artist)
@@ -192,7 +192,7 @@ extension PlayMusicView {
                                 
                                 let playlistModel = viewModel.playlistModelList[index]
                                 
-                                AsyncImage(url: URL(string: playlistModel.imgURL)){ image in
+                                AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
                                    image.resizable()
                                 } placeholder: {
                                     ProgressView()
@@ -202,7 +202,7 @@ extension PlayMusicView {
 
                                     
                                 VStack(alignment: .leading){
-                                    Text(playlistModel.title)
+                                    Text(playlistModel.songName)
                                         .font(.headline)
                                         .foregroundStyle(.white)
                                     Text(playlistModel.artist)
