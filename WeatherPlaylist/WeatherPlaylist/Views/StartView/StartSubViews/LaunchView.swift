@@ -2,7 +2,7 @@
 //  LaunchView.swift
 //  WeatherPlaylist
 //
-//  Created by 김성엽 on 12/6/23.
+//  Created by 김성엽 on 12/11/23.
 //
 
 import SwiftUI
@@ -30,8 +30,4 @@ struct LaunchView: View {
             }
         }
     }
-}
-
-#Preview {
-    LaunchView()
 }
