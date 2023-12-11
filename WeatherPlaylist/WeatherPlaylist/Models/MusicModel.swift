@@ -20,7 +20,6 @@ struct PlayListInfo {
     var playlistDescription: String
     var coverImageUrl: String
     var isLikePlaylist: Bool
-    var isPlaying = false
 }
 // MARK: 더미 데이터 생성을 위한 클래스
 class MusicListDummyManager {

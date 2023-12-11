@@ -11,9 +11,7 @@ struct PlayFooterCell: View {
     
     var musicImage: String
     @Binding var isLightMode: Bool
-    @State private var isShowingPlayer = false
-
-    @StateObject var viewModel: PlayMusicViewModel  = .init()
+    
     var body: some View{
     
         HStack(spacing: 20){
@@ -25,16 +23,14 @@ struct PlayFooterCell: View {
                 .cornerRadius(12)
             
             VStack(alignment: .leading){
-                Text(viewModel.playMusicModel.title)
+                Text("노래 제목")
                     .font(.system(size: 18))
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity,alignment: .leading)
-                Text(viewModel.playMusicModel.artist)
+                Text("KISS OR LIFE")
                     .font(.system(size: 14))
                     .fontWeight(.light)
                     .frame(maxWidth: .infinity,alignment: .leading)
-            }.onTapGesture {
-                self.isShowingPlayer.toggle()
             }
             
             Spacer()
@@ -52,15 +48,7 @@ struct PlayFooterCell: View {
             isLightMode ? Color("lightBg") : Color("darkBg")
         )
         .ignoresSafeArea()
-        .fullScreenCover(isPresented: $isShowingPlayer){
-            // 해당 부분 통일
-            PlayMusicView(temp: PlaylistTrackModel(id: "aaa",
-                                                    songName: "title",
-                                                    artist: "artist",
-                                                    coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                                                    songTime: 200))
-        }
-        
+
     }
     
 }

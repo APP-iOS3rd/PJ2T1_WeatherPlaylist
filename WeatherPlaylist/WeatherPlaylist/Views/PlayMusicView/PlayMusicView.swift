@@ -8,15 +8,10 @@
 import SwiftUI
 
 struct PlayMusicView: View {
-//    @State var temp: MusicModel
-    @State var temp: PlaylistTrackModel
-    
-    @State private var isShowingPlayer = false
-    @StateObject var viewModel: PlayMusicViewModel  = .init()
-    
+    @State var temp: MusicModel
     var body: some View {
         NavigationStack {
-            HeaderView(title: viewModel.playMusicModel.playlistTitle)
+            HeaderView(title: "에너지 충전 슈퍼믹스")
             ZStack{
                 VStack{
                     musicImageView
@@ -50,13 +45,13 @@ struct PlayMusicView: View {
         }
     }
      
-    func moveTrack(from source: IndexSet, to destination: Int) {
-        viewModel.playlistModelList.move(fromOffsets: source, toOffset: destination)
-    }
-
-    func deleteTrack(at offsets: IndexSet) {
-        viewModel.playlistModelList.remove(atOffsets: offsets)
-    }
+//    func moveArtist(from source: IndexSet, to destination: Int) {
+//          .move(fromOffsets: source, toOffset: destination)
+//    }
+//     
+//    func deleteArtist(at offsets: IndexSet) {
+//         .remove(atOffsets: offsets)
+//    }
 }
 
 //#Preview {
@@ -85,12 +80,11 @@ extension PlayMusicView {
                 
             HStack{
                 VStack{
-                    Text(viewModel.playMusicModel.title)
+                    Text("title")
                         .font(.bold28)
                         .frame(maxWidth: .infinity,alignment: .leading)
-                    Text(viewModel.playMusicModel.artist)
-                        .font(.regular18)
-                        .frame(maxWidth: .infinity,alignment: .leading)
+                    Text("artist")
+                        .font(.regular18)                        .frame(maxWidth: .infinity,alignment: .leading)
                 }
                 Image(systemName: "heart")
                     .resizable()
@@ -187,33 +181,33 @@ extension PlayMusicView {
             NavigationView {
                 VStack{
                     List {
-                        ForEach(viewModel.playlistModelList.indices, id: \.self) { index in
+                        // 현재 dummy Data
+                        ForEach(0..<3, id: \.self) { i in
                             HStack{
-                                
-                                let playlistModel = viewModel.playlistModelList[index]
-                                
-                                AsyncImage(url: URL(string: playlistModel.imgURL)){ image in
-                                   image.resizable()
-                                } placeholder: {
-                                    ProgressView()
-                                }
+//                                        AsyncImage(url: URL(string: )){ image in
+//                                            image.resizable()
+//                                        }placeholder: {
+//                                            ProgressView()
+//                                        }
+                                Rectangle()
                                 .frame(width: 50, height: 50)
                                 .cornerRadius(4)
 
                                     
                                 VStack(alignment: .leading){
-                                    Text(playlistModel.title)
+                                    Text("hihi")
                                         .font(.headline)
                                         .foregroundStyle(.white)
-                                    Text(playlistModel.artist)
+                                    Text("hihih")
                                         .font(.body)
                                         .foregroundStyle(.white)
                                 }
                             }
                             .listRowBackground(Color.gray.opacity(0.7))
-                        } 
-                        .onMove(perform: moveTrack)
-                        .onDelete(perform: deleteTrack)
+                        }
+                        // list 삭제 이동기능 추가시 사용
+//                                .onMove(perform: moveArtist)
+//                                .onDelete(perform: deleteArtist)
                     }
                     .scrollContentBackground(.hidden)
                     

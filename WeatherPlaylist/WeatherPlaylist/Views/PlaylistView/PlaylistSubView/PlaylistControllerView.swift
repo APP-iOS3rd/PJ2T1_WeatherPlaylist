@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct PlaylistControllerView: View {
-    @EnvironmentObject var viewModel: PlaylistViewModel
+    var isLikePlaylist: Bool
+    var pushAddButton: () -> Void
+    var pushPlayButton: () -> Void
+    var pushLikeButton: () -> Void
     
     var body: some View {
         HStack(alignment: .center, spacing: 57) {
             Button {
-                viewModel.pushAddButton()
+                pushPlayButton()
             } label: {
                 Image(systemName: "plus")
                     .foregroundStyle(.black)
@@ -21,23 +24,24 @@ struct PlaylistControllerView: View {
             }
             
             Button {
-                viewModel.pushPlayButton()
+                pushPlayButton()
             } label: {
-                Image(systemName: viewModel.playlistInfo.isPlaying ? "pause.fill" : "play.fill")
+                Image(systemName: "play.fill")
                     .foregroundStyle(.black)
                     .font(.system(size: 40))
             }
             
             Button {
-                viewModel.pushLikeButton()
+                pushLikeButton()
             } label: {
-                Image(systemName: viewModel.playlistInfo.isLikePlaylist ? "heart.fill" : "heart")
-                    .foregroundStyle(viewModel.playlistInfo.isLikePlaylist ? .red : .black)
+                Image(systemName: isLikePlaylist ? "heart.fill" : "heart")
+                    .foregroundStyle(.black)
                     .font(.system(size: 24))
             }
         }
     }
 }
+
 #Preview {
-    PlaylistControllerView()
+    PlaylistControllerView(isLikePlaylist: false, pushAddButton: {}, pushPlayButton: {}, pushLikeButton: {})
 }
