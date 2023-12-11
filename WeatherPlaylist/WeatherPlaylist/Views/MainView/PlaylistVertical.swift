@@ -82,13 +82,13 @@ extension PlaylistVertical {
                                             Text(recommendedModel.mainTitle)
                                                 .font(.title3)
                                                 .fontWeight(.bold)
-                                                .foregroundColor(Color.black)
+                                                .foregroundStyle(.colorBlack)
                                                 .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
                                             
                                             Text(recommendedModel.subitle)
                                                 .font(.subheadline)
+                                                .foregroundStyle(.colorBlack)
                                                 .fontWeight(.light)
-                                                .foregroundColor(Color.black)
                                                 .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
                                         }
                                     }

@@ -17,8 +17,8 @@ struct PlayMusicView: View {
     var body: some View {
         NavigationStack {
             HeaderView(title: viewModel.playMusicModel.playlistTitle)
-            ZStack{
-                VStack{
+            ZStack {
+                VStack {
                     musicImageView
                     musicSlider
                     musicController
@@ -28,7 +28,7 @@ struct PlayMusicView: View {
                 .padding(.horizontal)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-            .background(Color.white.edgesIgnoringSafeArea(.bottom))
+           // .background(Color.lightBg)
             .bottomDrawerView(
                 bottomDrawerHeight: 80,
                 drawerTopCornersRadius: 16,
@@ -48,6 +48,8 @@ struct PlayMusicView: View {
                     }
                 }
         }
+        
+        .background(Color.lightBg)
     }
      
     func moveTrack(from source: IndexSet, to destination: Int) {
@@ -68,13 +70,23 @@ extension PlayMusicView {
     private var musicImageView: some View{
         VStack{
             // Image 로드시,
-            CachedImage(url: nil){ phase in
-                switch phase {
-                case .success(let image) :
-                    image.resizable()
-                case .empty, .failure(_) :
-                    ProgressView()
-                }
+//            CachedImage(url: nil){ phase in
+//                switch phase {
+//                case .success(let image) :
+//                    image.resizable()
+//                case .empty, .failure(_) :
+//                    ProgressView()
+//                }
+//            }
+            AsyncImage(url:
+                        URL(string: viewModel.playMusicModel.coverImage)) {
+                image in
+                image
+                    .resizable()
+                    .padding(8)
+                    
+            } placeholder: {
+                ProgressView()
             }
             .scaledToFill()
             .frame(maxWidth:340, maxHeight: 340)
@@ -99,7 +111,8 @@ extension PlayMusicView {
                     //MARK: - 살짝 커졌다 작아지는 애니메이션?
                     .scaleEffect(1)
                 
-            }.padding(.vertical,24)
+            }
+            .padding(.vertical,24)
             .padding(.horizontal)
             
         }
@@ -149,18 +162,21 @@ extension PlayMusicView {
                 Image(systemName: "shuffle")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 22)
                     .onTapGesture {}
                 Spacer()
                 Image(systemName: "backward.end.fill")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 24)
                     .onTapGesture {}
                 Spacer()
                 Image(systemName: "play.fill")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 32)
                     .onTapGesture {}
                      
@@ -168,12 +184,14 @@ extension PlayMusicView {
                 Image(systemName: "forward.end.fill")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 24)
                     .onTapGesture {}
                 Spacer()
                 Image(systemName: "repeat")
                     .resizable()
                     .scaledToFit()
+                    .foregroundStyle(.colorBlack)
                     .frame(height: 22)
                     .onTapGesture {}
                 
@@ -204,10 +222,10 @@ extension PlayMusicView {
                                 VStack(alignment: .leading){
                                     Text(playlistModel.songName)
                                         .font(.headline)
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(.colorBlack)
                                     Text(playlistModel.artist)
                                         .font(.body)
-                                        .foregroundStyle(.white)
+                                        .foregroundStyle(.colorBlack)
                                 }
                             }
                             .listRowBackground(Color.gray.opacity(0.7))

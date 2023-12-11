@@ -20,7 +20,7 @@ struct HeaderView: View {
                     .scaledToFit()
                     .frame(width:20,height: 20)
                     .scaleEffect(1)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.colorBlack)
             }
  
             Spacer()
@@ -34,10 +34,6 @@ struct HeaderView: View {
 //                .scaledToFit()
 //                .frame(height: 20)
         }
-        .frame(height: 20)
-//        .scaleEffect(1)
-//        .padding(.top,20)
-//        .padding(.bottom, 20)
         .padding(.horizontal, 12)
     }
 }
