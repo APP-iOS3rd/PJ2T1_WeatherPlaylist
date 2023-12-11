@@ -9,26 +9,121 @@ import Foundation
 
 // MARK: 임시 모델
 
-struct PlaylistModel: Identifiable, Hashable {
-    var id: String
-    var songName: String
-    var artist: String
-    var coverImage: String
-    var songTime: Int
+import Combine
+
+class PlaylistViewModel: ObservableObject {
+    @Published var playlistInfo: PlayListInfo = .init(playlistName: "",
+                                                      playlistDescription: "",
+                                                      coverImageUrl: "",
+                                                      isLikePlaylist: false,
+                                                      isPlaying: false
+    )
+    @Published var playlist: [PlaylistTrackModel] = []
+    
+    init() {
+        fetchTrackModel()
+        fetchInfoModel()
+    }
 }
 
-struct PlayListInfo {
-    var playlistName: String
-    var playlistDescription: String
-    var coverImageUrl: String
-    var isLikePlaylist: Bool
+extension PlaylistViewModel {
+    func pushAddButton() {
+        print("PUSH ADD BUTTON")
+    }
+    
+    func pushPlayButton() {
+        self.playlistInfo.isPlaying.toggle()
+    }
+    
+    func pushLikeButton() {
+        self.playlistInfo.isLikePlaylist.toggle()
+    }
+    
+    func fetchTrackModel() {
+        self.playlist = [
+            PlaylistTrackModel(id: "aaa",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "bbbb",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "ccc",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "d",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "f",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "g",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "h",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "j",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "n",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "i",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "u",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "y",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+            PlaylistTrackModel(id: "]",
+                          songName: "title",
+                          artist: "artist",
+                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                          songTime: 200),
+        ]
+    }
+    
+    func fetchInfoModel() {
+        self.playlistInfo = .init(playlistName: "제목",
+                                  playlistDescription: "플리 설명",
+                                  coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                                  isLikePlaylist: false)
+    }
 }
+
+
 // MARK: 더미 데이터 생성을 위한 클래스
 class PlaylistDummyManager {
     var list: [PlaylistModel] = []
     
     init() {
-
+        
         self.list = fetchPlaylist()
     }
     

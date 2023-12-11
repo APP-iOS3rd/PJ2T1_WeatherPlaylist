@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct PlayMusicView: View {
-    @State var temp: MusicModel
+//    @State var temp: MusicModel
+    @State var temp: PlaylistTrackModel
     var body: some View {
         NavigationStack {
             HeaderView(title: "에너지 충전 슈퍼믹스")
