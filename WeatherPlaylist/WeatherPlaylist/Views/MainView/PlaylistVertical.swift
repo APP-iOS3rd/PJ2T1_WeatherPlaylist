@@ -28,7 +28,7 @@ struct PlaylistVertical: View {
                         Text(randomModel.mainTitle)
                             .font(.system(size: 16, weight: .regular))
                     }
-
+                    
                     // 날씨에 따른 추천 플레이리스트 부제목
                     Text(viewModel.recommendedModelList[0].subitle)
                         .font(.bold20)
@@ -74,11 +74,23 @@ extension PlaylistVertical {
                                             .navigationTitle(recommendedModel.mainTitle)
                                     } label: {
                                         VStack {
-                                            Rectangle()
-                                                .frame(width: 160, height: 160)
-                                                .cornerRadius(15)
-                                                .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
-                                            
+                                            if let img = recommendedModel.image{
+                                                CachedImage(url: URL(string: img)) { phase in
+                                                    switch phase {
+                                                    case .success(let img) :
+                                                        img
+                                                            .resizable()
+                                                            .frame(width: 160, height: 160)
+                                                            .cornerRadius(15)
+                                                            .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
+                                                    case .failure(_), .empty :
+                                                        Rectangle()
+                                                            .frame(width: 160, height: 160)
+                                                            .cornerRadius(15)
+                                                            .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
+                                                    }
+                                                }
+                                            }
                                             Text(recommendedModel.mainTitle)
                                                 .font(.title3)
                                                 .fontWeight(.bold)
