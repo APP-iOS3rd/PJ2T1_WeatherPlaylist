@@ -25,4 +25,3 @@ struct StartView: View {
 #Preview {
     StartView()
 }
-
