@@ -22,13 +22,20 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     }
     
     
-   //위치 정보를 업데이트하기 위해 locationManager의 설정을 변경하고, startUpdatingLocation() 메서드를 호출합니다. 이를 통해 실제로 위치 정보를 가져오기 시작합니다.
     func startUpdatingLocation() {
-        if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.startUpdatingLocation()
+        // -locationManagerDidChangeAuthorization: 콜백을 기다리고, authorizationStatus를 확인합니다.
+        locationManagerDidChangeAuthorization(locationManager)
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager.startUpdatingLocation()
+            }
         }
     }
+
     // 위치 정보가 업데이트될 때 호출됩니다. 이 메서드에서는 가장 최근의 위치 정보를 가져와서 latitude와 longitude 변수를 업데이트합니다.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
