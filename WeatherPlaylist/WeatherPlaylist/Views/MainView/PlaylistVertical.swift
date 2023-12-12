@@ -51,8 +51,6 @@ struct PlaylistVertical: View {
 //    }
 //}
 
-
-
 extension PlaylistVertical {
     private var displayContent: some View{
         ZStack{

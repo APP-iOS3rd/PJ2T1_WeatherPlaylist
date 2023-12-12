@@ -72,8 +72,28 @@ extension MainPageView {
             NavigationLink {
                MyPageView()
             }label: {
-                Rectangle()
-                    .frame(width:75,height: 75)
+                CachedImage(url: viewModel.profileURL) {phase in
+                    switch phase {
+                    case .empty, .failure(_):
+                        Image(uiImage: .emptyImage)
+                            .resizable()
+
+                    case .success(let image):
+                        image
+                            .resizable()
+
+                    @unknown default:
+                        Image(uiImage: .emptyImage)
+                            .resizable()
+                    }
+                }.frame(width: 40, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.gray, lineWidth: 0.8)
+                            .foregroundStyle(Color.clear)
+                    )
+                    .cornerRadius(20)
+                    .padding(.trailing,13)
             }
                 
             

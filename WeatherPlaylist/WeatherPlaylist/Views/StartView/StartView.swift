@@ -15,8 +15,9 @@ struct StartView: View {
         
         ZStack {
             if isLoading {
-                if let token = UserDefaults.standard.value(forKey: "AccessToken") {
-                    MainPageView()
+                if let _ = UserDefaults.standard.value(forKey: "AccessToken") {
+                    RootView()
+                        .navigationBarHidden(true)
                 } else {
                     LoginView()
                         .transition(.opacity)

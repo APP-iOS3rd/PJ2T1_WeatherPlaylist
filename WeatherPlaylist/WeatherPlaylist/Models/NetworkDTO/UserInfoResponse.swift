@@ -43,7 +43,10 @@ struct Followers: Decodable {
     let href: String?
     let total: Int
 }
-struct ProfileImages: Codable {
+struct ProfileImages: Codable, Comparable {
+    static func < (lhs: ProfileImages, rhs: ProfileImages) -> Bool {
+        (lhs.height ?? 0) + (lhs.width ?? 0) < (rhs.height ?? 0) + (rhs.width ?? 0)
+    }
     let height: Int?
     let url: String
     let width: Int?

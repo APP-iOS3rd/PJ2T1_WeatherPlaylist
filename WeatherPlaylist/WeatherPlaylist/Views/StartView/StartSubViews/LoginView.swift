@@ -71,19 +71,20 @@ struct LoginView: View {
                                 .cornerRadius(40)
                         }
                         Spacer()
+                        #if DEBUG
                         Button(action: {
                             UserDefaults.standard.removeObject(forKey: "AccessToken")
                         }, label: {
                             Text("token 삭제")
                         })
-                        
+                        #endif
                     }
                     .navigationDestination(for: StackViewType.self) { stackViewType in
                         switch stackViewType {
                         case .firstView:
                             AuthView()
                         case .secondView:
-                            MainPageView()
+                            RootView()
                                 .navigationBarHidden(true)
                         }
                     }

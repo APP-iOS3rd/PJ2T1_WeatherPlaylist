@@ -73,11 +73,15 @@ extension APIRequestProtocol {
                 UserDefaults.standard.setValue(decodedResponse.refreshToken, forKey: "RefreshToken")
                 return true
             default:
+                UserDefaults.standard.removeObject(forKey: "AccessToken")
+                UserDefaults.standard.removeObject(forKey: "RefreshToken")
                 let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                 print("JSON Response: \(json ?? [:])")
                 return false
             }
         } catch {
+            UserDefaults.standard.removeObject(forKey: "AccessToken")
+            UserDefaults.standard.removeObject(forKey: "RefreshToken")
             return false
         }
     }
@@ -121,8 +125,9 @@ extension APIRequestProtocol {
                 if await isRefreshTokenSuccessed() {
                     return await fetchData()
                 } else {
-                    UserDefaults.standard.removeObject(forKey: "AccessToken")
-                    UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                    //MARK: - 이거 삭제가 맞는 것 같습니다
+//                    UserDefaults.standard.removeObject(forKey: "AccessToken")
+//                    UserDefaults.standard.removeObject(forKey: "RefreshToken")
                     return .failure(.httpError(.authError))
                 }
                 // token refresh 하는 로직
