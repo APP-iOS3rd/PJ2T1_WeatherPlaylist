@@ -30,8 +30,8 @@ struct PlaylistVertical: View {
                     }
                     
                     // 날씨에 따른 추천 플레이리스트 부제목
-                    Text(viewModel.recommendedModelList[0].subitle)
-                        .font(.bold20)
+                    //Text(viewModel.recommendedModelList[0].subitle)
+                    //    .font(.bold20)
                 }
                 Spacer()
             }.padding(24)

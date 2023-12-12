@@ -16,6 +16,7 @@
 		016AE6D52B26C9AF0096CE89 /* PlayMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016AE6D42B26C9AF0096CE89 /* PlayMusicModel.swift */; };
 		016AE6D72B26C9BF0096CE89 /* PlayMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016AE6D62B26C9BF0096CE89 /* PlayMusicViewModel.swift */; };
 		28A621A92B21514000575D16 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 28A621A82B21514000575D16 /* SpotifyiOS */; };
+		641F2B422B2823670001638B /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 641F2B412B2823670001638B /* ApiKeys.plist */; };
 		64279A252B21B0C900065F24 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		64279A292B21B69200065F24 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		645705312B26D8D200E8B134 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -68,7 +69,6 @@
 		DAA331772B26FE1100D3225F /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331742B26FE1100D3225F /* LaunchView.swift */; };
 		DAA331782B26FE1100D3225F /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331752B26FE1100D3225F /* AuthView.swift */; };
 		DAA331792B26FE1100D3225F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331762B26FE1100D3225F /* LoginView.swift */; };
-		DAA3317C2B26FE1D00D3225F /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DAA3317B2B26FE1D00D3225F /* SpotifyAPI.xcconfig */; };
 		DAA3317E2B26FE2B00D3225F /* RecommendedPlayListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3317D2B26FE2B00D3225F /* RecommendedPlayListModel.swift */; };
 		DAA331802B26FE3600D3225F /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3317F2B26FE3600D3225F /* MusicModel.swift */; };
 		DAA331832B26FEF500D3225F /* RecommendedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331812B26FEF500D3225F /* RecommendedViewModel.swift */; };
@@ -104,6 +104,8 @@
 		016AE6D22B26C9A20096CE89 /* PlayMusicListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicListModel.swift; sourceTree = "<group>"; };
 		016AE6D42B26C9AF0096CE89 /* PlayMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicModel.swift; sourceTree = "<group>"; };
 		016AE6D62B26C9BF0096CE89 /* PlayMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicViewModel.swift; sourceTree = "<group>"; };
+		641F2B412B2823670001638B /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
+		64F643262B27EC5500A94A54 /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayMusicView.swift; sourceTree = "<group>"; };
 		DA29F7C32B206E39003085B9 /* DrawerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerExtension.swift; sourceTree = "<group>"; };
 		DA29F7C42B206E39003085B9 /* CustomCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
@@ -146,7 +148,6 @@
 		DAA331742B26FE1100D3225F /* LaunchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		DAA331752B26FE1100D3225F /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		DAA331762B26FE1100D3225F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		DAA3317B2B26FE1D00D3225F /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		DAA3317D2B26FE2B00D3225F /* RecommendedPlayListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedPlayListModel.swift; sourceTree = "<group>"; };
 		DAA3317F2B26FE3600D3225F /* MusicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
 		DAA331812B26FEF500D3225F /* RecommendedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedViewModel.swift; sourceTree = "<group>"; };
@@ -331,6 +332,7 @@
 		DA637F652B1F1F6200BB3612 /* WeatherPlaylist */ = {
 			isa = PBXGroup;
 			children = (
+				641F2B412B2823670001638B /* ApiKeys.plist */,
 				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
 				DA637F782B201BE200BB3612 /* Source */,
@@ -463,7 +465,7 @@
 		DAA3317A2B26FE1D00D3225F /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				DAA3317B2B26FE1D00D3225F /* SpotifyAPI.xcconfig */,
+				64F643262B27EC5500A94A54 /* SpotifyAPI.xcconfig */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -562,10 +564,10 @@
 				DA29F7DA2B206F41003085B9 /* Pretendard-ExtraLight.otf in Resources */,
 				DA29F7DB2B206F41003085B9 /* Pretendard-Thin.otf in Resources */,
 				DAA3318C2B2722CC00D3225F /* Launch Screen.storyboard in Resources */,
+				641F2B422B2823670001638B /* ApiKeys.plist in Resources */,
 				DA29F7D92B206F41003085B9 /* Pretendard-Bold.otf in Resources */,
 				DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */,
 				DA29F7D52B206F41003085B9 /* Pretendard-ExtraBold.otf in Resources */,
-				DAA3317C2B26FE1D00D3225F /* SpotifyAPI.xcconfig in Resources */,
 				DA29F7DC2B206F41003085B9 /* Pretendard-Regular.otf in Resources */,
 				DA29F7D72B206F41003085B9 /* Pretendard-Black.otf in Resources */,
 				DA29F7D82B206F41003085B9 /* Pretendard-Medium.otf in Resources */,
@@ -659,7 +661,7 @@
 /* Begin XCBuildConfiguration section */
 		DA637F6F2B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAA3317B2B26FE1D00D3225F /* SpotifyAPI.xcconfig */;
+			baseConfigurationReference = 64F643262B27EC5500A94A54 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -723,7 +725,7 @@
 		};
 		DA637F702B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAA3317B2B26FE1D00D3225F /* SpotifyAPI.xcconfig */;
+			baseConfigurationReference = 64F643262B27EC5500A94A54 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -780,7 +782,7 @@
 		};
 		DA637F722B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAA3317B2B26FE1D00D3225F /* SpotifyAPI.xcconfig */;
+			baseConfigurationReference = 64F643262B27EC5500A94A54 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -789,7 +791,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherPlaylist/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				DEVELOPMENT_TEAM = 9S8KMMC3YH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherPlaylist/Info.plist;
@@ -820,7 +822,7 @@
 		};
 		DA637F732B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAA3317B2B26FE1D00D3225F /* SpotifyAPI.xcconfig */;
+			baseConfigurationReference = 64F643262B27EC5500A94A54 /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -829,7 +831,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherPlaylist/Preview Content\"";
-				DEVELOPMENT_TEAM = 7Y3Y9M4N4F;
+				DEVELOPMENT_TEAM = 9S8KMMC3YH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeatherPlaylist/Info.plist;

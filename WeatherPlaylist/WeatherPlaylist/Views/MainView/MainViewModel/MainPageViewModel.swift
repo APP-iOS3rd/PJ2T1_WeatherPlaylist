@@ -10,29 +10,46 @@ import Combine
 
 final class MainPageViewModel: ObservableObject {
     
-    // ViewModel은 RecommendedModel을 가지고 있음
-    
-    //@Published var playlistModelList: [MusicModel] = []
-    
     @Published var recommendedModelList: [RecommendedPlayListModel] = []
+    @Published var weatherData = WeatherAPI.shared
     
+   
     init() {
-     //   fetchModel()
-        fetchRecommendedList()
-        fetchPlayListModel()
+        settingWeatherData() //💁 초기 사용자 위치를 이용하여 필수 날씨 상태 정보, 쿼리 값 셋팅
+        WeatherAPI.shared.delegate = self
+    }
+    
+    func settingWeatherData() {
+        let locationManager = LocationManager()
+        locationManager.startUpdatingLocation()
+        print("위도: \(locationManager.latitude), 경도: \(locationManager.longitude)")
+      
+        // 사용자 위도, 경도를 전달하여 API 호출
+        weatherData.feachWeatherData(lat: locationManager.latitude, lon: locationManager.longitude)
         
     }
-    //MARK: - fetch 로직 구현 전 임시 함수
-//    private func fetchModel() {
-//        self.playlistModelList = MusicListDummyManager().list
-//    }
+    
+    //💁 쿼리 값 셋팅 이후 델리게이트 메서드(didUpdateSpotifyRandomQuery) 실행
+    // 올바른 쿼리 값 담긴다면 의존성 있는 메서드를 실행
+    var spotifyQuery: String = "" {
+        didSet {
+            // 대입되는 순간 문제 query값의 의존하는 메서드들을 실행
+            self.fetchPlayListModel() // SpotifyAPI호출
+            self.fetchRecommendedList() // 요청에 맞는 플레이리스트 가져오기
+        }
+    }
+   
+    
+
     
     private func fetchRecommendedList() {
         self.recommendedModelList = RecommendedModelManager().recommendedPlayList
     }
-    private let manager = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "nice"))
+    
+
     func fetchPlayListModel() {
-        Task{ @MainActor in
+        let manager: HTTPManager<SearchResponse> = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: spotifyQuery))
+        Task { @MainActor in
             let response = await manager.fetchData()
             switch response {
             case .success(let data):
@@ -54,9 +71,16 @@ final class MainPageViewModel: ObservableObject {
             }
         }
     }
-    
+
+
     
     
 }
 
+extension MainPageViewModel: WeatherAPIDelegate{
+    func didUpdateSpotifyRandomQuery(_ query: String) {
+        // 올바른 쿼리 값을 받아오게 구현
+        self.spotifyQuery = self.weatherData.spotifyRandomQuery
+    }
+}
 
