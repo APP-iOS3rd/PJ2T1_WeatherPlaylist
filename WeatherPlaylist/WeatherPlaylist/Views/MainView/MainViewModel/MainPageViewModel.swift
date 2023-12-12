@@ -16,6 +16,7 @@ final class MainPageViewModel: ObservableObject {
     
     @Published var recommendedModelList: [RecommendedPlayListModel] = []
     @Published var profileURL: URL? = nil
+    @Published var uid: String = ""
     @Published var isLoading: Bool = false
 
     private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
@@ -69,11 +70,11 @@ final class MainPageViewModel: ObservableObject {
     }
 
     private func fetchProfile() {
-
         Task { @MainActor in
             let result = await profileManager.fetchData()
             switch result {
             case .success(let response) :
+                uid = response.id
                 guard let imgURL = response.images?.min()?.url else {return}
                 profileURL = URL(string: imgURL)
                 isLoading = false

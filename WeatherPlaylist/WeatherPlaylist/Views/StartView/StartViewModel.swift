@@ -42,7 +42,7 @@ enum APIConstants {
     static let clientSecret = Bundle.main.object(forInfoDictionaryKey: "ClientPW") as? String ?? ""
     static let redirectUri = "https://www.naver.com"
     static let responseType = "code"
-    static let scopes = "user-read-private user-read-email playlist-read-private"
+    static let scopes = "user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private"
     
     static var authParams = [
         "response_type": responseType,

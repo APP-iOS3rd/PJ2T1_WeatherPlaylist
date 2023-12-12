@@ -12,7 +12,9 @@ enum HTTPRequest {
     case getUsersPlayList // 유저 플레이리스트 가져오기
     case serchPlaylist(query: String) //검색하기
     case serchTracks(trackId: String) //플레이리스트 불러오기
-    case userContains(ids: String) // Like 여부 알려주기
+    case userContains(ids: String, uid: String) // Like 여부 알려주기
+    case likePlaylist(id: String)
+    case deletePlaylist(id: String)
 }
 final class HTTPManager<T>: APIRequestProtocol where T: Decodable{
     typealias Response = T
@@ -35,9 +37,17 @@ final class HTTPManager<T>: APIRequestProtocol where T: Decodable{
             path = "playlists/\(id)/tracks"
             method = .get
             self.parameters = parameters
-        case .userContains(let ids):
-            path = "me/tracks/contains/ids={\(ids)}"
+        case .userContains(let ids, let uid):
+            path = "playlists/\(ids)/followers/contains?ids=\(uid)"
             method = .get
+            self.parameters = nil
+        case .likePlaylist(let id):
+            path = "playlists/\(id)/followers"
+            method = .put
+            self.parameters = ["public": true]
+        case .deletePlaylist(let id):
+            path = "playlists/\(id)/followers"
+            method = .delete
             self.parameters = nil
         case .getUsersPlayList:
             path = "me/playlists"
@@ -70,34 +80,3 @@ final class HTTPManager<T>: APIRequestProtocol where T: Decodable{
         }
     }
 }
-#if DEBUG
-//MARK: - 이런식
-struct UserData: Decodable{
-    let id: UUID
-}
-
-class someViewModel: ObservableObject {
-    private func test() async -> Bool {
-        let result = HTTPManager<Bool>(apiType: .userContains(ids: "asdfassf"))
-        let isContains = await result.fetchData()
-        switch isContains {
-        case .success(let res):
-            return res
-        case .failure(let error):
-            return false
-            print(error.errorDescription)
-        }
-    }
-    //MARK: - 메인쓰레드로 가는 법
-    func fetchData(){
-        Task{ @MainActor in
-            let temp = await test()
-            if temp {
-                //do true
-            } else {
-                //do false
-            }
-        }
-    }
-}
-#endif
