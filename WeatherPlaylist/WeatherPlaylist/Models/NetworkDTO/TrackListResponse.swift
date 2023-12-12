@@ -97,7 +97,7 @@ struct Album: Codable {
 // MARK: - Artist
 struct Artist: Codable {
     let externalUrls: ExternalUrls
-    let images: [AlbumImage]?
+    let images: [ProfileImages]?
     let name: String
     let type, uri: String
 
