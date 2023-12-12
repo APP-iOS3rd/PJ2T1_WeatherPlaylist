@@ -65,10 +65,11 @@ extension MainPageView {
     private var topView: some View{
         HStack {
             //💁 날씨에 따라 표시되는 멘트가 다르게 구현
-            Text(weatherLogic.mainTitle)
-                .font(.bold28)
+            Text(.init(weatherLogic.mainTitle))
+                .font(.thin32)
+                .padding(.top, 12)
                 .frame(width: 200,alignment: .leading)
-            Spacer() 
+            Spacer()
             NavigationLink {
                MyPageView()
             }label: {
@@ -95,10 +96,8 @@ extension MainPageView {
                     .cornerRadius(20)
                     .padding(.trailing,13)
             }
-                
-            
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(24)
         }
-        .frame(maxWidth: .infinity,alignment: .leading)
-        .padding()
     }
-}
+

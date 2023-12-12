@@ -83,6 +83,7 @@ struct LoginView: View {
                         switch stackViewType {
                         case .firstView:
                             AuthView()
+                                .ignoresSafeArea()
                         case .secondView:
                             RootView()
                                 .navigationBarHidden(true)

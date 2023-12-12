@@ -46,10 +46,10 @@ struct PlayFooterCell: View {
             }
             
             Spacer()
-            HStack(spacing: 20){
-                Image(systemName: "chevron.left.to.line")
+            HStack(spacing: 10){
+                Image(systemName: "backward.end.fill") 
                 Image(systemName: "play.fill")
-                Image(systemName: "chevron.right.to.line")
+                Image(systemName: "forward.frame.fill")
             }
             .offset(x: -25, y: 0)
         }
