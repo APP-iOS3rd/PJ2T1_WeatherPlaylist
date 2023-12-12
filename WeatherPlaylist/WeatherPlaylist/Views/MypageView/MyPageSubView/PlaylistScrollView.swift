@@ -23,13 +23,27 @@ struct PlaylistScrollView: View {
                 LazyHStack {
                     ForEach(viewModel.playlistModelList) { model in
                         VStack(alignment:.leading) {
-                            Image(uiImage: model.thumbNail ?? .emptyImg)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 100,height: 100)
-                            Text(model.title)
+                            if let imageURL = model.image {
+                                CachedImage(url: URL(string: imageURL)){phase in
+                                    switch phase {
+                                    case .success(let image) :
+                                        image
+                                            .resizable()
+                                    case .failure(_), .empty:
+                                        Image(uiImage: .emptyImage)
+                                            .resizable()
+                                    }
+                                }.aspectRatio(contentMode: .fit)
+                                    .frame(width: 100,height: 100)
+                            } else {
+                                Image(uiImage: .emptyImg)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 100,height: 100)
+                            }
+                            Text(model.mainTitle)
                                 .font(.bold14)
-                            Text(model.singerStr)
+                            Text(model.singers ?? "가수들")
                                 .font(.light10)
                                 .lineLimit(1)
                         }.frame(width: 100)

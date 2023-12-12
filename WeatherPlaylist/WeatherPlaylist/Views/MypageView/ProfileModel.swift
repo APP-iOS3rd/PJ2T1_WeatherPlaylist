@@ -18,7 +18,7 @@ struct ProfileModel {
         self.name = name
         self.image = nil
     }
-    init(name: String, image: URL) {
+    init(name: String, image: URL?) {
         self.name = name
         self.image = image
     }

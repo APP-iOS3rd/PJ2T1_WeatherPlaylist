@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ClientID</key>
+	<string>$(CLIENT_ID)</string>
+	<key>ClientPW</key>
+	<string>$(CLIENT_SECRET)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Black.otf</string>
@@ -14,9 +18,5 @@
 		<string>Pretendard-SemiBold.otf</string>
 		<string>Pretendard-Thin.otf</string>
 	</array>
-	<key>ClientID</key>
-	<string>$(CLIENT_ID)</string>
-	<key>ClientPW</key>
-	<string>$(CLIENT_SECRET)</string>
 </dict>
 </plist>

@@ -30,7 +30,15 @@ struct MyPageView: View {
                 }.padding(.top)
                     .padding(.horizontal, 25)
                 Spacer()
-            }
+            }.overlay(content: {
+                if viewModel.isLoading {
+                    ZStack {
+                        Rectangle().ignoresSafeArea()
+                            .opacity(0.3)
+                        ProgressView()
+                    }
+                }
+            })
     }
 }
 

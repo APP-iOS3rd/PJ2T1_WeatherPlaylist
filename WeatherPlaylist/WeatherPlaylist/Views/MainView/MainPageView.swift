@@ -31,7 +31,9 @@ struct MainPageView: View {
                     
                     }
                     .padding(.bottom,40)
-                } 
+                }.refreshable {
+                    viewModel.fetchPlayListModel()
+                }
                 // 재생중인 음악
                 PlayFooterCell(musicImage: "album2",
                                isLightMode: $isLightMode)

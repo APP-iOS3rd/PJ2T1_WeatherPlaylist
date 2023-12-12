@@ -12,8 +12,27 @@ struct ProfileView: View {
     var body: some View {
         HStack{
             CachedImage(url: viewModel.profileModel.image) {phase in
-                ProfileImage(phase: phase)
-            }
+                switch phase {
+                case .empty, .failure(_):
+                    Image(uiImage: .emptyImage)
+                        .resizable()
+
+                case .success(let image):
+                    image
+                        .resizable()
+
+                @unknown default:
+                    Image(uiImage: .emptyImage)
+                        .resizable()
+                }
+            }.frame(width: 40, height: 40)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.gray, lineWidth: 0.8)
+                        .foregroundStyle(Color.clear)
+                )
+                .cornerRadius(20)
+                .padding(.trailing,13)
             Text(viewModel.profileModel.name)
                 .font(.bold16)
             Spacer()
@@ -23,45 +42,4 @@ struct ProfileView: View {
 #Preview {
     ProfileView()
         .environmentObject(ProfileViewModel())
-}
-
-struct ProfileImage: View {
-    @State var phase: AsyncImagePhase
-    var body: some View {
-        switch phase {
-        case .empty, .failure(_):
-            Image(uiImage: .emptyImage)
-                .resizable()
-                .frame(width: 40, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.gray, lineWidth: 0.8)
-                        .foregroundStyle(Color.clear)
-                )
-                .cornerRadius(20)
-                .padding(.trailing,13)
-        case .success(let image):
-            image
-                .resizable()
-                .frame(width: 40, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.gray, lineWidth: 0.8)
-                        .foregroundStyle(Color.clear)
-                )
-                .cornerRadius(20)
-                .padding(.trailing,13)
-        @unknown default:
-            Image(uiImage: .emptyImage)
-                .resizable()
-                .frame(width: 40, height: 40)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color.gray, lineWidth: 0.8)
-                        .foregroundStyle(Color.clear)
-                )
-                .cornerRadius(20)
-                .padding(.trailing,13)
-        }
-    }
 }
