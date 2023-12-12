@@ -53,7 +53,6 @@
 		DA637F802B201C4B00BB3612 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */; };
 		DA637F832B201DB300BB3612 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F822B201DB300BB3612 /* ProfileView.swift */; };
 		DA637F852B20236600BB3612 /* PlaylistScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F842B20236600BB3612 /* PlaylistScrollView.swift */; };
-		DA637F872B20238500BB3612 /* TempPlaylistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F862B20238500BB3612 /* TempPlaylistModel.swift */; };
 		DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F882B20255A00BB3612 /* ProfileModel.swift */; };
 		DA637F8B2B20281B00BB3612 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */; };
 		DA637F8D2B2041D900BB3612 /* UIkit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8C2B2041D900BB3612 /* UIkit+Extensions.swift */; };
@@ -131,7 +130,6 @@
 		DA637F7F2B201C4B00BB3612 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		DA637F822B201DB300BB3612 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		DA637F842B20236600BB3612 /* PlaylistScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistScrollView.swift; sourceTree = "<group>"; };
-		DA637F862B20238500BB3612 /* TempPlaylistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempPlaylistModel.swift; sourceTree = "<group>"; };
 		DA637F882B20255A00BB3612 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		DA637F8C2B2041D900BB3612 /* UIkit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIkit+Extensions.swift"; sourceTree = "<group>"; };
@@ -397,7 +395,6 @@
 				DA637F812B201D8600BB3612 /* MyPageSubView */,
 				DA637F7C2B201C1F00BB3612 /* MyPageView.swift */,
 				DA637F882B20255A00BB3612 /* ProfileModel.swift */,
-				DA637F862B20238500BB3612 /* TempPlaylistModel.swift */,
 				DA637F8A2B20281B00BB3612 /* ProfileViewModel.swift */,
 			);
 			path = MypageView;
@@ -598,7 +595,6 @@
 				DAA3316C2B26FDEF00D3225F /* WeatherLogic.swift in Sources */,
 				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
-				DA637F872B20238500BB3612 /* TempPlaylistModel.swift in Sources */,
 				64279A252B21B0C900065F24 /* (null) in Sources */,
 				6A0DF8642B26D4D10032153F /* (null) in Sources */,
 				DAA3316D2B26FDEF00D3225F /* LocationManager.swift in Sources */,

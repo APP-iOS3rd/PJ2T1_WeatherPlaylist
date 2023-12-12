@@ -43,6 +43,15 @@ struct MainPageView: View {
             weatherLogic.isChecking = true
             weatherLogic.userWeather = .rainy
         }
+        .overlay(content: {
+            if viewModel.isLoading {
+                ZStack {
+                    Rectangle().ignoresSafeArea()
+                        .opacity(0.3)
+                    ProgressView()
+                }
+            }
+        })
     }
     
     @ViewBuilder private var background: some View {

@@ -16,7 +16,8 @@ final class MainPageViewModel: ObservableObject {
     
     @Published var recommendedModelList: [RecommendedPlayListModel] = []
     @Published var profileURL: URL? = nil
-    
+    @Published var isLoading: Bool = false
+
     private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
     private let manager = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "nice"))
 
@@ -36,6 +37,8 @@ final class MainPageViewModel: ObservableObject {
         self.recommendedModelList = RecommendedModelManager().recommendedPlayList
     }
     func fetchPlayListModel() {
+        isLoading = true
+
         Task{ @MainActor in
             let response = await manager.fetchData()
             switch response {
@@ -43,6 +46,37 @@ final class MainPageViewModel: ObservableObject {
                 self.recommendedModelList = data.toRecommendedPlayListModel()
                 print(data.playlists.items.first?.tracks.href)
                 data.playlists.items.map{$0.tracks.href}
+                isLoading = false
+
+            case .failure(let error):
+                switch error {
+                case .httpError(let httpError) :
+                    switch httpError {
+                    case .authError :
+                        print("로그아웃됨")
+                    default:
+                        print(error.errorDescription)
+                    }
+                    isLoading = false
+
+                default:
+                    print(error.errorDescription)
+                    isLoading = false
+
+                }
+            }
+        }
+    }
+    private func fetchProfile() {
+
+        Task { @MainActor in
+            let result = await profileManager.fetchData()
+            switch result {
+            case .success(let response) :
+                guard let imgURL = response.images?.min()?.url else {return}
+                profileURL = URL(string: imgURL)
+                isLoading = false
+
             case .failure(let error):
                 switch error {
                 case .httpError(let httpError) :
@@ -68,6 +102,8 @@ final class MainPageViewModel: ObservableObject {
                 profileURL = URL(string: imgURL)
             case .failure(let error):
                 print(error.errorDescription)
+                isLoading = false
+
             }
         }
     }
