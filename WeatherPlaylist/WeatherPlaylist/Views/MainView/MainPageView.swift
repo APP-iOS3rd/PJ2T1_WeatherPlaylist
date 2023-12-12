@@ -35,8 +35,7 @@ struct MainPageView: View {
                     viewModel.fetchPlayListModel()
                 }
                 // 재생중인 음악
-                PlayFooterCell(musicImage: "album2",
-                               isLightMode: $isLightMode)
+//                PlayFooterCell()
             }
         }
         .onAppear {
@@ -72,12 +71,30 @@ extension MainPageView {
                 .frame(width: 200,alignment: .leading)
             Spacer()
             NavigationLink {
-                MyPageView()
-            } label: {
-                Rectangle()
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(25)
-                }
+               MyPageView()
+            }label: {
+                CachedImage(url: viewModel.profileURL) {phase in
+                    switch phase {
+                    case .empty, .failure(_):
+                        Image(uiImage: .emptyImage)
+                            .resizable()
+
+                    case .success(let image):
+                        image
+                            .resizable()
+
+                    @unknown default:
+                        Image(uiImage: .emptyImage)
+                            .resizable()
+                    }
+                }.frame(width: 40, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.gray, lineWidth: 0.8)
+                            .foregroundStyle(Color.clear)
+                    )
+                    .cornerRadius(20)
+                    .padding(.trailing,13)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(24)

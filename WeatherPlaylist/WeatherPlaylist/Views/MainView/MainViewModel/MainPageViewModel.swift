@@ -15,11 +15,16 @@ final class MainPageViewModel: ObservableObject {
     //@Published var playlistModelList: [MusicModel] = []
     
     @Published var recommendedModelList: [RecommendedPlayListModel] = []
+    @Published var profileURL: URL? = nil
     
+    private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
+    private let manager = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "nice"))
+
     init() {
      //   fetchModel()
         fetchRecommendedList()
         fetchPlayListModel()
+        fetchProfile()
         
     }
     //MARK: - fetch 로직 구현 전 임시 함수
@@ -30,7 +35,6 @@ final class MainPageViewModel: ObservableObject {
     private func fetchRecommendedList() {
         self.recommendedModelList = RecommendedModelManager().recommendedPlayList
     }
-    private let manager = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "nice"))
     func fetchPlayListModel() {
         Task{ @MainActor in
             let response = await manager.fetchData()
@@ -51,6 +55,19 @@ final class MainPageViewModel: ObservableObject {
                 default:
                     print(error.errorDescription)
                 }
+            }
+        }
+    }
+    private func fetchProfile() {
+
+        Task { @MainActor in
+            let result = await profileManager.fetchData()
+            switch result {
+            case .success(let response) :
+                guard let imgURL = response.images?.min()?.url else {return}
+                profileURL = URL(string: imgURL)
+            case .failure(let error):
+                print(error.errorDescription)
             }
         }
     }

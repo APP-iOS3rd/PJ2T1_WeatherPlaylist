@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct PlayFooterCell: View {
-    
-    var musicImage: String
-    @Binding var isLightMode: Bool
+    @Environment(\.colorScheme) var scheme
     @State private var isShowingPlayer = false
     @StateObject var viewModel: PlayMusicViewModel  = .init()
     
@@ -56,7 +54,7 @@ struct PlayFooterCell: View {
             .offset(x: -25, y: 0)
         }
         .background(
-            isLightMode ? Color("lightBg") : Color("darkBg")
+            scheme == .light ? Color("lightBg") : Color("darkBg")
         )
         .ignoresSafeArea()
         .fullScreenCover(isPresented: $isShowingPlayer){
