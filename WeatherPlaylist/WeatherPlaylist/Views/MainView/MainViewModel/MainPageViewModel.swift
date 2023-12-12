@@ -67,6 +67,7 @@ final class MainPageViewModel: ObservableObject {
             }
         }
     }
+
     private func fetchProfile() {
 
         Task { @MainActor in

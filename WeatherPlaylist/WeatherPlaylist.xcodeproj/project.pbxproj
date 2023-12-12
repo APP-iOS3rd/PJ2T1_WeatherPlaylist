@@ -95,6 +95,7 @@
 		DAF051B42B20A9F300D3D460 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051B32B20A9F300D3D460 /* UserRequest.swift */; };
 		DAF506E82B281CCD006B134E /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF506E72B281CCD006B134E /* HapticManager.swift */; };
 		DAF506EA2B281E4C006B134E /* SigningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF506E92B281E4C006B134E /* SigningManager.swift */; };
+		DAF506EC2B282482006B134E /* TrackListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF506EB2B282482006B134E /* TrackListResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +176,7 @@
 		DAF051B32B20A9F300D3D460 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		DAF506E72B281CCD006B134E /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		DAF506E92B281E4C006B134E /* SigningManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningManager.swift; sourceTree = "<group>"; };
+		DAF506EB2B282482006B134E /* TrackListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +315,7 @@
 				DA44E8EE2B26DD6000681AE5 /* SearchResponse.swift */,
 				DAA3318F2B2723BD00D3225F /* UserInfoResponse.swift */,
 				DAA331912B272ED600D3225F /* UserPlaylistResponse.swift */,
+				DAF506EB2B282482006B134E /* TrackListResponse.swift */,
 			);
 			path = NetworkDTO;
 			sourceTree = "<group>";
@@ -650,6 +653,7 @@
 				DAA331722B26FE0800D3225F /* StartView.swift in Sources */,
 				6A0DF8652B26D4D10032153F /* (null) in Sources */,
 				DA637F892B20255A00BB3612 /* ProfileModel.swift in Sources */,
+				DAF506EC2B282482006B134E /* TrackListResponse.swift in Sources */,
 				DAF506E82B281CCD006B134E /* HapticManager.swift in Sources */,
 				DAA331772B26FE1100D3225F /* LaunchView.swift in Sources */,
 				DAA331792B26FE1100D3225F /* LoginView.swift in Sources */,
