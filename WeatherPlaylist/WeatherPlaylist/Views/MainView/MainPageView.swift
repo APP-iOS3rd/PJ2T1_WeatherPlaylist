@@ -35,13 +35,21 @@ struct MainPageView: View {
                     // 바꾼 쿼리로 스포티파이 API 호출 후 리스트 가져오기
                 }
                 // 재생중인 음악
-                PlayFooterCell(musicImage: "album2",
-                               isLightMode: $isLightMode)
+//                PlayFooterCell()
             }
         }
         .onAppear {
             weatherLogic.isChecking = true
         }
+        .overlay(content: {
+            if viewModel.isLoading {
+                ZStack {
+                    Rectangle().ignoresSafeArea()
+                        .opacity(0.3)
+                    ProgressView()
+                }
+            }
+        })
     }
     
     @ViewBuilder private var background: some View {
@@ -71,14 +79,30 @@ extension MainPageView {
             Spacer()
             NavigationLink {
                 MyPageView()
-            } label: {
-                Rectangle()
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(25)
-                }
+            }label: {
+                CachedImage(url: viewModel.profileURL) {phase in
+                    switch phase {
+                    case .empty, .failure(_):
+                        Image(uiImage: .emptyImage)
+                            .resizable()
+                        
+                    case .success(let image):
+                        image
+                            .resizable()
+                        
+                    @unknown default:
+                        Image(uiImage: .emptyImage)
+                            .resizable()
+                    }
+                }.frame(width: 40, height: 40)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.gray, lineWidth: 0.8)
+                            .foregroundStyle(Color.clear)
+                    )
+                    .cornerRadius(20)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+        } .frame(maxWidth: .infinity, alignment: .leading)
             .padding(24)
-        }
     }
-
+}

@@ -23,7 +23,7 @@ struct PlaylistControllerView: View {
             Button {
                 viewModel.pushPlayButton()
             } label: {
-                Image(systemName: viewModel.playlistInfo.isPlaying ? "pause.fill" : "play.fill")
+                Image(systemName: viewModel.playlistInfo.isPlaying == true ? "pause.fill" : "play.fill")
                     .foregroundStyle(.black)
                     .font(.system(size: 40))
             }
@@ -31,8 +31,8 @@ struct PlaylistControllerView: View {
             Button {
                 viewModel.pushLikeButton()
             } label: {
-                Image(systemName: viewModel.playlistInfo.isLikePlaylist ? "heart.fill" : "heart")
-                    .foregroundStyle(viewModel.playlistInfo.isLikePlaylist ? .red : .black)
+                Image(systemName: viewModel.playlistInfo.isLiked == true  ? "heart.fill" : "heart")
+                    .foregroundStyle(viewModel.playlistInfo.isLiked == true  ? .red : .black)
                     .font(.system(size: 24))
             }
         }

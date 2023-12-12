@@ -13,11 +13,18 @@ final class ProfileViewModel: ObservableObject {
     @Published var profileModel: ProfileModel = .init()
     @Published var isLoading: Bool = false
     private let manager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
-    private let userPlaylistManager = HTTPManager<UserPlaylistDTO>(apiType: .getUsersPlayList)
+    private let userPlaylistManager = HTTPManager<UserPlaylistResponse>(apiType: .getUsersPlayList)
     init() {
         fetchModel()
+        fetchUserPlaylistModel()
     }
-    //MARK: - fetch 로직 구현 전 임시 함수
+}
+//MARK: - fetch 로직
+extension ProfileViewModel {
+    func refresh() {
+        fetchModel()
+        fetchUserPlaylistModel()
+    }
     private func fetchModel() {
         isLoading = true
         Task { @MainActor in
@@ -31,6 +38,10 @@ final class ProfileViewModel: ObservableObject {
                 isLoading = false
             }
         }
+    }
+    private func fetchUserPlaylistModel() {
+        isLoading = true
+
         Task { @MainActor in
             let result = await userPlaylistManager.fetchData()
             switch result {

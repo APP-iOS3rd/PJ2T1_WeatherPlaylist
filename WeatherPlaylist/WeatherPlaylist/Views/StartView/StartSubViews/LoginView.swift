@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var path: [StackViewType] = []
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationView {
             GeometryReader { reader in
                 ZStack {
                     
@@ -53,14 +53,8 @@ struct LoginView: View {
                         Spacer()
                         
                         
-                        Button {
-                            if let token = UserDefaults.standard.value(forKey: "AccessToken") {
-                                path.append(.secondView)
-                                print(token)
-                            } else {
-                                path.append(.firstView)
-                            }
-                            
+                        NavigationLink {
+                            AuthView()
                         } label: {
                             Text("스포티파이로 시작하기")
                                 .font(.custom(FontType.SemiBold.rawValue, size: 20))
@@ -71,21 +65,18 @@ struct LoginView: View {
                                 .cornerRadius(40)
                         }
                         Spacer()
+                        #if DEBUG
                         Button(action: {
                             UserDefaults.standard.removeObject(forKey: "AccessToken")
+                            UserDefaults.standard.removeObject(forKey: "RefreshToken")
                         }, label: {
                             Text("token 삭제")
                         })
-                        
+                        #endif
                     }
-                    .navigationDestination(for: StackViewType.self) { stackViewType in
-                        switch stackViewType {
-                        case .firstView:
-                            AuthView()
-                                .ignoresSafeArea()
-                        case .secondView:
-                            MainPageView()
-                                .navigationBarHidden(true)
+                    .onAppear {
+                        if let _ = UserDefaults.standard.value(forKey: "AccessToken") {
+                            appState.rootViewId = UUID()
                         }
                     }
                 }

@@ -26,6 +26,7 @@ final class MainPageViewModel: ObservableObject {
       
         // 사용자 위도, 경도를 전달하여 API 호출
         weatherData.feachWeatherData(lat: locationManager.latitude, lon: locationManager.longitude)
+
         
     }
     
@@ -45,17 +46,50 @@ final class MainPageViewModel: ObservableObject {
     private func fetchRecommendedList() {
         self.recommendedModelList = RecommendedModelManager().recommendedPlayList
     }
-    
 
     func fetchPlayListModel() {
         let manager: HTTPManager<SearchResponse> = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: spotifyQuery))
         Task { @MainActor in
+
             let response = await manager.fetchData()
             switch response {
             case .success(let data):
                 self.recommendedModelList = data.toRecommendedPlayListModel()
                 print(data.playlists.items.first?.tracks.href)
                 data.playlists.items.map{$0.tracks.href}
+                isLoading = false
+
+            case .failure(let error):
+                switch error {
+                case .httpError(let httpError) :
+                    switch httpError {
+                    case .authError :
+                        print("로그아웃됨")
+                    default:
+                        print(error.errorDescription)
+                    }
+                    isLoading = false
+
+                default:
+                    print(error.errorDescription)
+                    isLoading = false
+
+                }
+            }
+        }
+    }
+
+
+    private func fetchProfile() {
+
+        Task { @MainActor in
+            let result = await profileManager.fetchData()
+            switch result {
+            case .success(let response) :
+                guard let imgURL = response.images?.min()?.url else {return}
+                profileURL = URL(string: imgURL)
+                isLoading = false
+
             case .failure(let error):
                 switch error {
                 case .httpError(let httpError) :
@@ -70,9 +104,7 @@ final class MainPageViewModel: ObservableObject {
                 }
             }
         }
-    }
-
-
+    }  
     
     
 }
