@@ -80,3 +80,7 @@ struct NavigationUtil {
     return nil
   }
 }
+
+final class AppState : ObservableObject {
+    @Published var rootViewId = UUID()
+}

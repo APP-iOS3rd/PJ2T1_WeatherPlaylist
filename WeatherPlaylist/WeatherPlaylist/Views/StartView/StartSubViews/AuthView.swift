@@ -40,11 +40,6 @@ struct AuthView: UIViewRepresentable {
 
     // 변경사항이 있을 때 호출
     func updateUIView(_ webView: WKWebView, context: Context) {
-        if let _ = UserDefaults.standard.value(forKey: "Authorization") {
-            DispatchQueue.main.async {
-                NavigationUtil.popToRootView()
-            }
-        }
     }
     
     // 탐색 변경을 수락 또는 거부하고 탐색 요청의 진행 상황을 추적
@@ -76,6 +71,15 @@ struct AuthView: UIViewRepresentable {
             }
             if !code.isEmpty {
                 getAccessTokenWithCode(code: code)
+                webview.isHidden = true
+            }
+            
+            if webview.isHidden {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                    DispatchQueue.main.async {
+                        NavigationUtil.popToRootView()
+                    }
+                }
             }
         }
         //MARK: - refreshToken 받아오기
