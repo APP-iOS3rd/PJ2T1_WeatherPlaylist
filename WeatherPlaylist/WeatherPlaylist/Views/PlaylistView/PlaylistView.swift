@@ -45,8 +45,7 @@ struct PlaylistView: View {
                                     bottom: 0,
                                     trailing: 24))
                 
-                PlayFooterCell(musicImage: "album2",
-                                             isLightMode: $isLightMode)
+//                PlayFooterCell()
             }
         }
     }

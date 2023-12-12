@@ -52,6 +52,7 @@ struct LoginView: View {
                         
                         Spacer()
                         
+                        
                         NavigationLink {
                             AuthView()
                         } label: {
@@ -64,13 +65,14 @@ struct LoginView: View {
                                 .cornerRadius(40)
                         }
                         Spacer()
+                        #if DEBUG
                         Button(action: {
                             UserDefaults.standard.removeObject(forKey: "AccessToken")
                             UserDefaults.standard.removeObject(forKey: "RefreshToken")
                         }, label: {
                             Text("token 삭제")
                         })
-                        
+                        #endif
                     }
                     .onAppear {
                         if let _ = UserDefaults.standard.value(forKey: "AccessToken") {

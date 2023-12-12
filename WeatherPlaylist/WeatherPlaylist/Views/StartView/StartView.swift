@@ -11,11 +11,18 @@ struct StartView: View {
     
     var body: some View {
         if let _ = UserDefaults.standard.value(forKey: "AccessToken") {
-            MainPageView()
+            RootView()
+                .navigationBarHidden(true)
         } else {
             LoginView()
+                .transition(.opacity)
+                .zIndex(1)
         }
-        
     }
+}
+
+
+#Preview {
+    StartView()
 }
 

@@ -40,7 +40,6 @@ struct AuthView: UIViewRepresentable {
 
     // 변경사항이 있을 때 호출
     func updateUIView(_ webView: WKWebView, context: Context) {
- 
     }
     
     // 탐색 변경을 수락 또는 거부하고 탐색 요청의 진행 상황을 추적
@@ -75,7 +74,6 @@ struct AuthView: UIViewRepresentable {
                 webview.isHidden = true
             }
             
-            
             if webview.isHidden {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
                     DispatchQueue.main.async {
@@ -84,7 +82,6 @@ struct AuthView: UIViewRepresentable {
                 }
             }
         }
-        
         //MARK: - refreshToken 받아오기
         private func getAccessTokenWithCode(code: String) {
             var tokenParams = [

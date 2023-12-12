@@ -12,7 +12,6 @@ struct MyPageView: View {
     @ObservedObject var weather: WeatherLogic = .shared
     @EnvironmentObject var appState: AppState
     
-    
     var body: some View {
             VStack {
                 ProfileView()
@@ -30,7 +29,6 @@ struct MyPageView: View {
                         Spacer()
                         Toggle(isOn: $weather.isChecking, label: {})
                     }
-                    
                     Button {
                         UserDefaults.standard.removeObject(forKey: "AccessToken")
                         UserDefaults.standard.removeObject(forKey: "RefreshToken")
@@ -38,7 +36,6 @@ struct MyPageView: View {
                     } label: {
                         Text("로그아웃")
                     }
-
                 }.padding(.top)
                     .padding(.horizontal, 25)
                 Spacer()
