@@ -94,6 +94,7 @@
 		DAF051B22B20A53800D3D460 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051B12B20A53800D3D460 /* APIProtocol.swift */; };
 		DAF051B42B20A9F300D3D460 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF051B32B20A9F300D3D460 /* UserRequest.swift */; };
 		DAF506E82B281CCD006B134E /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF506E72B281CCD006B134E /* HapticManager.swift */; };
+		DAF506EA2B281E4C006B134E /* SigningManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF506E92B281E4C006B134E /* SigningManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +174,7 @@
 		DAF051B12B20A53800D3D460 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		DAF051B32B20A9F300D3D460 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		DAF506E72B281CCD006B134E /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		DAF506E92B281E4C006B134E /* SigningManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +441,7 @@
 			children = (
 				DAA331632B26FDEF00D3225F /* Weather */,
 				DAF506E72B281CCD006B134E /* HapticManager.swift */,
+				DAF506E92B281E4C006B134E /* SigningManager.swift */,
 			);
 			path = Singleton;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				DAA3316E2B26FDEF00D3225F /* WeatherAPI.swift in Sources */,
 				DAA3316C2B26FDEF00D3225F /* WeatherLogic.swift in Sources */,
 				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
+				DAF506EA2B281E4C006B134E /* SigningManager.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
 				64279A252B21B0C900065F24 /* (null) in Sources */,
 				6A0DF8642B26D4D10032153F /* (null) in Sources */,

@@ -123,11 +123,13 @@ extension APIRequestProtocol {
                 return .failure(.httpError(.badRequestError))
             case 401, 403:
                 if await isRefreshTokenSuccessed() {
+                    SigningManager.shared.isLogout = false
                     return await fetchData()
                 } else {
                     //MARK: - 이거 삭제가 맞는 것 같습니다
 //                    UserDefaults.standard.removeObject(forKey: "AccessToken")
 //                    UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                    SigningManager.shared.isLogout = true
                     return .failure(.httpError(.authError))
                 }
                 // token refresh 하는 로직
