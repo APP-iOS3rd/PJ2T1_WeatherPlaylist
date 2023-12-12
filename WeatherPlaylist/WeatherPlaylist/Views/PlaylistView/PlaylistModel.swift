@@ -13,6 +13,7 @@ struct PlaylistTrackModel: Identifiable, Hashable {
     var artist: String
     var coverImage: String
     var songTime: Int
+    var url: String
 }
 
 struct PlaylistModel: Identifiable, Hashable {

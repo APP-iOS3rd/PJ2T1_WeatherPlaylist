@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaylistControllerView: View {
     @EnvironmentObject var viewModel: PlaylistViewModel
+    @StateObject var player = PlayerManager.shared
     
     var body: some View {
         HStack(alignment: .center, spacing: 57) {
@@ -20,12 +21,17 @@ struct PlaylistControllerView: View {
                     .font(.system(size: 24))
             }
             
-            Button {
-                viewModel.pushPlayButton()
-            } label: {
-                Image(systemName: viewModel.playlistInfo.isPlaying ? "pause.fill" : "play.fill")
-                    .foregroundStyle(.black)
-                    .font(.system(size: 40))
+            
+            if player.isLoading {
+                ProgressView()
+            } else {
+                Button {
+                    viewModel.pushPlayButton()
+                } label: {
+                    Image(systemName: viewModel.playlistInfo.isPlaying ? "pause.fill" : "play.fill")
+                        .foregroundStyle(.black)
+                        .font(.system(size: 40))
+                }
             }
             
             Button {

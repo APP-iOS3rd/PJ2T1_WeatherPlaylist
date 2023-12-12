@@ -65,7 +65,8 @@ struct PlayFooterCell: View {
                                                     songName: "title",
                                                     artist: "artist",
                                                     coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                                                    songTime: 200))
+                                                    songTime: 200,
+                                                   url: "https://p.scdn.co/mp3-preview/9ccce944caa6e4aefb8f896c2f16ef1e8c77af37?cid=6a6481d46d474cafad6d5e5076fe7c9f"))
         }
         
     }

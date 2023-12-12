@@ -19,6 +19,7 @@ class PlaylistViewModel: ObservableObject {
                                                       isPlaying: false
     )
     @Published var playlist: [PlaylistTrackModel] = []
+    @Published var player = PlayerManager.shared
     
     init() {
         fetchTrackModel()
@@ -29,14 +30,26 @@ class PlaylistViewModel: ObservableObject {
 extension PlaylistViewModel {
     func pushAddButton() {
         print("PUSH ADD BUTTON")
+        player.goPrevTrack()
     }
     
     func pushPlayButton() {
+//        if player.player.items().isEmpty {
+//            player.play()
+//        } else {
+//            player.pause()
+//        }
+        if self.playlistInfo.isPlaying {
+            player.pause()
+        } else {
+            player.playTrackList(tracklist: self.playlist)
+        }
         self.playlistInfo.isPlaying.toggle()
     }
     
     func pushLikeButton() {
         self.playlistInfo.isLikePlaylist.toggle()
+        player.goNextTrack()
     }
     
     func fetchTrackModel() {
@@ -45,67 +58,34 @@ extension PlaylistViewModel {
                           songName: "title",
                           artist: "artist",
                           coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
+                          songTime: 200,
+                               url: "https://p.scdn.co/mp3-preview/c7e343a6d61268bc9aecaa38e1f599b56585e49d?cid=6a6481d46d474cafad6d5e5076fe7c9f"
+                              ),
             PlaylistTrackModel(id: "bbbb",
                           songName: "title",
                           artist: "artist",
                           coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
+                          songTime: 200,
+                               url: "https://p.scdn.co/mp3-preview/d8c6c428ba0f391d790a281b4c650979952e7fc3?cid=6a6481d46d474cafad6d5e5076fe7c9f"
+                              ),
             PlaylistTrackModel(id: "ccc",
                           songName: "title",
                           artist: "artist",
                           coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
+                          songTime: 200,
+                               url: "https://p.scdn.co/mp3-preview/172fb14faed42a264050b4baf95ae6cd434a1058?cid=6a6481d46d474cafad6d5e5076fe7c9f"),
             PlaylistTrackModel(id: "d",
                           songName: "title",
                           artist: "artist",
                           coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
+                          songTime: 200,
+                               url: "https://p.scdn.co/mp3-preview/fa0df182b53106c2ce6987971dc91f394477b876?cid=6a6481d46d474cafad6d5e5076fe7c9f"),
             PlaylistTrackModel(id: "f",
                           songName: "title",
                           artist: "artist",
                           coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "g",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "h",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "j",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "n",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "i",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "u",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "y",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
-            PlaylistTrackModel(id: "]",
-                          songName: "title",
-                          artist: "artist",
-                          coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                          songTime: 200),
+                          songTime: 200,
+                               url: "https://p.scdn.co/mp3-preview/9ccce944caa6e4aefb8f896c2f16ef1e8c77af37?cid=6a6481d46d474cafad6d5e5076fe7c9f"),
         ]
     }
     
