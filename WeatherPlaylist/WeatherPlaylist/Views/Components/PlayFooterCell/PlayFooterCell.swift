@@ -48,8 +48,17 @@ struct PlayFooterCell: View {
             Spacer()
             HStack(spacing: 20){
                 Image(systemName: "chevron.left.to.line")
-                Image(systemName: "play.fill")
+                    .onTapGesture {
+                        viewModel.previousSong()
+                    }
+                Image(systemName: viewModel.isPlaying ? "pause.fill" : "play.fill")
+                    .onTapGesture {
+                        viewModel.pauseAndPlay()
+                    }
                 Image(systemName: "chevron.right.to.line")
+                    .onTapGesture {
+                        viewModel.nextSong()
+                    }
             }
             .offset(x: -25, y: 0)
         }
