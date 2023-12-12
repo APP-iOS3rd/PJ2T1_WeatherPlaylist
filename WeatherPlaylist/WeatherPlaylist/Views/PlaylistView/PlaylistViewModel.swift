@@ -12,17 +12,16 @@ import Foundation
 import Combine
 
 class PlaylistViewModel: ObservableObject {
-    @Published var playlistInfo: PlayListInfo = .init(playlistName: "",
-                                                      playlistDescription: "",
-                                                      coverImageUrl: "",
-                                                      isLikePlaylist: false,
-                                                      isPlaying: false
-    )
+    @Published var playlistInfo: RecommendedPlayListModel
+    @Published var isLoading = false
     @Published var playlist: [PlaylistTrackModel] = []
-    
-    init() {
+    private let trackId: String
+    init(playlistInfo: RecommendedPlayListModel) {
+        self.playlistInfo = playlistInfo
+        self.trackId = playlistInfo.id
+        fetchIsLiked()
+        fetchTracklist()
         fetchTrackModel()
-        fetchInfoModel()
     }
 }
 
@@ -32,13 +31,39 @@ extension PlaylistViewModel {
     }
     
     func pushPlayButton() {
-        self.playlistInfo.isPlaying.toggle()
+        self.playlistInfo.isPlaying = self.playlistInfo.isPlaying.map{$0 == true ? false : true}
     }
     
     func pushLikeButton() {
-        self.playlistInfo.isLikePlaylist.toggle()
+        self.playlistInfo.isLiked = self.playlistInfo.isLiked.map{$0 == true ? false : true}
     }
-    
+    func fetchTracklist() {
+        let manager = HTTPManager<TrackListResponse>(apiType: .serchTracks(trackId: trackId))
+        Task { @MainActor in
+            let result = await manager.fetchData()
+            switch result {
+            case .success(let response) :
+                isLoading = false
+                playlist = response.toPlaylistTrackModel
+            case .failure(let error):
+                isLoading = false
+            }
+        }
+    }
+    func fetchIsLiked() {
+        let manager = HTTPManager<[Bool]>(apiType: .userContains(ids: trackId))
+        Task { @MainActor in
+            let result = await manager.fetchData()
+            switch result {
+            case .success(let response) :
+                isLoading = false
+               dump(response)
+            case .failure(let error):
+                print(error.errorDescription)
+                isLoading = false
+            }
+        }
+    }
     func fetchTrackModel() {
         self.playlist = [
             PlaylistTrackModel(id: "aaa",
@@ -107,13 +132,6 @@ extension PlaylistViewModel {
                           coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
                           songTime: 200),
         ]
-    }
-    
-    func fetchInfoModel() {
-        self.playlistInfo = .init(playlistName: "제목",
-                                  playlistDescription: "플리 설명",
-                                  coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                                  isLikePlaylist: false)
     }
 }
 

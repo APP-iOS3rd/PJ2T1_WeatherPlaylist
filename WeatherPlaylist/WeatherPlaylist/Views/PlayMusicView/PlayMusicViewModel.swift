@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-
 final class PlayMusicViewModel: ObservableObject {
     
     @Published var playMusicModel: PlayMusicListModel = .empty
@@ -17,9 +16,14 @@ final class PlayMusicViewModel: ObservableObject {
     
     init() {
         fetchModel()
+        HapticManager.shared.setupGenerator()
     }
     init(playlistURL: String) {
         fetchModel()
+        HapticManager.shared.setupGenerator()
+    }
+    deinit {
+        HapticManager.shared.release()
     }
 }
 //MARK: - fetch 로직
@@ -52,12 +56,14 @@ extension PlayMusicViewModel {
 //MARK: - 뷰바인딩 로직
 extension PlayMusicViewModel {
     func pauseAndPlay() {
-
+        HapticManager.shared.createImpact()
         self.isPlaying.toggle()
         
     }
     func previousSong() {
         //자동 재생
+        HapticManager.shared.createImpact()
+
         if index == 0 {
             index = self.playlistModelList.count - 1
         } else {
@@ -69,6 +75,8 @@ extension PlayMusicViewModel {
         }
     }
     func nextSong() {
+        HapticManager.shared.createImpact()
+
         //자동 재생
         if index == self.playlistModelList.count - 1 {
             index = 0

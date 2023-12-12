@@ -32,7 +32,7 @@ final class HTTPManager<T>: APIRequestProtocol where T: Decodable{
             method = .get
             self.parameters = nil
         case .serchTracks(let id):
-            path = "tracks/\(id)"
+            path = "playlists/\(id)/tracks"
             method = .get
             self.parameters = parameters
         case .userContains(let ids):

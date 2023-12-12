@@ -103,10 +103,8 @@ extension MainPageView {
                             .foregroundStyle(Color.clear)
                     )
                     .cornerRadius(20)
-                    .padding(.trailing,13)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
+        } .frame(maxWidth: .infinity, alignment: .leading)
             .padding(24)
-        }
     }
 }

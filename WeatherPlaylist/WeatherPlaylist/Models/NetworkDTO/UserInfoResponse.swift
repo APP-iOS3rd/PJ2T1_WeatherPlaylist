@@ -39,7 +39,7 @@ struct ExplicitContent: Decodable {
 
 
 // MARK: - Followers
-struct Followers: Decodable {
+struct Followers: Codable {
     let href: String?
     let total: Int
 }

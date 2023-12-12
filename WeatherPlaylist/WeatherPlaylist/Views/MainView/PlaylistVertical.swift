@@ -68,7 +68,7 @@ extension PlaylistVertical {
                             if weatherLogic.userWeather == recommendedModel.weatherType {
                                 GeometryReader { geo in
                                     NavigationLink {
-                                        PlaylistView()
+                                        PlaylistView(viewModel: .init(playlistInfo: recommendedModel))
                                             .environmentObject(viewModel)
                                             .navigationTitle(recommendedModel.mainTitle)
                                     } label: {
@@ -83,7 +83,7 @@ extension PlaylistVertical {
                                                             .cornerRadius(15)
                                                             .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
                                                     case .failure(_), .empty :
-                                                        Rectangle()
+                                                        ProgressView()
                                                             .frame(width: 160, height: 160)
                                                             .cornerRadius(15)
                                                             .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - fullView.size.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
