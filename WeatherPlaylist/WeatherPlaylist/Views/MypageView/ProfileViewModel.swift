@@ -41,6 +41,7 @@ extension ProfileViewModel {
     }
     private func fetchUserPlaylistModel() {
         isLoading = true
+
         Task { @MainActor in
             let result = await userPlaylistManager.fetchData()
             switch result {

@@ -78,6 +78,29 @@ final class MainPageViewModel: ObservableObject {
                 isLoading = false
 
             case .failure(let error):
+                switch error {
+                case .httpError(let httpError) :
+                    switch httpError {
+                    case .authError :
+                        print("로그아웃됨")
+                    default:
+                        print(error.errorDescription)
+                    }
+                default:
+                    print(error.errorDescription)
+                }
+            }
+        }
+    }
+    private func fetchProfile() {
+
+        Task { @MainActor in
+            let result = await profileManager.fetchData()
+            switch result {
+            case .success(let response) :
+                guard let imgURL = response.images?.min()?.url else {return}
+                profileURL = URL(string: imgURL)
+            case .failure(let error):
                 print(error.errorDescription)
                 isLoading = false
 
