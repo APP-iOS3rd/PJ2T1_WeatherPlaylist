@@ -80,18 +80,18 @@ extension MainPageView {
                 .frame(width: 200,alignment: .leading)
             Spacer()
             NavigationLink {
-               MyPageView()
+                MyPageView()
             }label: {
                 CachedImage(url: viewModel.profileURL) {phase in
                     switch phase {
                     case .empty, .failure(_):
                         Image(uiImage: .emptyImage)
                             .resizable()
-
+                        
                     case .success(let image):
                         image
                             .resizable()
-
+                        
                     @unknown default:
                         Image(uiImage: .emptyImage)
                             .resizable()
@@ -109,4 +109,4 @@ extension MainPageView {
             .padding(24)
         }
     }
-
+}

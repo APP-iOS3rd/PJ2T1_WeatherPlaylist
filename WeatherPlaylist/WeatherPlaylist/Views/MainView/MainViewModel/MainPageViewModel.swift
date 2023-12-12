@@ -91,23 +91,7 @@ final class MainPageViewModel: ObservableObject {
                 }
             }
         }
-    }
-    private func fetchProfile() {
-
-        Task { @MainActor in
-            let result = await profileManager.fetchData()
-            switch result {
-            case .success(let response) :
-                guard let imgURL = response.images?.min()?.url else {return}
-                profileURL = URL(string: imgURL)
-            case .failure(let error):
-                print(error.errorDescription)
-                isLoading = false
-
-            }
-        }
-    }
-    
+    }  
     
     
 }
