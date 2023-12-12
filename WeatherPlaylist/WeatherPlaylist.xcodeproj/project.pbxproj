@@ -79,7 +79,8 @@
 		DAA3318C2B2722CC00D3225F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAA3318B2B2722CC00D3225F /* Launch Screen.storyboard */; };
 		DAA3318E2B2723A800D3225F /* UserInformationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3318D2B2723A800D3225F /* UserInformationModel.swift */; };
 		DAA331902B2723BD00D3225F /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3318F2B2723BD00D3225F /* UserInfoResponse.swift */; };
-		DAA331922B272ED600D3225F /* UserPlaylistDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331912B272ED600D3225F /* UserPlaylistDTO.swift */; };
+		DAA331922B272ED600D3225F /* UserPlaylistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331912B272ED600D3225F /* UserPlaylistResponse.swift */; };
+		DAA331942B27E10700D3225F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331932B27E10700D3225F /* RootView.swift */; };
 		DADECABB2B2149F5008ADA03 /* Alignment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADECABA2B2149F5008ADA03 /* Alignment+Extensions.swift */; };
 		DADECABD2B2149FA008ADA03 /* HorizontalAlignment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADECABC2B2149FA008ADA03 /* HorizontalAlignment+Extensions.swift */; };
 		DADECABF2B214A05008ADA03 /* VerticalAlignment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADECABE2B214A05008ADA03 /* VerticalAlignment+Extensions.swift */; };
@@ -157,7 +158,8 @@
 		DAA3318B2B2722CC00D3225F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DAA3318D2B2723A800D3225F /* UserInformationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationModel.swift; sourceTree = "<group>"; };
 		DAA3318F2B2723BD00D3225F /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
-		DAA331912B272ED600D3225F /* UserPlaylistDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlaylistDTO.swift; sourceTree = "<group>"; };
+		DAA331912B272ED600D3225F /* UserPlaylistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlaylistResponse.swift; sourceTree = "<group>"; };
+		DAA331932B27E10700D3225F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		DADECABA2B2149F5008ADA03 /* Alignment+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alignment+Extensions.swift"; sourceTree = "<group>"; };
 		DADECABC2B2149FA008ADA03 /* HorizontalAlignment+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HorizontalAlignment+Extensions.swift"; sourceTree = "<group>"; };
 		DADECABE2B214A05008ADA03 /* VerticalAlignment+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VerticalAlignment+Extensions.swift"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 		6A0DF85B2B26D4D10032153F /* StartView */ = {
 			isa = PBXGroup;
 			children = (
+				DAA331932B27E10700D3225F /* RootView.swift */,
 				DAA331852B26FF0B00D3225F /* AuthManager.swift */,
 				DAA3316F2B26FE0800D3225F /* StartView.swift */,
 				DAA331702B26FE0800D3225F /* StartViewModel.swift */,
@@ -307,7 +310,7 @@
 			children = (
 				DA44E8EE2B26DD6000681AE5 /* SearchResponse.swift */,
 				DAA3318F2B2723BD00D3225F /* UserInfoResponse.swift */,
-				DAA331912B272ED600D3225F /* UserPlaylistDTO.swift */,
+				DAA331912B272ED600D3225F /* UserPlaylistResponse.swift */,
 			);
 			path = NetworkDTO;
 			sourceTree = "<group>";
@@ -627,7 +630,8 @@
 				016AE6D52B26C9AF0096CE89 /* PlayMusicModel.swift in Sources */,
 				DA637F672B1F1F6200BB3612 /* WeatherPlaylistApp.swift in Sources */,
 				DA637F8D2B2041D900BB3612 /* UIkit+Extensions.swift in Sources */,
-				DAA331922B272ED600D3225F /* UserPlaylistDTO.swift in Sources */,
+				DAA331942B27E10700D3225F /* RootView.swift in Sources */,
+				DAA331922B272ED600D3225F /* UserPlaylistResponse.swift in Sources */,
 				6AEB1B342B26C56900BA926A /* (null) in Sources */,
 				DADECAC92B214A2F008ADA03 /* PlaylistControllerView.swift in Sources */,
 				016AE6D72B26C9BF0096CE89 /* PlayMusicViewModel.swift in Sources */,

@@ -35,8 +35,7 @@ struct MainPageView: View {
                     viewModel.fetchPlayListModel()
                 }
                 // 재생중인 음악
-                PlayFooterCell(musicImage: "album2",
-                               isLightMode: $isLightMode)
+//                PlayFooterCell()
             }
         }
         .onAppear {

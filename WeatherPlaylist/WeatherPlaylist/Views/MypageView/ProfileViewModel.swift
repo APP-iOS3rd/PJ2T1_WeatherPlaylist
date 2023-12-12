@@ -13,7 +13,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var profileModel: ProfileModel = .init()
     @Published var isLoading: Bool = false
     private let manager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
-    private let userPlaylistManager = HTTPManager<UserPlaylistDTO>(apiType: .getUsersPlayList)
+    private let userPlaylistManager = HTTPManager<UserPlaylistResponse>(apiType: .getUsersPlayList)
     init() {
         fetchModel()
     }
