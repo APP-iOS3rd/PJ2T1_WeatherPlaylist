@@ -19,7 +19,7 @@ final class MainPageViewModel: ObservableObject {
     @Published var isLoading: Bool = false
 
     private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
-    private let manager = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "nice"))
+    private let manager: HTTPManager<SearchResponse> = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "겨울밤 쌀쌀한"))
 
     init() {
      //   fetchModel()
