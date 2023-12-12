@@ -12,6 +12,13 @@
 		014DFB382B215E5900B155EE /* PlayFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB372B215E5900B155EE /* PlayFooterCell.swift */; };
 		014DFB452B21779700B155EE /* PlaylistVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB442B21779700B155EE /* PlaylistVertical.swift */; };
 		014DFB472B2177DB00B155EE /* PlaylistHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014DFB462B2177DB00B155EE /* PlaylistHorizontal.swift */; };
+		01689DB12B2824EC004DCF58 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01689DB02B2824EC004DCF58 /* BadgeView.swift */; };
+		01689DB32B2824FC004DCF58 /* TopNaviView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01689DB22B2824FC004DCF58 /* TopNaviView.swift */; };
+		01689DB62B28251D004DCF58 /* ScrollTopNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01689DB52B28251D004DCF58 /* ScrollTopNavigation.swift */; };
+		01689DB82B282CA8004DCF58 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01689DB72B282CA8004DCF58 /* BadgeViewModel.swift */; };
+		01689DBA2B282CBA004DCF58 /* BadgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01689DB92B282CBA004DCF58 /* BadgeModel.swift */; };
+		01689DBC2B283D5B004DCF58 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01689DBB2B283D5B004DCF58 /* BadgeButton.swift */; };
+		01689DBE2B283FD3004DCF58 /* ScrollDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01689DBD2B283FD3004DCF58 /* ScrollDetector.swift */; };
 		016AE6D32B26C9A20096CE89 /* PlayMusicListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016AE6D22B26C9A20096CE89 /* PlayMusicListModel.swift */; };
 		016AE6D52B26C9AF0096CE89 /* PlayMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016AE6D42B26C9AF0096CE89 /* PlayMusicModel.swift */; };
 		016AE6D72B26C9BF0096CE89 /* PlayMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016AE6D62B26C9BF0096CE89 /* PlayMusicViewModel.swift */; };
