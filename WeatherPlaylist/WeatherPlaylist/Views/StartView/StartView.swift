@@ -15,9 +15,13 @@ struct StartView: View {
         
         ZStack {
             if isLoading {
-                LoginView()
-                    .transition(.opacity)
-                    .zIndex(1)
+                if let token = UserDefaults.standard.value(forKey: "AccessToken") {
+                    MainPageView()
+                } else {
+                    LoginView()
+                        .transition(.opacity)
+                        .zIndex(1)
+                }
             } else {
                 LaunchView()
                     .onAppear {

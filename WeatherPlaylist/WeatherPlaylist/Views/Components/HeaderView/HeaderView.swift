@@ -34,6 +34,7 @@ struct HeaderView: View {
 //                .scaledToFit()
 //                .frame(height: 20)
         }
+        .padding(.vertical, 18)
         .padding(.horizontal, 12)
     }
 }

@@ -22,7 +22,7 @@ extension APIProtocol {
         return "https://api.spotify.com/v1/"
     }
     var headers: [String: String]? {
-        guard let token = UserDefaults.standard.string(forKey: "Authorization") else {
+        guard let token = UserDefaults.standard.string(forKey: "AccessToken") else {
             return nil
         }
         //토큰이 왜..?
@@ -40,7 +40,51 @@ extension APIRequestProtocol {
     var url: String {
         baseURL + path
     }
+    private func isRefreshTokenSuccessed() async -> Bool{
+        guard let refreshToken = UserDefaults.standard.string(forKey: "RefreshToken") else {return false}
+        let refreshParams = [
+
+            "grant_type" : "refresh_token",
+            "refresh_token" : refreshToken]
+        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "accounts.spotify.com"
+        components.path = "/api/token"
+        components.queryItems = refreshParams.map({URLQueryItem(name: $0, value: $1)})
+        guard let url = components.url else { return false}
+        var urlRequest = URLRequest(url: url)
+        let auth = Data("\(clientID):\(clientSecret)".utf8).base64EncodedString()
+        urlRequest.setValue("Basic " + auth, forHTTPHeaderField: "Authorization")
+
+        urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpMethod = "POST"
+        do {
+            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return false
+            }
+            switch httpResponse.statusCode {
+            case 200...299:
+                let decoder = JSONDecoder()
+                let decodedResponse = try decoder.decode(AccessToken.self, from: data)
+                UserDefaults.standard.removeObject(forKey: "AccessToken")
+                UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                UserDefaults.standard.setValue(decodedResponse.token, forKey: "AccessToken")
+                UserDefaults.standard.setValue(decodedResponse.refreshToken, forKey: "RefreshToken")
+                return true
+            default:
+
+                let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                print("JSON Response: \(json ?? [:])")
+                return false
+            }
+        } catch {
+            return false
+        }
+    }
     func fetchData() async -> Result<Response, APIError> {
+        var failedData: Data? = nil
         do {
             var urlRequest = URLRequest(url: URL(string: url)!)
             urlRequest.httpMethod = method.rawValue
@@ -55,11 +99,9 @@ extension APIRequestProtocol {
                 let jsonData = try JSONSerialization.data(withJSONObject: parameters)
                 urlRequest.httpBody = jsonData
             }
-            dump(urlRequest.allHTTPHeaderFields)
-            print(urlRequest.url)
 
             let (data, response) = try await URLSession.shared.data(for: urlRequest)
-            
+
             // 에러 처리 - 상태 코드 확인
             guard let httpResponse = response as? HTTPURLResponse else {
                 return .failure(.otherError)
@@ -67,16 +109,26 @@ extension APIRequestProtocol {
             
             switch httpResponse.statusCode {
             case 200...299:
+                failedData = data
+
                 let decoder = JSONDecoder()
                 let decodedResponse = try decoder.decode(Response.self, from: data)
+                failedData = nil
+
                 return .success(decodedResponse)
             case 400:
                 print(httpResponse.description)
                 return .failure(.httpError(.badRequestError))
             case 401, 403:
-                
+                if await isRefreshTokenSuccessed() {
+                    return await fetchData()
+                } else {
+
+                    UserDefaults.standard.removeObject(forKey: "AccessToken")
+                    UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                    return .failure(.httpError(.authError))
+                }
                 // token refresh 하는 로직
-                return .failure(.httpError(.authError))
             case 404:
                 return .failure(.httpError(.notFoundError))
             case 500...505 :
@@ -87,6 +139,17 @@ extension APIRequestProtocol {
         } catch let urlError as URLError {
             return .failure(.urlError(urlError))
         } catch let decodingError as DecodingError {
+            if let failed = failedData {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: failed, options: []) as? [String: Any]
+                    print("JSON Response: \(json ?? [:])")
+                    failedData = nil
+                    // Try decoding your model here
+                } catch let error {
+                    failedData = nil
+                    print("Error decoding JSON: \(error)")
+                }
+            }
             print(decodingError.localizedDescription)
             print(decodingError.failureReason)
             print(decodingError.errorDescription)

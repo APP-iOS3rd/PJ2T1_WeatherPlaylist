@@ -54,7 +54,7 @@ struct LoginView: View {
                         
                         
                         Button {
-                            if let token = UserDefaults.standard.value(forKey: "Authorization") {
+                            if let token = UserDefaults.standard.value(forKey: "AccessToken") {
                                 path.append(.secondView)
                                 print(token)
                             } else {
@@ -72,7 +72,7 @@ struct LoginView: View {
                         }
                         Spacer()
                         Button(action: {
-                            UserDefaults.standard.removeObject(forKey: "Authorization")
+                            UserDefaults.standard.removeObject(forKey: "AccessToken")
                         }, label: {
                             Text("token 삭제")
                         })
@@ -82,6 +82,7 @@ struct LoginView: View {
                         switch stackViewType {
                         case .firstView:
                             AuthView()
+                                .ignoresSafeArea()
                         case .secondView:
                             MainPageView()
                                 .navigationBarHidden(true)

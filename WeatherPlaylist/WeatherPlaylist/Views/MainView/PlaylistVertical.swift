@@ -34,7 +34,7 @@ struct PlaylistVertical: View {
                         .font(.bold20)
                 }
                 Spacer()
-            }.padding()
+            }.padding(24)
             
             displayContent
                 .frame(height: 220)
@@ -71,6 +71,7 @@ extension PlaylistVertical {
                                 GeometryReader { geo in
                                     NavigationLink {
                                         PlaylistView()
+                                            .environmentObject(viewModel)
                                             .navigationTitle(recommendedModel.mainTitle)
                                     } label: {
                                         VStack {

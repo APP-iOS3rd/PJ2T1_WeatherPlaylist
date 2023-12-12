@@ -63,31 +63,60 @@ struct AuthView: UIViewRepresentable {
 
             return decisionHandler(.allow)
         }
-        
+
         // API 통신을 통해 token 값이 포함되어 있는 String을 받았을 때
         func webView(_ webview: WKWebView,
                      didFinish: WKNavigation!) {
             guard let urlString = webview.url?.absoluteString else { return }
-            
-
-            var tokenString = ""
-            if urlString.contains("#access_token=") {
-                let range = urlString.range(of: "#access_token=")
+            var code = ""
+            if urlString.contains("?code=") {
+                let range = urlString.range(of: "?code=")
                 guard let index = range?.upperBound else { return }
-                
-                
-                tokenString = String(urlString[index...])
-                // print(tokenString)
+                code = String(urlString[index...])
             }
+            if !code.isEmpty {
+                getAccessTokenWithCode(code: code)
+            }
+        }
+        //MARK: - refreshToken 받아오기
+        private func getAccessTokenWithCode(code: String) {
+            var tokenParams = [
+                "grant_type" : "authorization_code",
+                "code" : code,
+                "redirect_uri" : "https://www.naver.com"]
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = APIConstants.authHost
+            components.path = "/api/token"
+            components.queryItems = tokenParams.map({URLQueryItem(name: $0, value: $1)})
             
-            if !tokenString.isEmpty {
-                let range = tokenString.range(of: "&token_type=Bearer")
-                guard let index = range?.lowerBound else { return }
-                
-                tokenString = String(tokenString[..<index])
-                print(tokenString)
-                UserDefaults.standard.setValue(tokenString, forKey: "Authorization")
+            guard let url = components.url else { return }
+            
+            let auth = Data("\(APIConstants.clientID):\(APIConstants.clientSecret)".utf8).base64EncodedString()
+            var urlRequest = URLRequest(url: url)
+            urlRequest.setValue("Basic " + auth, forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpMethod = "POST"
+            let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, response, error) in
+                if let error = error {
+                           print("Error: \(error)")
+                           return
+                       }
+                       // Handle the response
+                       if let data = data {
+                           do {
+                               let decoder = JSONDecoder()
+                               let token = try decoder.decode(AccessToken.self, from: data)
+
+//                                   let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                               UserDefaults.standard.setValue(token.token, forKey: "AccessToken")
+                               UserDefaults.standard.setValue(token.refreshToken, forKey: "RefreshToken")
+                           } catch {
+                               print("Error decoding JSON: \(error)")
+                           }
+                       }
             }
+            task.resume()
         }
     }
 }
