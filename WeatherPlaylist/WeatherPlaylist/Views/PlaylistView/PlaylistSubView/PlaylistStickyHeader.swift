@@ -13,10 +13,10 @@ struct PlaylistStickyHeader: View {
     var body: some View {
         VStack(alignment: .center) {
             VStack(alignment: .center, spacing: 6) {
-                Text(viewModel.playlistInfo.playlistName)
+                Text(viewModel.playlistInfo.mainTitle)
                     .font(.appFont(for: .Bold, size: 22))
                 
-                Text(viewModel.playlistInfo.playlistDescription)
+                Text(viewModel.playlistInfo.subitle)
                     .font(.light10)
             }
             .padding(.bottom, 32)

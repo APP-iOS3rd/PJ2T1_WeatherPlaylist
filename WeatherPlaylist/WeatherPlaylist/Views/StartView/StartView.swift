@@ -9,28 +9,14 @@ import SwiftUI
 
 struct StartView: View {
     
-    @State var isLoading: Bool = false
-    
     var body: some View {
-        
-        ZStack {
-            if isLoading {
-                if let token = UserDefaults.standard.value(forKey: "AccessToken") {
-                    MainPageView()
-                } else {
-                    LoginView()
-                        .transition(.opacity)
-                        .zIndex(1)
-                }
-            } else {
-                LaunchView()
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(
-                            deadline: .now() + 3,
-                            execute: { withAnimation { isLoading.toggle() }
-                        })
-                    }
-            }
+        if let _ = UserDefaults.standard.value(forKey: "AccessToken") {
+            RootView()
+                .navigationBarHidden(true)
+        } else {
+            LoginView()
+                .transition(.opacity)
+                .zIndex(1)
         }
     }
 }
@@ -39,4 +25,3 @@ struct StartView: View {
 #Preview {
     StartView()
 }
-

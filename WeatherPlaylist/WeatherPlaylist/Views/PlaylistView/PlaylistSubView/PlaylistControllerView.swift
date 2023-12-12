@@ -21,7 +21,6 @@ struct PlaylistControllerView: View {
                     .font(.system(size: 24))
             }
             
-            
             if player.isLoading {
                 ProgressView()
             } else {
@@ -37,8 +36,8 @@ struct PlaylistControllerView: View {
             Button {
                 viewModel.pushLikeButton()
             } label: {
-                Image(systemName: viewModel.playlistInfo.isLikePlaylist ? "heart.fill" : "heart")
-                    .foregroundStyle(viewModel.playlistInfo.isLikePlaylist ? .red : .black)
+                Image(systemName: viewModel.playlistInfo.isLiked == true  ? "heart.fill" : "heart")
+                    .foregroundStyle(viewModel.playlistInfo.isLiked == true  ? .red : .black)
                     .font(.system(size: 24))
             }
         }

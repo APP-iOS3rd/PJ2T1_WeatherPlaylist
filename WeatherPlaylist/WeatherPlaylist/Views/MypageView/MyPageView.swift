@@ -10,6 +10,8 @@ import SwiftUI
 struct MyPageView: View {
     @StateObject var viewModel: ProfileViewModel = .init()
     @ObservedObject var weather: WeatherLogic = .shared
+    @EnvironmentObject var appState: AppState
+    
     var body: some View {
             VStack {
                 ProfileView()
@@ -26,6 +28,13 @@ struct MyPageView: View {
                             .font(.regular14)
                         Spacer()
                         Toggle(isOn: $weather.isChecking, label: {})
+                    }
+                    Button {
+                        UserDefaults.standard.removeObject(forKey: "AccessToken")
+                        UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                        appState.rootViewId = UUID()
+                    } label: {
+                        Text("로그아웃")
                     }
                 }.padding(.top)
                     .padding(.horizontal, 25)

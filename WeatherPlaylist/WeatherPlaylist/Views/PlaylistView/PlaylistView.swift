@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    @StateObject var viewModel: PlaylistViewModel = .init()
+    @StateObject var viewModel: PlaylistViewModel
     
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
@@ -17,7 +17,7 @@ struct PlaylistView: View {
         NavigationView {
             ZStack(alignment:.bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
-                    PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.coverImageUrl)
+                    PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
                     
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
                         Section {
@@ -45,12 +45,11 @@ struct PlaylistView: View {
                                     bottom: 0,
                                     trailing: 24))
                 
-                PlayFooterCell(musicImage: "album2",
-                                             isLightMode: $isLightMode)
+//                PlayFooterCell()
             }
         }
     }
 }
-#Preview {
-    PlaylistView()
-}
+//#Preview {
+//    PlaylistView(viewModel: .init(playlistInfo: "3cEYpjA9oz9GiPac4AsH4n"))
+//}
