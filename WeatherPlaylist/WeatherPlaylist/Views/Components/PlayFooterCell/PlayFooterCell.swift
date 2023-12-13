@@ -30,17 +30,21 @@ struct PlayFooterCell: View {
                 .scaledToFit()
                 .frame(width: 60,height: 60)
                 .cornerRadius(12)
+                .padding(.leading, 10)
                 
                 VStack(alignment: .leading){
                     Text(playerManager.track?.songName ?? "음악을 재생하세요")
+                        .lineLimit(1)
                         .font(.system(size: 18))
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity,alignment: .leading)
                     Text(playerManager.track?.artist ?? "")
+                        .lineLimit(1)
                         .font(.system(size: 14))
                         .fontWeight(.light)
                         .frame(maxWidth: .infinity,alignment: .leading)
                 }
+                .padding(.horizontal, 10)
             }.onTapGesture {
                 self.isShowingPlayer.toggle()
             }
@@ -65,6 +69,7 @@ struct PlayFooterCell: View {
                     }
             }
             .offset(x: -25, y: 0)
+            .padding(.leading, 15)
         }
         .background(
             scheme == .light ? Color("lightBg") : Color("darkBg")
