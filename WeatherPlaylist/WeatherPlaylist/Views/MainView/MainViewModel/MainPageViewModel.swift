@@ -13,12 +13,16 @@ final class MainPageViewModel: ObservableObject {
     @Published var recommendedModelList: [RecommendedPlayListModel] = []
     @Published var weatherData = WeatherAPI.shared
     
+    @Published var profileURL: URL? = nil
+    @Published var uid: String = ""
+    @Published var isLoading: Bool = false
+
    
     init() {
         settingWeatherData() //💁 초기 사용자 위치를 이용하여 필수 날씨 상태 정보, 쿼리 값 셋팅
         WeatherAPI.shared.delegate = self
     }
-    
+
     func settingWeatherData() {
         let locationManager = LocationManager()
         locationManager.startUpdatingLocation()
@@ -26,7 +30,6 @@ final class MainPageViewModel: ObservableObject {
       
         // 사용자 위도, 경도를 전달하여 API 호출
         weatherData.feachWeatherData(lat: locationManager.latitude, lon: locationManager.longitude)
-
         
     }
     
@@ -81,11 +84,11 @@ final class MainPageViewModel: ObservableObject {
 
 
     private func fetchProfile() {
-
         Task { @MainActor in
             let result = await profileManager.fetchData()
             switch result {
             case .success(let response) :
+                uid = response.id
                 guard let imgURL = response.images?.min()?.url else {return}
                 profileURL = URL(string: imgURL)
                 isLoading = false

@@ -136,6 +136,7 @@ extension APIRequestProtocol {
             case 404:
                 return .failure(.httpError(.notFoundError))
             case 500...505 :
+                print(url)
                 return .failure(.httpError(.serverError))
             default:
                 return .failure(.httpError(.serverError))

@@ -13,9 +13,12 @@ struct TrackListResponse: Codable {
     let items: [TrackItem]
     var toPlaylistTrackModel: [PlaylistTrackModel] {
         self.items.map{ track in
-                .init(id: track.track.id,
+            var temp = track.track.artists.reduce(""){ $0 + $1.name + ", "}
+            temp.removeLast() // 공백제거
+            temp.removeLast() // 콤마제거
+               return .init(id: track.track.id,
                       songName: track.track.name,
-                      artist: track.track.artists.reduce(""){ $0 + $1.name + ", "},
+                      artist: temp,
                       coverImage: track.track.album.images.min()?.url ?? "",
                       songTime: track.track.durationMS)
         }
@@ -44,8 +47,8 @@ struct Track: Codable {
     let externalUrls: ExternalUrls
     let isPlayable: Bool
     let name: String
-    let popularity: Int
-    let previewURL: String
+    let popularity: Int?
+    let previewURL: String?
     let trackNumber: Int
     let type, uri: String
     let isLocal: Bool
@@ -94,7 +97,7 @@ struct Album: Codable {
 // MARK: - Artist
 struct Artist: Codable {
     let externalUrls: ExternalUrls
-    let images: [AlbumImage]?
+    let images: [ProfileImages]?
     let name: String
     let type, uri: String
 

@@ -28,4 +28,8 @@ extension UserPlaylistResponse {
                 singers: "가수들")
         }
     }
+    
+    var tracklist: [String] {
+        self.items.map{$0.id}
+    }
 }
