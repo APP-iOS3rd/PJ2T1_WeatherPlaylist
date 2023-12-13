@@ -10,14 +10,12 @@ import SwiftUI
 struct MainPageView: View {
     
     @StateObject var viewModel: MainPageViewModel = .init()
-    
     @State private var menutap = false
     @State var isLightMode: Bool = true
     
     // 싱글톤 패턴으로 날씨 데이터를 가져옴
     @ObservedObject var weatherLogic = WeatherLogic.shared
-   
-
+    
  
     var body: some View {
         NavigationView {
@@ -32,16 +30,16 @@ struct MainPageView: View {
                     }
                     .padding(.bottom,40)
                 }.refreshable {
-                    viewModel.fetchPlayListModel()
+                    viewModel.settingWeatherData() 
+                    // 쿼리 질의문 까지 같이 변경하여
+                    // 바꾼 쿼리로 스포티파이 API 호출 후 리스트 가져오기
                 }
                 // 재생중인 음악
 //                PlayFooterCell()
             }
         }
         .onAppear {
-            // 뷰가 나타나면서 싱글톤 객체의 속성에 접근 및 변경
             weatherLogic.isChecking = true
-            weatherLogic.userWeather = .rainy
         }
         .overlay(content: {
             if viewModel.isLoading {
@@ -73,8 +71,8 @@ struct MainPageView: View {
 extension MainPageView {
     private var topView: some View{
         HStack {
-            //💁 날씨에 따라 표시되는 멘트가 다르게 구현
-            Text(.init(weatherLogic.mainTitle))
+            //💁 요청 쿼리 값을 MainTitle로 사용자에게 보여주기
+            Text(.init(viewModel.weatherData.spotifyRandomQuery))
                 .font(.thin32)
                 .padding(.top, 12)
                 .frame(width: 200,alignment: .leading)

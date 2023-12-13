@@ -10,14 +10,33 @@ import Foundation
 import SwiftUI
 
 
+protocol WeatherAPIDelegate: AnyObject {
+    func didUpdateSpotifyRandomQuery(_ query: String)
+}
 
 class WeatherAPI: ObservableObject {
     static let shared = WeatherAPI()
     private init() { }
+    
+  
     @Published var weatherInformation = [WeatherTotalData]()
     
     // ⭐️ 최종 사용자 위치 기준 날씨 상태를 표현해 주는 변수
     @Published var userWatherStatus: String = "맑은 아침"
+    // ⭐️ 최종 사용자 4계절 파악 변수
+    @Published var userSeason: String = "여름"
+    
+    
+    weak var delegate: WeatherAPIDelegate?
+    
+    // ⭐️ 최종 스포티파이 질의문
+    var spotifyRandomQuery: String = "" {
+        didSet {
+            if spotifyRandomQuery.count > 0 {
+                delegate?.didUpdateSpotifyRandomQuery(spotifyRandomQuery)
+            }
+        }
+    }
     
     private var apiKey: String? {
         get {
@@ -87,15 +106,47 @@ class WeatherAPI: ObservableObject {
         task.resume()
     }
     
-    func feachUserWeatherData(){
+    func feachUserWeatherData() {
+        // 기존 값을 초기화
+        self.userWatherStatus = ""
+        self.userSeason = ""
+        self.spotifyRandomQuery = ""
+        
         // 해당 부분에서 파싱된 값 중 싱글 톤 패턴으로 필요한 사용자의 날씨 데이터 가져오는 로직을 처리
+        
+        // 날씨 상태
         self.userWatherStatus = self.getWeatherStatus(icon: self.weatherInformation[0].weather[0].icon)
-        // self.userWatherStatus을 이용하여 스포티파이 API 전달 값으로 사용가능
+        
+        // 계절
+        let currentDate = Date()
+        let calendar = Calendar.current
+        self.userSeason = getSeasonStatus(season: String(calendar.component(.month, from: currentDate)))
+        
+        // 스포티파이 키워드
+        var keyword = self.getSpotifyKeyWords(icon: self.weatherInformation[0].weather[0].icon)
+        
+        // 스포티파이 쿼리 질의문 = 계절 + 키워드 + 날씨 상태 ex 겨울 적적하게 눈오는 밤
+        self.spotifyRandomQuery = "\(userSeason) \(keyword) \(userWatherStatus)"
+        print("뭐가 문제야 \(self.spotifyRandomQuery)")
+    }
+
+    
+    func getSeasonStatus(season: String) -> String {
+        switch season {
+        case "12", "1", "2":
+            return "겨울"
+        case "3", "4", "5":
+            return "봄"
+        case "6", "7", "8":
+            return "여름"
+        default:
+            return "가을"
+        }
     }
     
     func getWeatherStatus(icon: String) -> String {
         switch icon {
-        case "01d":
+        case "01d", "02d":
             return "맑은 아침"
         case "01n", "02n":
             return "맑은 밤"
@@ -119,5 +170,52 @@ class WeatherAPI: ObservableObject {
             return "알 수 없는 날씨"
         }
     }
-
+    
+    func getSpotifyKeyWords(icon: String) -> String {
+        switch icon {
+        case "01d", "02d":
+            let keywords = ["화창한", "상쾌한", "산뜻한", "따뜻한", "썸녀랑 데이트 하고 싶은", "도입부부터 기분 좋아지는", "햇살 좋은 날"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "01n", "02n":
+            let keywords = ["공기좋은", "선선한", "달이 잘보이는", "별이 쏟아지는", "썸녀랑 데이트 하고 싶은"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "03d", "04d":
+            let keywords = ["집에서 쉬고싶은", "누워서 아무것도 하기 싫은", "넷플릭스 보고싶은"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "03n", "04n":
+            let keywords = ["먹먹하게", "어둡게", "꾸리꾸리하게", "세상이 멸망할거 같이", "넷플릭스 보기 좋은"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        
+        case "09d", "10d", "11d":
+            let keywords = ["촉촉한", "세상이 멸망할거 같이, 비 냄새나는", "영화 속 주인공이 된 듯한", "잔잔하게", "무섭게"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "09n", "10n", "11n":
+            let keywords = ["추적추적", "소나기, 감성 터지는", "울고싶게", "잔잔하게", "우울하게"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "13d":
+            let keywords = ["새하얀", "눈에띠네, 함박", "울고싶게", "펑펑 내리는", "첫"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "13n":
+            let keywords = ["산타가 보고싶은", "케롤이 듣고 싶은, 첫 사랑이 생각나는", "벅차오르는", "펑펑 내리는", "첫"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "50d":
+            let keywords = ["센치한", "우울한, 짙은", "적적하게", "영화같은", "슬픈"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        case "50n":
+            let keywords = ["센치한", "우울한, 짙은", "적적하게", "영화같은", "슬픈"]
+            let randomIndex = Int.random(in: 0..<keywords.count)
+            return keywords[randomIndex]
+        default:
+            return "알 수 없는 날씨"
+        }
+    }
 }

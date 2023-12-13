@@ -11,6 +11,8 @@ import SwiftUI
 struct WeatherTestView: View {
 
     @StateObject var weatherData = WeatherAPI.shared
+    let currentDate = Date()
+    
 
     var body: some View {
         NavigationStack {
@@ -23,8 +25,13 @@ struct WeatherTestView: View {
                     // 사용자 위치 날씨 상태
                     Text(weatherData.userWatherStatus)
                     
+                    // 사용자 날짜
+                    Text(weatherData.userSeason)
                     
-                    // 사용자 위치 날씨 아이콘 
+                    // 스포티파이 쿼리문 
+                    Text(weatherData.spotifyRandomQuery)
+                    
+                    // 사용자 위치 날씨 아이콘
                     AsyncImage(url: URL(string: "https://openweathermap.org/img/wn/\(result.weather[0].icon)@2x.png")) { image in
                         image.resizable()
                     } placeholder: {

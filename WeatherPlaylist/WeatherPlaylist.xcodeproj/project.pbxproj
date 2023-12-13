@@ -21,6 +21,7 @@
 		016AE6D72B26C9BF0096CE89 /* PlayMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016AE6D62B26C9BF0096CE89 /* PlayMusicViewModel.swift */; };
 		284191792B2803830097454E /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 284191782B2803830097454E /* SpotifyAPI.xcconfig */; };
 		28A621A92B21514000575D16 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 28A621A82B21514000575D16 /* SpotifyiOS */; };
+		641F2B422B2823670001638B /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 641F2B412B2823670001638B /* ApiKeys.plist */; };
 		64279A252B21B0C900065F24 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		64279A292B21B69200065F24 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		645705312B26D8D200E8B134 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -115,6 +116,7 @@
 		016AE6D22B26C9A20096CE89 /* PlayMusicListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicListModel.swift; sourceTree = "<group>"; };
 		016AE6D42B26C9AF0096CE89 /* PlayMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicModel.swift; sourceTree = "<group>"; };
 		016AE6D62B26C9BF0096CE89 /* PlayMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayMusicViewModel.swift; sourceTree = "<group>"; };
+		641F2B412B2823670001638B /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		284191782B2803830097454E /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		DA29F7BF2B206E26003085B9 /* PlayMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayMusicView.swift; sourceTree = "<group>"; };
 		DA29F7C32B206E39003085B9 /* DrawerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerExtension.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 		DA637F652B1F1F6200BB3612 /* WeatherPlaylist */ = {
 			isa = PBXGroup;
 			children = (
+				641F2B412B2823670001638B /* ApiKeys.plist */,
 				DA637F752B1F331F00BB3612 /* Info.plist */,
 				DA637F662B1F1F6200BB3612 /* WeatherPlaylistApp.swift */,
 				DA637F782B201BE200BB3612 /* Source */,
@@ -591,6 +594,7 @@
 				DA29F7DA2B206F41003085B9 /* Pretendard-ExtraLight.otf in Resources */,
 				DA29F7DB2B206F41003085B9 /* Pretendard-Thin.otf in Resources */,
 				DAA3318C2B2722CC00D3225F /* Launch Screen.storyboard in Resources */,
+				641F2B422B2823670001638B /* ApiKeys.plist in Resources */,
 				DA29F7D92B206F41003085B9 /* Pretendard-Bold.otf in Resources */,
 				DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */,
 				DA29F7D52B206F41003085B9 /* Pretendard-ExtraBold.otf in Resources */,
