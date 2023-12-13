@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct RootView: View {
+    var playerManager = PlayerManager.shared
+    
     var body: some View {
         VStack {
             MainPageView()
             PlayFooterCell()
+                .environmentObject(playerManager)
         }
     }
 }

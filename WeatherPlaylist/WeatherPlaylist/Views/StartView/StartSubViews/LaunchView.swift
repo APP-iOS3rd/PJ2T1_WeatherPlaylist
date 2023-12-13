@@ -11,23 +11,29 @@ struct LaunchView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .foregroundStyle(.colorBlue)
+                .foregroundStyle(Color.accentColor)
                 .ignoresSafeArea()
             
             VStack {
                 Spacer()
                 VStack(spacing: 20) {
-                    Image(systemName: "cloud")
-                        .foregroundStyle(.white)
-                        .font(.system(size: 150, weight: .light))
+                    Image("slim")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200)
+                       
                     
-                    Text("오늘이노래")
+                    Text("오늘 뭐 듣지?")
                         .foregroundStyle(.white)
-                        .font(.custom(FontType.Black.rawValue, size: 50))
+                        .font(.custom(FontType.Black.rawValue, size: 32))
                 }
                 .frame(maxWidth: .infinity)
                 Spacer()
             }
         }
     }
+}
+
+#Preview {
+    LaunchView()
 }

@@ -37,7 +37,7 @@ struct PlaylistScrollView: View {
                                     }.aspectRatio(contentMode: .fit)
                                         .frame(width: 100,height: 100)
                                 } else {
-                                    Image(uiImage: .emptyImg)
+                                    Image(uiImage: .profileImg)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 100,height: 100)

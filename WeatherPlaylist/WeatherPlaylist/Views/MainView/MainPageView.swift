@@ -69,11 +69,11 @@ struct MainPageView: View {
 
 extension MainPageView {
     private var topView: some View{
-        HStack {
+        HStack (alignment:.top){
             //💁 요청 쿼리 값을 MainTitle로 사용자에게 보여주기
             Text(viewModel.mainViewTitle)//
                 .font(.thin32)
-                .padding(.top, 12)
+                .padding(.top, 60)
                 .frame(width: 200,alignment: .leading)
             Spacer()
             NavigationLink {
