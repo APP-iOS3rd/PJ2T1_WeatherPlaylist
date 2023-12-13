@@ -133,10 +133,10 @@ extension PlayMusicView {
     private var musicSlider: some View{
         VStack{
             HStack{
-                Text("0:00")
+                Text(player.getTime(songDuration: player.songTime))
                     .font(.medium16)
                 Spacer()
-                Text("3:00")
+                Text("0:30")
                     .font(.medium16)
             }
             .font(.system(size: 16))
