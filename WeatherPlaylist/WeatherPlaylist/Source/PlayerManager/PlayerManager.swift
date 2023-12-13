@@ -93,6 +93,7 @@ extension PlayerManager {
                 }
             }
         }
+
         createPlayer {
             let check = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
             self.player.addPeriodicTimeObserver(forInterval: check, queue: DispatchQueue.main, using: {[weak self] Time in

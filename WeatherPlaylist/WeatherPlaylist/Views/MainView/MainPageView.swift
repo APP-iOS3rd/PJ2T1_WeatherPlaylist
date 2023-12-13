@@ -34,8 +34,6 @@ struct MainPageView: View {
                     // 쿼리 질의문 까지 같이 변경하여
                     // 바꾼 쿼리로 스포티파이 API 호출 후 리스트 가져오기
                 }
-                // 재생중인 음악
-//                PlayFooterCell()
             }
         }
         .onAppear {
@@ -70,11 +68,11 @@ struct MainPageView: View {
 
 extension MainPageView {
     private var topView: some View{
-        HStack {
+        HStack (alignment:.top){
             //💁 요청 쿼리 값을 MainTitle로 사용자에게 보여주기
             Text(.init(viewModel.weatherData.spotifyRandomQuery))
                 .font(.thin32)
-                .padding(.top, 12)
+                .padding(.top, 60)
                 .frame(width: 200,alignment: .leading)
             Spacer()
             NavigationLink {
