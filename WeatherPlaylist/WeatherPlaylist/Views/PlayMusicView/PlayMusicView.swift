@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct PlayMusicView: View {
-//    @State var temp: MusicModel
+    //    @State var temp: MusicModel
     @State var temp: PlaylistTrackModel
     
     @Environment(\.dismiss) var dismiss
     
     @State private var isShowingPlayer = false
     @StateObject var viewModel: PlayMusicViewModel  = .init()
+    @StateObject var player = PlayerManager.shared
     
     var body: some View {
         NavigationStack {
@@ -30,7 +31,7 @@ struct PlayMusicView: View {
                 .padding(.horizontal)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-           // .background(Color.lightBg)
+            // .background(Color.lightBg)
             .bottomDrawerView(
                 bottomDrawerHeight: 80,
                 drawerTopCornersRadius: 16,
@@ -60,11 +61,11 @@ struct PlayMusicView: View {
         
         .background(Color.lightBg)
     }
-     
+    
     func moveTrack(from source: IndexSet, to destination: Int) {
         viewModel.playlistModelList.move(fromOffsets: source, toOffset: destination)
     }
-
+    
     func deleteTrack(at offsets: IndexSet) {
         viewModel.playlistModelList.remove(atOffsets: offsets)
     }
@@ -79,21 +80,21 @@ extension PlayMusicView {
     private var musicImageView: some View{
         VStack{
             // Image 로드시,
-//            CachedImage(url: nil){ phase in
-//                switch phase {
-//                case .success(let image) :
-//                    image.resizable()
-//                case .empty, .failure(_) :
-//                    ProgressView()
-//                }
-//            }
+            //            CachedImage(url: nil){ phase in
+            //                switch phase {
+            //                case .success(let image) :
+            //                    image.resizable()
+            //                case .empty, .failure(_) :
+            //                    ProgressView()
+            //                }
+            //            }
             AsyncImage(url:
                         URL(string: viewModel.playMusicModel.coverImage)) {
                 image in
                 image
                     .resizable()
                     .padding(8)
-                    
+                
             } placeholder: {
                 ProgressView()
             }
@@ -102,8 +103,8 @@ extension PlayMusicView {
             .clipShape(Rectangle())
             .cornerRadius(10)
             .scaleEffect(1)
-                //.padding(.horizontal,15)
-                
+            //.padding(.horizontal,15)
+            
             HStack{
                 VStack{
                     Text(viewModel.playMusicModel.songName)
@@ -117,7 +118,7 @@ extension PlayMusicView {
                     .resizable()
                     .scaledToFit()
                     .frame(width:20,height: 20)
-                    //MARK: - 살짝 커졌다 작아지는 애니메이션?
+                //MARK: - 살짝 커졌다 작아지는 애니메이션?
                     .scaleEffect(1)
                 
             }
@@ -144,18 +145,24 @@ extension PlayMusicView {
             .padding(.horizontal)
             
             HStack{
-                Rectangle()
-                    .frame(width: .screenWidth - 40, height: 4)
-                    .foregroundColor(Color.gray)
-                    .opacity(0.3)
-                    .overlay(
-                        HStack {
-                            //프로그래스바?
-                            Rectangle()
-                                .frame(width: 100, height: 4)
-                            Spacer()
+//                HStack {
+                    Slider(value: $player.songTime,
+                           in: 0...30,
+                           step: 1,
+                           onEditingChanged: { data in
+                        if data == true {
+                            player.pause()
+                            let value = player.songTime
+                            player.changeTime(time: value)
+                        } else {
+                            let value = player.songTime
+                            player.changeTime(time: value)
+                            player.play()
                         }
-                    )
+                    })
+                    
+                    Spacer()
+//                }
             }
             .padding(.horizontal)
         }
@@ -166,7 +173,7 @@ extension PlayMusicView {
     
     private var musicController:some View{
         VStack{
-          
+            
             HStack{
                 Image(systemName: "shuffle")
                     .resizable()
@@ -188,7 +195,7 @@ extension PlayMusicView {
                     .foregroundStyle(.colorBlack)
                     .frame(height: 32)
                     .onTapGesture {}
-                     
+                
                 Spacer()
                 Image(systemName: "forward.end.fill")
                     .resizable()
@@ -220,14 +227,14 @@ extension PlayMusicView {
                                 let playlistModel = viewModel.playlistModelList[index]
                                 
                                 AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
-                                   image.resizable()
+                                    image.resizable()
                                 } placeholder: {
                                     ProgressView()
                                 }
                                 .frame(width: 50, height: 50)
                                 .cornerRadius(4)
-
-                                    
+                                
+                                
                                 VStack(alignment: .leading){
                                     Text(playlistModel.songName)
                                         .font(.headline)
@@ -238,14 +245,14 @@ extension PlayMusicView {
                                 }
                             }
                             .listRowBackground(Color.gray.opacity(0.7))
-                        } 
+                        }
                         .onMove(perform: moveTrack)
                         .onDelete(perform: deleteTrack)
                     }
                     .scrollContentBackground(.hidden)
                     
                 }
-                 
+                
                 .background(Color.gray.opacity(0.9))
                 .toolbar {
                     ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {

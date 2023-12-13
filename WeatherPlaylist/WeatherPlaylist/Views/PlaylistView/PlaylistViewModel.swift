@@ -14,6 +14,7 @@ class PlaylistViewModel: ObservableObject {
     @Published var playlist: [PlaylistTrackModel] = []
     private let trackId: String
     private let uid: String
+    var player = PlayerManager.shared
 
     init(playlistInfo: RecommendedPlayListModel, uid: String) {
         self.uid = uid
@@ -30,6 +31,11 @@ extension PlaylistViewModel {
     }
     
     func pushPlayButton() {
+        if self.player.isPlaying {
+            player.pause()
+        } else {
+            player.playTrackList(tracklist: self.playlist, playlistId: self.uid)
+        }
         self.playlistInfo.isPlaying = self.playlistInfo.isPlaying.map{$0 == true ? false : true}
     }
     
