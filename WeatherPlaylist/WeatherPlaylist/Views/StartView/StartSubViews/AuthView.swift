@@ -68,14 +68,11 @@ struct AuthView: UIViewRepresentable {
                 let range = urlString.range(of: "?code=")
                 guard let index = range?.upperBound else { return }
                 code = String(urlString[index...])
-            }
-            if !code.isEmpty {
-                getAccessTokenWithCode(code: code)
                 webview.isHidden = true
             }
-            
-            if webview.isHidden {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            if !code.isEmpty {
+                getAccessTokenWithCode(code: code) { [weak self] success in
+                    guard self != nil else { return }
                     DispatchQueue.main.async {
                         NavigationUtil.popToRootView()
                     }
@@ -83,8 +80,8 @@ struct AuthView: UIViewRepresentable {
             }
         }
         //MARK: - refreshToken 받아오기
-        private func getAccessTokenWithCode(code: String) {
-            var tokenParams = [
+        private func getAccessTokenWithCode(code: String, completionHandler: @escaping (Bool) -> ()) {
+            let tokenParams = [
                 "grant_type" : "authorization_code",
                 "code" : code,
                 "redirect_uri" : "https://www.naver.com"]
@@ -104,6 +101,7 @@ struct AuthView: UIViewRepresentable {
             let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, response, error) in
                 if let error = error {
                            print("Error: \(error)")
+                           completionHandler(false)
                            return
                        }
                        // Handle the response
@@ -115,8 +113,10 @@ struct AuthView: UIViewRepresentable {
 //                                   let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                                UserDefaults.standard.setValue(token.token, forKey: "AccessToken")
                                UserDefaults.standard.setValue(token.refreshToken, forKey: "RefreshToken")
+                               completionHandler(true)
                            } catch {
                                print("Error decoding JSON: \(error)")
+                               completionHandler(false)
                            }
                        }
             }
