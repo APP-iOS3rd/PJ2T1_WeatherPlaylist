@@ -25,8 +25,10 @@ struct PlaylistVertical: View {
                         // Display the title if data is available
                         let matchingModels = viewModel.recommendedModelList[recommendedModelListIndex]
                         if let randomModel = matchingModels.randomElement() {
+                            Text("추천리스트")
+                                .font(.regular16)
                             Text(randomModel.mainTitle)
-                                .font(.system(size: 16, weight: .regular))
+                                .font(.bold24)
                                 .padding(.bottom, 8)
                         }
                     }
