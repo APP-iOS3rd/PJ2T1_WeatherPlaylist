@@ -11,7 +11,7 @@ import SwiftUI
 
 
 protocol WeatherAPIDelegate: AnyObject {
-    func didUpdateSpotifyRandomQuery(_ query: String)
+    func didUpdateSpotifyRandomQuery(query: String)
 }
 
 class WeatherAPI: ObservableObject {
@@ -29,14 +29,6 @@ class WeatherAPI: ObservableObject {
     
     weak var delegate: WeatherAPIDelegate?
     
-    // ⭐️ 최종 스포티파이 질의문
-    var spotifyRandomQuery: String = "" {
-        didSet {
-            if spotifyRandomQuery.count > 0 {
-                delegate?.didUpdateSpotifyRandomQuery(spotifyRandomQuery)
-            }
-        }
-    }
     
     private var apiKey: String? {
         get {
@@ -96,7 +88,7 @@ class WeatherAPI: ObservableObject {
                     self.weatherInformation = [json]
                     
                     // ⭐️ 파싱이 끝나면 user의 날씨 데이터만 가져오는 SettingLogic을 실행
-                    self.feachUserWeatherData()
+                    self.fetchUserWeatherData()
                 }
             }  catch let error {
                 print(error.localizedDescription)
@@ -106,11 +98,10 @@ class WeatherAPI: ObservableObject {
         task.resume()
     }
     
-    func feachUserWeatherData() {
+    func fetchUserWeatherData() {
         // 기존 값을 초기화
         self.userWatherStatus = ""
         self.userSeason = ""
-        self.spotifyRandomQuery = ""
         
         // 해당 부분에서 파싱된 값 중 싱글 톤 패턴으로 필요한 사용자의 날씨 데이터 가져오는 로직을 처리
         
@@ -123,12 +114,22 @@ class WeatherAPI: ObservableObject {
         self.userSeason = getSeasonStatus(season: String(calendar.component(.month, from: currentDate)))
         
         // 스포티파이 키워드
-        var keyword = self.getSpotifyKeyWords(icon: self.weatherInformation[0].weather[0].icon)
+        var keyword1 = self.getSpotifyKeyWords(icon: self.weatherInformation[0].weather[0].icon)
+        var keyword2 = self.getSpotifyKeyWords(icon: self.weatherInformation[0].weather[0].icon)
         
         // 스포티파이 쿼리 질의문 = 계절 + 키워드 + 날씨 상태 ex 겨울 적적하게 눈오는 밤
-        self.spotifyRandomQuery = "\(userSeason) \(keyword) \(userWatherStatus)"
-        print("뭐가 문제야 \(self.spotifyRandomQuery)")
+        let spotifyQuery1 = "\(userSeason) \(keyword1) \(userWatherStatus)"
+        let spotifyQuery2 = "\(userSeason) \(keyword2) \(userWatherStatus)"
+        
+        // ⭐️ 최종 스포티파이 질의문 전달 
+        print(spotifyQuery1)
+        print(spotifyQuery2)
+        delegate?.didUpdateSpotifyRandomQuery(query: spotifyQuery1)
+        delegate?.didUpdateSpotifyRandomQuery(query: spotifyQuery2)
+
+    
     }
+
 
     
     func getSeasonStatus(season: String) -> String {
