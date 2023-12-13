@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 extension UIImage {
     static var emptyImage: UIImage {
-        .init(named: "emptyImg")!
+        .init(named: "profileImg")!
     }
 }
 extension CGFloat {
