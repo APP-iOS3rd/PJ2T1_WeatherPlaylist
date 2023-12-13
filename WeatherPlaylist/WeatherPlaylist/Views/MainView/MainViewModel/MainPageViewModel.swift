@@ -16,7 +16,8 @@ final class MainPageViewModel: ObservableObject {
     @Published var profileURL: URL? = nil
     @Published var uid: String = ""
     @Published var isLoading: Bool = false
-
+    private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
+    private let manager: HTTPManager<SearchResponse> = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: "겨울밤 쌀쌀한"))
    
     init() {
         settingWeatherData() //💁 초기 사용자 위치를 이용하여 필수 날씨 상태 정보, 쿼리 값 셋팅
