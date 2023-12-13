@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayFooterCell: View {
     @Environment(\.colorScheme) var scheme
+    @EnvironmentObject var playerManager: PlayerManager
     @State private var isShowingPlayer = false
     @StateObject var viewModel: PlayMusicViewModel  = .init()
     
@@ -17,7 +18,7 @@ struct PlayFooterCell: View {
         HStack {
             HStack{
                 AsyncImage(url:
-                            URL(string: viewModel.playMusicModel.coverImage)) {
+                            URL(string: playerManager.track?.coverImage ?? "")) {
                     image in
                     image
                         .resizable()
@@ -32,11 +33,11 @@ struct PlayFooterCell: View {
                 .cornerRadius(12)
             
                 VStack(alignment: .leading){
-                    Text(viewModel.playMusicModel.songName)
+                    Text(playerManager.track?.songName ?? "")
                         .font(.system(size: 18))
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity,alignment: .leading)
-                    Text(viewModel.playMusicModel.artist)
+                    Text(playerManager.track?.artist ?? "")
                         .font(.system(size: 14))
                         .fontWeight(.light)
                         .frame(maxWidth: .infinity,alignment: .leading)
@@ -49,15 +50,19 @@ struct PlayFooterCell: View {
             HStack(spacing: 20){
                 Image(systemName: "chevron.left.to.line")
                     .onTapGesture {
-                        viewModel.previousSong()
+                        playerManager.goPrevTrack()
                     }
-                Image(systemName: viewModel.isPlaying ? "pause.fill" : "play.fill")
+                Image(systemName: playerManager.isPlaying ? "pause.fill" : "play.fill")
                     .onTapGesture {
-                        viewModel.pauseAndPlay()
+                        if playerManager.isPlaying {
+                            playerManager.pause()
+                        } else {
+                            playerManager.player.play()
+                        }
                     }
                 Image(systemName: "chevron.right.to.line")
                     .onTapGesture {
-                        viewModel.nextSong()
+                        playerManager.goNextTrack()
                     }
             }
             .offset(x: -25, y: 0)
