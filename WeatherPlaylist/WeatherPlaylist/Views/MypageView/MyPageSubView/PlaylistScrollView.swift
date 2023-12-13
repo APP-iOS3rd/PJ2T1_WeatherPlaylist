@@ -22,33 +22,35 @@ struct PlaylistScrollView: View {
             ScrollView(.horizontal) {
                 LazyHStack {
                     ForEach(viewModel.playlistModelList) { model in
-                        VStack(alignment:.leading) {
-                            if let imageURL = model.image {
-                                CachedImage(url: URL(string: imageURL)){phase in
-                                    switch phase {
-                                    case .success(let image) :
-                                        image
-                                            .resizable()
-                                    case .failure(_), .empty:
-                                        Image(uiImage: .emptyImage)
-                                            .resizable()
-                                    }
-                                }.aspectRatio(contentMode: .fit)
-                                    .frame(width: 100,height: 100)
-                            } else {
-                                Image(uiImage: .emptyImg)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 100,height: 100)
-                            }
-                            Text(model.mainTitle)
-                                .font(.bold14)
-                            Text(model.singers ?? "가수들")
-                                .font(.light10)
-                                .lineLimit(1)
-                        }.frame(width: 100)
-                        .padding(.vertical,20)
-                        .padding(.horizontal,10)
+                        NavigationLink(destination: {PlaylistView(viewModel: .init(playlistInfo: model, uid: viewModel.uid))}) {
+                            VStack(alignment:.leading) {
+                                if let imageURL = model.image {
+                                    CachedImage(url: URL(string: imageURL)){phase in
+                                        switch phase {
+                                        case .success(let image) :
+                                            image
+                                                .resizable()
+                                        case .failure(_), .empty:
+                                            Image(uiImage: .emptyImage)
+                                                .resizable()
+                                        }
+                                    }.aspectRatio(contentMode: .fit)
+                                        .frame(width: 100,height: 100)
+                                } else {
+                                    Image(uiImage: .emptyImg)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 100,height: 100)
+                                }
+                                Text(model.mainTitle)
+                                    .font(.bold14)
+                                Text(model.singers ?? "가수들")
+                                    .font(.light10)
+                                    .lineLimit(1)
+                            }.frame(width: 100)
+                                .padding(.vertical,20)
+                                .padding(.horizontal,10)
+                        }
                     }
                 }
             }.padding(.leading, 25)

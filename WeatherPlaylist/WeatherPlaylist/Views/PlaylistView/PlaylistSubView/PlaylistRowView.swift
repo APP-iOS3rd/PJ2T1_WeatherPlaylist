@@ -44,9 +44,10 @@ struct PlaylistRowView: View {
     }
     
     func changeTimeIntToString(_ time: Int) -> String {
-        let minite = time / 60
-        let tempSecond = time % 60
-        let second = tempSecond >= 10 ? String(tempSecond) : (String(tempSecond) + "0")
-        return "\(minite):\(second)"
+        let totalSeconds = time / 1000
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        let second = seconds >= 10 ? String(seconds) : ("0" + String(seconds))
+        return "\(minutes):\(second)"
     }
 }

@@ -68,7 +68,7 @@ extension PlaylistVertical {
                             if weatherLogic.userWeather == recommendedModel.weatherType {
                                 GeometryReader { geo in
                                     NavigationLink {
-                                        PlaylistView(viewModel: .init(playlistInfo: recommendedModel))
+                                        PlaylistView(viewModel: .init(playlistInfo: recommendedModel, uid: viewModel.uid))
                                             .environmentObject(viewModel)
                                             .navigationTitle(recommendedModel.mainTitle)
                                     } label: {

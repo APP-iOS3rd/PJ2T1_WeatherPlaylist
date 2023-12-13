@@ -20,7 +20,7 @@ extension SearchResponse {
                       mainTitle: item.name,
                       subitle:  item.description,
                       tracks: URL(string:item.tracks.href),
-                      image: item.albumimages.first?.url)
+                      image: item.albumimages.max()?.url)
         }
     }
 }
@@ -42,7 +42,7 @@ struct Items: Codable {
     let externalUrls: ExternalUrls
     let href: String
     let id: String
-    let albumimages: [AlbumImage]
+    let albumimages: [ProfileImages]
     let name: String
     let owner: Owner
 //    let primaryColor, itemPublic: JSONNull?
@@ -63,13 +63,6 @@ struct Items: Codable {
 // MARK: - ExternalUrls
 struct ExternalUrls: Codable {
     let spotify: String
-}
-
-// MARK: - Image
-struct AlbumImage: Codable {
-    let height: Int?
-    let url: String
-    let width: Int?
 }
 
 // MARK: - Owner

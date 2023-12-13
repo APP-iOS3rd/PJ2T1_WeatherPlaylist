@@ -12,6 +12,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var playlistModelList: [RecommendedPlayListModel] = []
     @Published var profileModel: ProfileModel = .init()
     @Published var isLoading: Bool = false
+    @Published var uid: String = ""
     private let manager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
     private let userPlaylistManager = HTTPManager<UserPlaylistResponse>(apiType: .getUsersPlayList)
     init() {
@@ -32,6 +33,7 @@ extension ProfileViewModel {
             switch result {
             case .success(let response) :
                 isLoading = false
+                self.uid = response.id
                 guard let imgURL = response.images?.map({$0.url}).first else {return}
                 profileModel = .init(name: response.displayName, image: URL(string: imgURL))
             case .failure(let error):
