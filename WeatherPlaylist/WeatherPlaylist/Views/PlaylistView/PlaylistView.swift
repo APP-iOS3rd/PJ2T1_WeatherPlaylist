@@ -12,7 +12,7 @@ struct PlaylistView: View {
     let coloredNavAppearance = UINavigationBarAppearance()
  
     @StateObject var viewModel: PlaylistViewModel
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss) var dismiss
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
     
@@ -55,7 +55,7 @@ struct PlaylistView: View {
                                                          yOffset: gr.frame(in: .global).minY)
                             
                             // showDescr의 h값은 minheight값 보다 커야합니다.
-                            NavigationHeaderView(viewModel: viewModel, showDescr: h > 140 ? true : false)
+                            NavigationHeaderView(viewModel: viewModel, showDescr: h > 140 ? true : false, onDismiss: {dismiss()})
                                 .frame(width: gr.size.width, height: h)
                                 // 상단에 고정하기 위함
                                 .offset(y: gr.frame(in: .global).origin.y < 0 // 올라가는지 체크
@@ -69,6 +69,13 @@ struct PlaylistView: View {
             }
               
         }
+        .gesture(
+            DragGesture().onEnded{ value in
+                if value.location.x - value.startLocation.x > 150 {
+                    dismiss()
+                }
+            }
+        )
         .navigationBarHidden(true)
     }
         

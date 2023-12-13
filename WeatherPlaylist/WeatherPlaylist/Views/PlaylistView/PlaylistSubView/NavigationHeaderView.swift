@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct NavigationHeaderView: View {
-    @Environment(\.dismiss) private var dismiss
+   // @Environment(\.dismiss) var dismiss
     var viewModel: PlaylistViewModel
     var showDescr: Bool
-
+    var onDismiss: () -> Void
     var body: some View {
         Group {
             if showDescr {
@@ -20,14 +20,18 @@ struct NavigationHeaderView: View {
 
                     HStack{
                         Button{
-                            dismiss()
+                            onDismiss()
+                            
                         } label :{
                             Image(systemName: "chevron.backward")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width:20,height: 20)
+                                .scaleEffect(1)
                             Spacer()
                         }
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding()
+                    .padding(.horizontal,8)
 
                     PlaylistCoverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
                        .frame(maxWidth: .infinity)
@@ -48,9 +52,13 @@ struct NavigationHeaderView: View {
 
                         HStack {
                             Button{
-                                dismiss()
+                                onDismiss()
                             } label: {
                                 Image(systemName: "chevron.backward")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width:20,height: 20)
+                                    .scaleEffect(1)
                             }
                             Spacer()
                         }
