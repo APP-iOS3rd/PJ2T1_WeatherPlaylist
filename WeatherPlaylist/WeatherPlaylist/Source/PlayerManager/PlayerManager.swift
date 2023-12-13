@@ -93,11 +93,13 @@ extension PlayerManager {
                 }
             }
         }
-        player.play()
-        let check = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
-        self.player.addPeriodicTimeObserver(forInterval: check, queue: DispatchQueue.main, using: {[weak self] Time in
-            self?.updateTime(currentTime: Time)
-        })
+        createPlayer {
+            let check = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+            self.player.addPeriodicTimeObserver(forInterval: check, queue: DispatchQueue.main, using: {[weak self] Time in
+                self?.updateTime(currentTime: Time)
+            })
+        }
+        self.player.play()
         self.isPlaying = true
     }
     
@@ -120,7 +122,7 @@ extension PlayerManager {
                                                name: AVPlayerItem.didPlayToEndTimeNotification,
                                                object: item)
         player.insert(item, after: nil)
-        player.volume = 0.05
+        player.volume = 1.0
     }
     
     @objc private func playerDidFinishPlaying(sender: Notification){
@@ -170,6 +172,20 @@ extension PlayerManager {
                 return
             }
             self.songTime = Double(CMTimeGetSeconds(currentTime))
+        }
+    }
+    
+    private func createPlayer(completion: @escaping () -> Void) {
+        DispatchQueue.main.async { [weak self] in
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback,
+                                                                mode: .default,
+                                                                options:[.allowAirPlay, .defaultToSpeaker, .mixWithOthers, .duckOthers])
+                try AVAudioSession.sharedInstance().setActive(true)
+                completion()
+            } catch {
+                print(error)
+            }
         }
     }
 }
