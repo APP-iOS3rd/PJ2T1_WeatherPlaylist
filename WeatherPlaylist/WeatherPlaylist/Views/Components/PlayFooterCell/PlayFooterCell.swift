@@ -79,12 +79,13 @@ struct PlayFooterCell: View {
                 .offset(x: -25, y: 0)
                 .padding(.leading, 15)
             }
-            CustomSlider(value: $player.songTime, maxValue: 30.0)
-                .frame(height: 5)
+//            CustomSlider(value: $player.songTime, maxValue: 30.0)
+//                .frame(height: 5)
         }
         .background(
             scheme == .light ? Color("lightBg") : Color("darkBg")
         )
+        .overlay(TopBorder().stroke(Color.gray.opacity(0.4), lineWidth:1))
         .ignoresSafeArea(.all)
         .fullScreenCover(isPresented: $isShowingPlayer){
             // 해당 부분 통일
