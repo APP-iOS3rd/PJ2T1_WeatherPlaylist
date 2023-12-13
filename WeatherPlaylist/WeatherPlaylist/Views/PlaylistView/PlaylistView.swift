@@ -48,6 +48,7 @@ struct PlaylistView: View {
 //                PlayFooterCell()
             }
         }
+        .navigationBarBackButtonTitleHidden()
     }
 }
 //#Preview {
