@@ -18,7 +18,14 @@ struct PlaylistView: View {
             ZStack(alignment:.bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
-                    
+                    VStack(alignment: .center, spacing: 6) {
+                        Text(viewModel.playlistInfo.mainTitle)
+                            .font(.appFont(for: .Bold, size: 22))
+                        
+                        Text(viewModel.playlistInfo.subitle)
+                            .font(.light10)
+                    }
+                    .padding(.bottom, 32)
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
                         Section {
                             ForEach(viewModel.playlist) { song in
