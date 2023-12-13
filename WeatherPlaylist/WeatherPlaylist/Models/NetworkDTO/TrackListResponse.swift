@@ -20,7 +20,9 @@ struct TrackListResponse: Codable {
                       songName: track.track.name,
                       artist: temp,
                       coverImage: track.track.album.images.min()?.url ?? "",
-                      songTime: track.track.durationMS)
+                      songTime: track.track.durationMS,
+                            url: track.track.previewURL ?? ""
+               )
         }
     }
 }
