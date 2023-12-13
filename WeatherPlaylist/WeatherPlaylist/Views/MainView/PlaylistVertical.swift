@@ -8,34 +8,32 @@
 import SwiftUI
 
 struct PlaylistVertical: View {
-    @ObservedObject var viewModel: MainPageViewModel = MainPageViewModel()
-    
+    @ObservedObject var viewModel: MainPageViewModel
+    var recommendedModelListIndex: Int // 추가된 부분
     @ObservedObject var weatherLogic = WeatherLogic.shared
     
     var body: some View {
         Section{
-            HStack{
-                /*
-                 💁  날씨에 따라 표시되는 멘트가 다르게 구현 API 호출 후 날씨에 따라 제목과 부제목 뿌려주면될 거 같습니다다.
-                 
-                 싱글 톤 패턴으로 현재 날씨와 플리안 날씨 데이터 타입이 일치하는 것으로 멘트 뿌리기
-                 (좀 더 의논해 볼 필요가 있음 현재 임시로 플레이리스트 제목을가져왔지만, 그냥 날씨에 따라 멘트만 모아놓는 구조체가 하나필요할 거 같음 )
-                 */
-                VStack(alignment: .leading){
-                    // 날씨에 따른 추천 플레이리스트 제목
-                    let matchingModels = viewModel.recommendedModelList.filter { $0.weatherType == weatherLogic.userWeather }
-                    if let randomModel = matchingModels.randomElement() {
-                        Text(randomModel.mainTitle)
+            HStack {
+                VStack(alignment: .leading) {
+                    // Display loading text while waiting for data
+                    if viewModel.recommendedModelList.isEmpty {
+                        ProgressView("Loading...")
                             .font(.system(size: 16, weight: .regular))
+                            .padding(.bottom, 8)
+                    } else {
+                        // Display the title if data is available
+                        let matchingModels = viewModel.recommendedModelList[recommendedModelListIndex]
+                        if let randomModel = matchingModels.randomElement() {
+                            Text(randomModel.mainTitle)
+                                .font(.system(size: 16, weight: .regular))
+                                .padding(.bottom, 8)
+                        }
                     }
-                    
-                    // 날씨에 따른 추천 플레이리스트 부제목
-                    //Text(viewModel.recommendedModelList[0].subitle)
-                    //    .font(.bold20)
                 }
                 Spacer()
-            }.padding(24)
-            
+            }
+            .padding(24)
             displayContent
                 .frame(height: 220)
                 .padding(.top,8)
@@ -62,10 +60,9 @@ extension PlaylistVertical {
                          💁 날씨에 따른 플레이리스트 가져오기 현재 날씨 == 플레이리스트 날씨 타입 일치하는 것만 가져옴
                          */
                         
-                        ForEach(viewModel.recommendedModelList.indices, id: \.self) { index in
-                            let recommendedModel = viewModel.recommendedModelList[index]
+                        ForEach(viewModel.recommendedModelList[recommendedModelListIndex].indices, id: \.self) { index in
+                            let recommendedModel = viewModel.recommendedModelList[recommendedModelListIndex][index]
                             
-                            if weatherLogic.userWeather == recommendedModel.weatherType {
                                 GeometryReader { geo in
                                     NavigationLink {
                                         PlaylistView(viewModel: .init(playlistInfo: recommendedModel, uid: viewModel.uid))
@@ -105,7 +102,7 @@ extension PlaylistVertical {
                                     }
                                 }
                                 .frame(width: 150)
-                            }
+                            
                         }
                     }
                     .padding(.horizontal, (fullView.size.width - 150) / 2)

@@ -12,25 +12,34 @@ struct MainPageView: View {
     @StateObject var viewModel: MainPageViewModel = .init()
     @State private var menutap = false
     @State var isLightMode: Bool = true
+    @State var recommendedModelListIndex: Int = 0
     
     // 싱글톤 패턴으로 날씨 데이터를 가져옴
     @ObservedObject var weatherLogic = WeatherLogic.shared
     
- 
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
-                        topView
-                        PlaylistVertical(viewModel: viewModel)
-                        // PlaylistHorizontal() 곡을 추천 하는 부분이 있어야 하나 의문..
-                        PlaylistVertical(viewModel: viewModel)
                     
+                        if viewModel.recommendedModelList.isEmpty {
+                            ProgressView() // 값이 없을 때 기다림을 나타내는 ProgressView
+                        } else {
+                            // NavigationLinks 동적으로 생성
+                            topView
+                            PlaylistVertical(viewModel: viewModel, recommendedModelListIndex: 0)
+                            PlaylistVertical(viewModel: viewModel, recommendedModelListIndex: 1)
+                        }
+                        
+                        
                     }
                     .padding(.bottom,40)
                 }.refreshable {
-                    viewModel.settingWeatherData() 
+                    viewModel.settingWeatherData()
+//                    print("문제가 뭘까?\(viewModel.RecommendedModelList)"
+//                    )
                     // 쿼리 질의문 까지 같이 변경하여
                     // 바꾼 쿼리로 스포티파이 API 호출 후 리스트 가져오기
                 }
@@ -39,21 +48,13 @@ struct MainPageView: View {
         .onAppear {
             weatherLogic.isChecking = true
         }
-        .overlay(content: {
-            if viewModel.isLoading {
-                ZStack {
-                    Rectangle().ignoresSafeArea()
-                        .opacity(0.3)
-                    ProgressView()
-                }
-            }
-        })
+
     }
     
     @ViewBuilder private var background: some View {
         if isLightMode {
             Color("lightBg")
-               .ignoresSafeArea()
+                .ignoresSafeArea()
         } else {
             Color("darkBg")
                 .ignoresSafeArea()
@@ -64,13 +65,13 @@ struct MainPageView: View {
 #Preview {
     MainPageView()
 }
- 
+
 
 extension MainPageView {
     private var topView: some View{
         HStack (alignment:.top){
             //💁 요청 쿼리 값을 MainTitle로 사용자에게 보여주기
-            Text(.init(viewModel.weatherData.spotifyRandomQuery))
+            Text(viewModel.mainViewTitle)//
                 .font(.thin32)
                 .padding(.top, 60)
                 .frame(width: 200,alignment: .leading)
@@ -100,7 +101,8 @@ extension MainPageView {
                     )
                     .cornerRadius(20)
             }
-        } .frame(maxWidth: .infinity, alignment: .leading)
+        }.frame(maxWidth: .infinity, alignment: .leading)
             .padding(24)
     }
 }
+
