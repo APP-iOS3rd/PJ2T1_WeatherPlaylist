@@ -49,6 +49,7 @@ struct PlaylistView: View {
                                              isLightMode: $isLightMode)
             }
         }
+        .navigationBarBackButtonTitleHidden()
     }
 }
 #Preview {
