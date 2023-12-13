@@ -32,17 +32,25 @@ struct PlayFooterCell: View {
                 .cornerRadius(12)
                 .padding(.leading, 10)
                 
-                VStack(alignment: .leading){
-                    Text(playerManager.track?.songName ?? "음악을 재생하세요")
-                        .lineLimit(1)
-                        .font(.system(size: 18))
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                    Text(playerManager.track?.artist ?? "")
-                        .lineLimit(1)
-                        .font(.system(size: 14))
-                        .fontWeight(.light)
-                        .frame(maxWidth: .infinity,alignment: .leading)
+                
+                VStack(alignment: .center){
+                    if let track = playerManager.track {
+                        Text(track.songName)
+                            .lineLimit(1)
+                            .font(.bold18)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                         
+                        Text(track.artist)
+                            .lineLimit(1)
+                            .font(.light14)
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                        
+                    } else{
+                        Text("음악을 재생하세요.")
+                            .lineLimit(1)
+                            .font(.bold18)
+                            .frame(maxWidth: .infinity)
+                    }
                 }
                 .padding(.horizontal, 10)
             }.onTapGesture {
