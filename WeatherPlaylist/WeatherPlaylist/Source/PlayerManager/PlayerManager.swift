@@ -14,6 +14,7 @@ class PlayerManager: ObservableObject {
     @Published var isPlaying = false
     @Published var isLoading = false
     @Published var track: PlaylistTrackModel?
+    @Published var songTime = 0.0
     private var tracks: [PlaylistTrackModel]?
     private var currentPlaylistId: String?
     private var currentIndex = 0
@@ -21,6 +22,14 @@ class PlayerManager: ObservableObject {
 
 extension PlayerManager {
     // 재생
+    func play() {
+        player.play()
+        let check = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        self.player.addPeriodicTimeObserver(forInterval: check, queue: DispatchQueue.main, using: {[weak self] Time in
+            self?.updateTime(currentTime: Time)
+        })
+        self.isPlaying = true
+    }
     func playTrack(url: String, playlistId: String) {
         guard let url = URL(string: url) else { return }
         let item = AVPlayerItem(url: url)
@@ -84,8 +93,11 @@ extension PlayerManager {
                 }
             }
         }
-        
         player.play()
+        let check = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        self.player.addPeriodicTimeObserver(forInterval: check, queue: DispatchQueue.main, using: {[weak self] Time in
+            self?.updateTime(currentTime: Time)
+        })
         self.isPlaying = true
     }
     
@@ -108,7 +120,7 @@ extension PlayerManager {
                                                name: AVPlayerItem.didPlayToEndTimeNotification,
                                                object: item)
         player.insert(item, after: nil)
-        player.volume = 0.2
+        player.volume = 0.05
     }
     
     @objc private func playerDidFinishPlaying(sender: Notification){
@@ -144,5 +156,20 @@ extension PlayerManager {
         }
         
         return currentIndex
+    }
+    
+    func changeTime(time: Double) {
+        let seekTime = CMTime(value: CMTimeValue(time), timescale: 1)
+        player.seek(to: seekTime)
+    }
+    
+    private func updateTime(currentTime: CMTime) {
+        if let song = player.currentItem {
+            let duration = song.duration
+            if CMTIME_IS_INVALID(duration) {
+                return
+            }
+            self.songTime = Double(CMTimeGetSeconds(currentTime))
+        }
     }
 }

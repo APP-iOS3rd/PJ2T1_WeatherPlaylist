@@ -14,26 +14,25 @@ struct PlayFooterCell: View {
     @StateObject var viewModel: PlayMusicViewModel  = .init()
     
     var body: some View{
-    
+        
         HStack {
             HStack{
-                AsyncImage(url:
-                            URL(string: playerManager.track?.coverImage ?? "")) {
-                    image in
-                    image
-                        .resizable()
-                        .padding(8)
+                    AsyncImage(url:
+                                URL(string: playerManager.track?.coverImage ?? "")) {
+                        image in
+                        image
+                            .resizable()
+                            .padding(8)
                         
-                }
-                placeholder: {
+                    } placeholder: {
                     ProgressView()
                 }
                 .scaledToFit()
                 .frame(width: 60,height: 60)
                 .cornerRadius(12)
-            
+                
                 VStack(alignment: .leading){
-                    Text(playerManager.track?.songName ?? "")
+                    Text(playerManager.track?.songName ?? "음악을 재생하세요")
                         .font(.system(size: 18))
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity,alignment: .leading)
@@ -57,7 +56,7 @@ struct PlayFooterCell: View {
                         if playerManager.isPlaying {
                             playerManager.pause()
                         } else {
-                            playerManager.player.play()
+                            playerManager.play()
                         }
                     }
                 Image(systemName: "chevron.right.to.line")
@@ -74,10 +73,10 @@ struct PlayFooterCell: View {
         .fullScreenCover(isPresented: $isShowingPlayer){
             // 해당 부분 통일
             PlayMusicView(temp: PlaylistTrackModel(id: "aaa",
-                                                    songName: "title",
-                                                    artist: "artist",
-                                                    coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
-                                                    songTime: 200,
+                                                   songName: "title",
+                                                   artist: "artist",
+                                                   coverImage: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
+                                                   songTime: 200,
                                                    url: ""
                                                   ))
         }
