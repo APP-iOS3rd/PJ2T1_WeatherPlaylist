@@ -176,6 +176,23 @@ extension PlayerManager {
         }
     }
     
+    func getTime(songDuration : Double) -> String {
+        let seconds : Int = Int(songDuration) % 60
+        let minutes : Int = Int(songDuration) / 60
+        var returnSeconds : String = ""
+        var returnMinutes : String = ""
+        var myTime : String = ""
+        if seconds >= 10 {
+            returnSeconds = ":\(seconds)"
+        } else {
+            returnSeconds = ":0\(seconds)"
+        }
+        returnMinutes = "\(minutes)"
+        myTime = returnMinutes + returnSeconds
+        
+        return myTime
+    }
+    
     private func createPlayer(completion: @escaping () -> Void) {
         DispatchQueue.main.async { [weak self] in
             do {
