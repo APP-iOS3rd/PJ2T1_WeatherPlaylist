@@ -17,16 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="character" translatesAutoresizingMaskIntoConstraints="NO" id="OBy-Qi-aZq">
-                                <rect key="frame" x="125" y="224" width="142" height="57"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slim" translatesAutoresizingMaskIntoConstraints="NO" id="OkB-Nt-aJ3">
+                                <rect key="frame" x="76" y="222" width="241" height="128"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" name="AccentColor"/>
                         <constraints>
-                            <constraint firstItem="OBy-Qi-aZq" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="165" id="M36-Aw-PjA"/>
-                            <constraint firstItem="OBy-Qi-aZq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XvV-AB-QbF"/>
-                            <constraint firstItem="OBy-Qi-aZq" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="125" id="vXd-Cu-GSx"/>
+                            <constraint firstItem="OkB-Nt-aJ3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Ha-lJ-vpJ"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="OkB-Nt-aJ3" secondAttribute="bottom" constant="468" id="DVS-hA-I7M"/>
+                            <constraint firstItem="OkB-Nt-aJ3" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="163" id="IuL-Ry-fEH"/>
+                            <constraint firstItem="OkB-Nt-aJ3" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="76" id="eyM-o9-pOe"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,7 +37,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="character" width="141.8699951171875" height="56.680000305175781"/>
+        <image name="slim" width="137.33999633789062" height="154.11000061035156"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

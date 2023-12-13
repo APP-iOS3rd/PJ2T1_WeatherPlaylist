@@ -17,8 +17,10 @@ struct LaunchView: View {
             VStack {
                 Spacer()
                 VStack(spacing: 20) {
-                    Image("appIcon")
-                        .frame(width: 300)
+                    Image("slim")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200)
                        
                     
                     Text("오늘 뭐 듣지?")
