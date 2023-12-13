@@ -11,20 +11,23 @@ struct PlayFooterCell: View {
     @Environment(\.colorScheme) var scheme
     @EnvironmentObject var playerManager: PlayerManager
     @State private var isShowingPlayer = false
+    @State private var value = 0
+    private var maxValue = 30.0
+    @StateObject var player = PlayerManager.shared
     @StateObject var viewModel: PlayMusicViewModel  = .init()
     
     var body: some View{
-        
+        VStack {
         HStack {
             HStack{
-                    AsyncImage(url:
-                                URL(string: playerManager.track?.coverImage ?? "")) {
-                        image in
-                        image
-                            .resizable()
-                            .padding(8)
-                        
-                    } placeholder: {
+                AsyncImage(url:
+                            URL(string: playerManager.track?.coverImage ?? "")) {
+                    image in
+                    image
+                        .resizable()
+                        .padding(8)
+                    
+                } placeholder: {
                     ProgressView()
                 }
                 .scaledToFit()
@@ -70,6 +73,24 @@ struct PlayFooterCell: View {
             }
             .offset(x: -25, y: 0)
             .padding(.leading, 15)
+        }
+            CustomSlider(value: $player.songTime, maxValue: maxValue)
+                .frame(height: 3)
+            Slider(value: $player.songTime,
+                   in: 0...30,
+                   step: 1,
+                   onEditingChanged: { data in
+                if data == true {
+                    player.pause()
+                    let value = player.songTime
+                    player.changeTime(time: value)
+                } else {
+                    let value = player.songTime
+                    player.changeTime(time: value)
+                    player.play()
+                }
+            })
+            .hidden()
         }
         .background(
             scheme == .light ? Color("lightBg") : Color("darkBg")
