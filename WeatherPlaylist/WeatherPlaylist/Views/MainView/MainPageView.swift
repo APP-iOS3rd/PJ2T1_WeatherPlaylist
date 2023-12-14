@@ -24,7 +24,7 @@ struct MainPageView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
                         if viewModel.recommendedModelList.isEmpty {
-                            ProgressView("로딩 중 (\(viewModel.recommendedModelList.count)개의 항목)")
+                            ProgressView()
                         } else {
                             // NavigationLinks 동적으로 생성
                             topView
