@@ -34,7 +34,7 @@ extension PlaylistViewModel {
         if self.player.isPlaying {
             player.pause()
         } else {
-            player.playTrackList(tracklist: self.playlist, playlistId: self.uid)
+            player.playTrackList(tracklist: self.playlist, playlistID: self.playlistInfo.id)
         }
         self.playlistInfo.isPlaying = self.playlistInfo.isPlaying.map{$0 == true ? false : true}
     }
