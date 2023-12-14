@@ -19,13 +19,14 @@
 		<string>Pretendard-Thin.otf</string>
 	</array>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
 	</array>
-=======
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>날씨 정보를 얻어오기 위해 현재 위치 정보가 필요합니다</string>
->>>>>>> 014aabf (plist 로케이션 관련 작성)
+
+
 </dict>
 </plist>
