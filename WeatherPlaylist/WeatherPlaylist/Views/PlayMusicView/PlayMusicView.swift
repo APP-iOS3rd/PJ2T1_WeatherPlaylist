@@ -269,10 +269,7 @@ extension PlayMusicView {
                                 .listRowBackground(Color.gray.opacity(0.7))
                             }
                         }
-                        
-                        
                     }.scrollContentBackground(.hidden)
-                    
                     
                 }.background(Color.gray.opacity(0.9))
             }
