@@ -22,7 +22,6 @@ struct PlaylistView: View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 ZStack(alignment: .top) {
-                    
                     // Bottom Layer : 플레이리스트
                     VStack(alignment: .leading) {
                         Section {
