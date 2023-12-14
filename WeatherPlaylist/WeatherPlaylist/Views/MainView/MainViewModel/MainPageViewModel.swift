@@ -9,7 +9,11 @@ import Combine
 final class MainPageViewModel: ObservableObject {
 
     // 여러 쿼리를 던지고 각각 쿼리에 따라 리스트를 담을 배열
-    var recommendedModelList: [[RecommendedPlayListModel]] = []
+    var recommendedModelList: [[RecommendedPlayListModel]] = [] {
+        didSet {
+            print("Recommended Model List Count: \(recommendedModelList.count)")
+        }
+    }
     // 쿼리 중 랜덤으로 mainViewTitle을 지정
     @Published var mainViewTitle: String = ""
     
@@ -22,6 +26,7 @@ final class MainPageViewModel: ObservableObject {
     private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
 
     init() {
+        fetchProfile()
         settingWeatherData()
         WeatherAPI.shared.delegate = self
     }
@@ -31,6 +36,7 @@ final class MainPageViewModel: ObservableObject {
         locationManager.startUpdatingLocation()
         print("위도: \(locationManager.latitude), 경도: \(locationManager.longitude)")
         
+        print()
         spotifyQuery = [] // 쿼리 초기화
         weatherData.feachWeatherData(lat: locationManager.latitude, lon: locationManager.longitude)
     }
@@ -52,13 +58,18 @@ final class MainPageViewModel: ObservableObject {
         // 쿼리 수 만큼 반복
         for index in 0..<spotifyQuery.count {
             let manager: HTTPManager<SearchResponse> = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: spotifyQuery[index]))
+            print("쿼리 불러오기 성공 : \(spotifyQuery[index])")
             Task { @MainActor in
 
                 let response = await manager.fetchData()
                 switch response {
+                    /*‼️ 사용자 로그아웃 출력 시 넘어가지 않음 그래서 recommendedModelList에 
+                     쿼리에 따른 플레이리스트 목록이 들어가지 않아서 무한로딩이 발생함
+                     1. 로그아웃 상태 시 로그인 뷰로 전환하는 게 필요해 보임
+                     */
                 case .success(let data):
                     let recommendedModelList = data.toRecommendedPlayListModel()
-                   
+                    print("success : \(recommendedModelList)")
                     // 배열이 해당 인덱스에 값을 가졌는지 확인 (있으면 리스트 바꾸고 없으면 리스트 추가)
                     if index < self.recommendedModelList.count {
                         // 배열의 인덱스에 값을 할당
@@ -124,6 +135,7 @@ final class MainPageViewModel: ObservableObject {
 
 extension MainPageViewModel: WeatherAPIDelegate{
     func didUpdateSpotifyRandomQuery(query: String) {
+        print(query)
         self.spotifyQuery.append(query)
     }
 }

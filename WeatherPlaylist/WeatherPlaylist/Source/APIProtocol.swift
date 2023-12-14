@@ -51,7 +51,7 @@ extension APIRequestProtocol {
         components.host = "accounts.spotify.com"
         components.path = "/api/token"
         components.queryItems = refreshParams.map({URLQueryItem(name: $0, value: $1)})
-        guard let url = components.url else { return false}
+        guard let url = components.url else {return false}
         var urlRequest = URLRequest(url: url)
         let auth = Data("\(clientID):\(clientSecret)".utf8).base64EncodedString()
         urlRequest.setValue("Basic " + auth, forHTTPHeaderField: "Authorization")
@@ -122,7 +122,8 @@ extension APIRequestProtocol {
                 print(httpResponse.description)
                 return .failure(.httpError(.badRequestError))
             case 401, 403:
-                if await isRefreshTokenSuccessed() {
+                let refreshed = await isRefreshTokenSuccessed()
+                if refreshed {
                     SigningManager.shared.isLogout = false
                     return await fetchData()
                 } else {

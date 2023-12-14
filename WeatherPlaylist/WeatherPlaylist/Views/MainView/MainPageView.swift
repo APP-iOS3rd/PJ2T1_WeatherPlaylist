@@ -15,7 +15,7 @@ struct MainPageView: View {
     @State var recommendedModelListIndex: Int = 0
     
     // 싱글톤 패턴으로 날씨 데이터를 가져옴
-    @ObservedObject var weatherLogic = WeatherLogic.shared
+    @ObservedObject var weatherLogic = WeatherAPI.shared
     
     
     var body: some View {
@@ -23,32 +23,25 @@ struct MainPageView: View {
             ZStack(alignment: .bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack{
-                    
                         if viewModel.recommendedModelList.isEmpty {
-                            ProgressView() // 값이 없을 때 기다림을 나타내는 ProgressView
+                            ProgressView("로딩 중 (\(viewModel.recommendedModelList.count)개의 항목)")
                         } else {
                             // NavigationLinks 동적으로 생성
                             topView
                             PlaylistVertical(viewModel: viewModel, recommendedModelListIndex: 0)
                             PlaylistVertical(viewModel: viewModel, recommendedModelListIndex: 1)
                         }
-                        
-                        
                     }
                     .padding(.bottom,40)
-                }.refreshable {
+                }
+                .refreshable {
                     viewModel.settingWeatherData()
-//                    print("문제가 뭘까?\(viewModel.RecommendedModelList)"
-//                    )
-                    // 쿼리 질의문 까지 같이 변경하여
-                    // 바꾼 쿼리로 스포티파이 API 호출 후 리스트 가져오기
                 }
             }
         }
         .onAppear {
-            weatherLogic.isChecking = true
+//            weatherLogic.isChecking = false
         }
-
     }
     
     @ViewBuilder private var background: some View {

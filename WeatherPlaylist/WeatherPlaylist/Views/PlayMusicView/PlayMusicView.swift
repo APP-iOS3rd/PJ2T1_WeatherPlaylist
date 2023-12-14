@@ -89,7 +89,7 @@ extension PlayMusicView {
             //                }
             //            }
             AsyncImage(url:
-                        URL(string: viewModel.playMusicModel.coverImage)) {
+                        URL(string: player.track?.coverImage ?? "")) {
                 image in
                 image
                     .resizable()
@@ -107,10 +107,10 @@ extension PlayMusicView {
             
             HStack{
                 VStack{
-                    Text(viewModel.playMusicModel.songName)
+                    Text(player.track?.songName ?? "")
                         .font(.bold28)
                         .frame(maxWidth: .infinity,alignment: .leading)
-                    Text(viewModel.playMusicModel.artist)
+                    Text(player.track?.artist ?? "")
                         .font(.regular18)
                         .frame(maxWidth: .infinity,alignment: .leading)
                 }
@@ -145,24 +145,24 @@ extension PlayMusicView {
             .padding(.horizontal)
             
             HStack{
-//                HStack {
-                    Slider(value: $player.songTime,
-                           in: 0...30,
-                           step: 1,
-                           onEditingChanged: { data in
-                        if data == true {
-                            player.pause()
-                            let value = player.songTime
-                            player.changeTime(time: value)
-                        } else {
-                            let value = player.songTime
-                            player.changeTime(time: value)
-                            player.play()
-                        }
-                    })
-                    
-                    Spacer()
-//                }
+                //                HStack {
+                Slider(value: $player.songTime,
+                       in: 0...30,
+                       step: 1,
+                       onEditingChanged: { data in
+                    if data == true {
+                        player.pause()
+                        let value = player.songTime
+                        player.changeTime(time: value)
+                    } else {
+                        let value = player.songTime
+                        player.changeTime(time: value)
+                        player.play()
+                    }
+                })
+                
+                Spacer()
+                //                }
             }
             .padding(.horizontal)
         }
@@ -178,23 +178,33 @@ extension PlayMusicView {
                 Image(systemName: "shuffle")
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(.colorBlack)
+                    .foregroundStyle(player.isShuffling ? .accent : .colorBlack)
                     .frame(height: 22)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.isShuffling.toggle()
+                    }
                 Spacer()
                 Image(systemName: "backward.end.fill")
                     .resizable()
                     .scaledToFit()
                     .foregroundStyle(.colorBlack)
                     .frame(height: 24)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.goPrevTrack()
+                    }
                 Spacer()
-                Image(systemName: "play.fill")
+                Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
                     .resizable()
                     .scaledToFit()
                     .foregroundStyle(.colorBlack)
                     .frame(height: 32)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        if player.isPlaying {
+                            player.pause()
+                        } else {
+                            player.play()
+                        }
+                    }
                 
                 Spacer()
                 Image(systemName: "forward.end.fill")
@@ -202,14 +212,18 @@ extension PlayMusicView {
                     .scaledToFit()
                     .foregroundStyle(.colorBlack)
                     .frame(height: 24)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.goNextTrack()
+                    }
                 Spacer()
                 Image(systemName: "repeat")
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(.colorBlack)
+                    .foregroundStyle(player.isRepeating ? .accent : .colorBlack)
                     .frame(height: 22)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.isRepeating.toggle()
+                    }
                 
             }.padding()
         }
@@ -221,46 +235,47 @@ extension PlayMusicView {
             NavigationView {
                 VStack{
                     List {
-                        ForEach(viewModel.playlistModelList.indices, id: \.self) { index in
-                            HStack{
-                                
-                                let playlistModel = viewModel.playlistModelList[index]
-                                
-                                AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
+                        if let tracks = PlayerManager.shared.tracks {
+                            ForEach(tracks.indices, id: \.self) { index in
+                                HStack{
+                                    
+                                    let playlistModel = tracks[index]
+      
+                                    AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(4)
+                                    
+                                    
+                                    VStack(alignment: .leading){
+                                        Text(playlistModel.songName)
+                                            .font(.headline)
+                                            .foregroundStyle(playlistModel.songName == player.track?.songName ? .accent : .colorBlack)
+                                        Text(playlistModel.artist)
+                                            .font(.body)
+                                            .foregroundStyle(playlistModel.songName == player.track?.songName ? .accent : .colorBlack)
+                                    }
                                 }
-                                .frame(width: 50, height: 50)
-                                .cornerRadius(4)
-                                
-                                
-                                VStack(alignment: .leading){
-                                    Text(playlistModel.songName)
-                                        .font(.headline)
-                                        .foregroundStyle(.colorBlack)
-                                    Text(playlistModel.artist)
-                                        .font(.body)
-                                        .foregroundStyle(.colorBlack)
+                                .onTapGesture {
+                                    player.playTrack(track: tracks[index],
+                                                     playlistID: tracks[index].id,
+                                                            tracklist: tracks
+                                    )
+                                    self.isShowingPlayer.toggle()
                                 }
+                                .listRowBackground(Color.gray.opacity(0.7))
                             }
-                            .listRowBackground(Color.gray.opacity(0.7))
                         }
-                        .onMove(perform: moveTrack)
-                        .onDelete(perform: deleteTrack)
-                    }
-                    .scrollContentBackground(.hidden)
+                        
+                        
+                    }.scrollContentBackground(.hidden)
                     
-                }
-                
-                .background(Color.gray.opacity(0.9))
-                .toolbar {
-                    ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                        EditButton()
-                    }
-                }
+                    
+                }.background(Color.gray.opacity(0.9))
             }
-            
             
         }
     }

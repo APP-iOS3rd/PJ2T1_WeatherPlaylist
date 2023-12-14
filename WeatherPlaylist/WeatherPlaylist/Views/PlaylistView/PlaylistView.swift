@@ -15,13 +15,14 @@ struct PlaylistView: View {
     @Environment(\.dismiss) var dismiss
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
+    @StateObject var playerManager = PlayerManager.shared
+    
     
     
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 ZStack(alignment: .top) {
-                    
                     // Bottom Layer : 플레이리스트
                     VStack(alignment: .leading) {
                         Section {
@@ -30,8 +31,13 @@ struct PlaylistView: View {
                                                 songName: song.songName,
                                                 artist: song.artist,
                                                 coverImage: song.coverImage,
-                                                songTime: song.songTime)
+                                                songTime: song.songTime,
+                                                currentName: playerManager.track?.songName ?? ""
+                                )
                                 .onTapGesture {
+                                    playerManager.playTrack(track: song,
+                                                            playlistID: viewModel.playlistInfo.id,
+                                                            tracklist: viewModel.playlist)
                                     self.isShowingPlayer.toggle()
                                 }
                                 .fullScreenCover(isPresented: $isShowingPlayer){

@@ -35,7 +35,9 @@ struct PlaylistHorizontal: View {
                                     songName: song.songName,
                                     artist: song.artist,
                                     coverImage: song.coverImage,
-                                    songTime: song.songTime)
+                                    songTime: song.songTime,
+                                    currentName: ""
+                    )
                     
                 }
                    

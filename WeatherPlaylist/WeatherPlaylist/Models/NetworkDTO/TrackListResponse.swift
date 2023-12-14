@@ -19,7 +19,7 @@ struct TrackListResponse: Codable {
                return .init(id: track.track.id,
                       songName: track.track.name,
                       artist: temp,
-                      coverImage: track.track.album.images.min()?.url ?? "",
+                      coverImage: track.track.album.images.max()?.url ?? "",
                       songTime: track.track.durationMS,
                             url: track.track.previewURL ?? ""
                )

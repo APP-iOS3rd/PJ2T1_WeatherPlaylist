@@ -18,6 +18,12 @@ class WeatherAPI: ObservableObject {
     static let shared = WeatherAPI()
     private init() { }
     
+    @Published var isChecking: Bool = UserDefaults.standard.bool(forKey: "weatherChecking") {
+        didSet {
+            UserDefaults.standard.setValue(self.isChecking, forKey: "weatherChecking")
+            print(self.isChecking ? "체크중" : "체크해제")
+        }
+    }
   
     @Published var weatherInformation = [WeatherTotalData]()
     
@@ -53,6 +59,7 @@ class WeatherAPI: ObservableObject {
     }
     
     func feachWeatherData(lat: Double, lon: Double) {
+        
         //print(apiKey)
         guard let apiKey = apiKey else { return }
         
@@ -80,22 +87,44 @@ class WeatherAPI: ObservableObject {
                 print("No data received")
                 return
             }
-            
+        
             do {
                 let json = try JSONDecoder().decode(WeatherTotalData.self, from: data)
-
                 DispatchQueue.main.async {
                     self.weatherInformation = [json]
+                
                     
-                    // ⭐️ 파싱이 끝나면 user의 날씨 데이터만 가져오는 SettingLogic을 실행
-                    self.fetchUserWeatherData()
+                    if self.isChecking == true {
+                        print("fetchUserWeatherData 실행")
+                        self.fetchUserWeatherData()
+                    } else {
+                        print("fetchUserMusicCategoryData 실행")
+                        self.fetchUserMusicCategoryData()
+                    }
                 }
-            }  catch let error {
+                        
+              
+            } catch let error {
                 print(error.localizedDescription)
             }
-            
         }
         task.resume()
+    }
+    
+    func fetchUserMusicCategoryData() {
+        // 스포티파이 키워드
+        var keyword1 = getRandomKeyword()
+        var keyword2 = getRandomKeyword()
+        
+        // 스포티파이 쿼리 질의문 = 날씨 정보 해제 한다면 랜덤 키워드 던짐
+        let spotifyQuery1 = "\(keyword1)"
+        let spotifyQuery2 = "\(keyword2)"
+        
+        // ⭐️ 최종 스포티파이 질의문 전달
+//        print("날씨 데이터 추적 안함 \(spotifyQuery1)")
+//        print("날씨 데이터 추적 안함 \(spotifyQuery2)")
+        delegate?.didUpdateSpotifyRandomQuery(query: spotifyQuery1)
+        delegate?.didUpdateSpotifyRandomQuery(query: spotifyQuery2)
     }
     
     func fetchUserWeatherData() {
@@ -130,7 +159,13 @@ class WeatherAPI: ObservableObject {
     
     }
 
-
+    func getRandomKeyword() -> String {
+        let keywords = ["운동", "감성발라드", "휴식할때", "공부할때", "팝송모음", "발라드모음", "헬창노래", "감성 팝"]
+        guard let randomKeyword = keywords.randomElement() else {
+            return "기본값" // 키워드 배열이 비어있을 경우 기본값을 반환하거나 원하는 다른 처리를 할 수 있습니다.
+        }
+        return randomKeyword
+    }
     
     func getSeasonStatus(season: String) -> String {
         switch season {

@@ -12,7 +12,6 @@ struct PlayFooterCell: View {
     @EnvironmentObject var playerManager: PlayerManager
     @State private var isShowingPlayer = false
     @StateObject var player = PlayerManager.shared
-    @StateObject var viewModel: PlayMusicViewModel  = .init()
     
     var body: some View{
         VStack {
