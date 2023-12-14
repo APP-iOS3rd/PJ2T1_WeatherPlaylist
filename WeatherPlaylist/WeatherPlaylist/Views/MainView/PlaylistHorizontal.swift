@@ -10,7 +10,6 @@ import SwiftUI
 struct PlaylistHorizontal: View {
     @State var sectionTitle: String = ""
     @State var sectionSubTitle: String = "추천 선곡"
-    
     @State var playlistInfo: PlayListInfo = .init(playlistName: "aaaa",
                                                   playlistDescription: "aaaaaaa",
                                                   coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
@@ -40,7 +39,7 @@ struct PlaylistHorizontal: View {
 //                    )
 //                    
 //                }
-                   
+
             }
             .padding(EdgeInsets(top: 0,
                                 leading: 24,

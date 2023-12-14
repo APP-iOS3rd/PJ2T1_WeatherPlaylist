@@ -106,6 +106,7 @@ extension PlayerManager {
             }
         } else {
             self.pause()
+
         }
         self.play()
     }

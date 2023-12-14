@@ -23,6 +23,7 @@ struct WeatherPlaylistApp: App {
     @ObservedObject var appState = AppState.shared
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     
     var body: some Scene {
         WindowGroup {

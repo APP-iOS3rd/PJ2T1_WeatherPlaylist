@@ -28,6 +28,7 @@ struct PlaylistControllerView: View {
                     viewModel.pushPlayButton()
                 } label: {
                     Image(systemName: viewModel.setPlayerIconWithPlayingState())
+
                         .foregroundStyle(Color.colorBlack)
                         .font(.system(size: 40))
                 }

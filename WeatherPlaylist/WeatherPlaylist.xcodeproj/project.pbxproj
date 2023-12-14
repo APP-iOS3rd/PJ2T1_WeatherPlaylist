@@ -817,6 +817,7 @@
 /* Begin XCBuildConfiguration section */
 		DA637F6F2B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -880,6 +881,7 @@
 		};
 		DA637F702B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -936,6 +938,7 @@
 		};
 		DA637F722B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -978,6 +981,7 @@
 		};
 		DA637F732B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

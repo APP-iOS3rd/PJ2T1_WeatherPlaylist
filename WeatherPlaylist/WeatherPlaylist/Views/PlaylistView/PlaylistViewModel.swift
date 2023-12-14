@@ -32,6 +32,7 @@ extension PlaylistViewModel {
     
     func pushPlayButton() {
         if self.player.isPlaying && self.playlistInfo.id == self.player.currentPlaylistID {
+
             player.pause()
         } else {
             player.playTrackList(tracklist: self.playlist, playlistID: self.playlistInfo.id)
@@ -75,6 +76,7 @@ extension PlaylistViewModel {
             case .success(let response) :
                 isLoading = false
                 playlist = response.toPlaylistTrackModel.filter { !$0.url.isEmpty }
+
             case .failure(let error):
                 isLoading = false
             }
@@ -102,6 +104,7 @@ extension PlaylistViewModel {
             return "play.fill"
         }
     }
+
 }
 
 // MARK: 더미 데이터 생성을 위한 클래스

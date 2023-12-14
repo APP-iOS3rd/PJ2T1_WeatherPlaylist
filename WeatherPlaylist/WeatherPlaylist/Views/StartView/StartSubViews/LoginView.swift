@@ -65,6 +65,7 @@ struct LoginView: View {
                                 .cornerRadius(40)
                         }
                         Spacer()
+
                     }
                     .onAppear {
                         if let _ = UserDefaults.standard.value(forKey: "AccessToken") {

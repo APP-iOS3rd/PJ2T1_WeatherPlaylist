@@ -24,9 +24,9 @@ final class MainPageViewModel: ObservableObject {
     // 데이터가 로딩 중인지 파악 true 되어야 MainView가 열릴 수 있음
     @Published var isLoading: Bool = false
     private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
-    
     @Published var appState = AppState.shared
     
+
     init() {
         fetchProfile()
         settingWeatherData()
@@ -56,7 +56,7 @@ final class MainPageViewModel: ObservableObject {
     }
 
     func fetchPlayListModel() {
-  
+
         // 쿼리 수 만큼 반복
         for index in 0..<spotifyQuery.count {
             let manager: HTTPManager<SearchResponse> = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: spotifyQuery[index]))
@@ -80,6 +80,7 @@ final class MainPageViewModel: ObservableObject {
                         // 인덱스가 범위를 벗어난 경우 리스트 추가
                         self.recommendedModelList.append(recommendedModelList)
                     }
+
                 case .failure(let error):
                     switch error {
                     case .httpError(let httpError) :
@@ -89,6 +90,7 @@ final class MainPageViewModel: ObservableObject {
                             UserDefaults.standard.removeObject(forKey: "AccessToken")
                             UserDefaults.standard.removeObject(forKey: "RefreshToken")
                             appState.rootViewId = UUID()
+
                         default:
                             print(error.errorDescription)
                         }

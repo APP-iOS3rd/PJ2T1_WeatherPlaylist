@@ -25,6 +25,7 @@ struct MainPageView: View {
                     VStack{
                         if viewModel.recommendedModelList.isEmpty {
                             ProgressView()
+
                         } else {
                             // NavigationLinks 동적으로 생성
                             topView
