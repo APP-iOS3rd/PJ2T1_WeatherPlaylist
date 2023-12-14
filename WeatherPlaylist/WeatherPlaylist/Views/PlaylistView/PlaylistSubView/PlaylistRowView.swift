@@ -13,6 +13,8 @@ struct PlaylistRowView: View {
     var artist: String
     var coverImage: String
     var songTime: Int
+    var currentName: String
+
     
     var body: some View {
         // MARK: 이미지 임시 구성
@@ -25,21 +27,29 @@ struct PlaylistRowView: View {
             }
             .frame(width: 48, height: 48)
             .padding(.trailing, 24)
-            
-            VStack(alignment: .leading) {
-                Text(songName)
-                    .font(.bold16)
-                    .foregroundStyle(.colorBlack)
-                HStack {
-                    Text(artist)
-                        .font(.light14)
-                        .foregroundStyle(.colorBlack)
-                    Text(changeTimeIntToString(songTime))
-                        .font(.light14)
-                        .foregroundStyle(.colorBlack)
+
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(songName)
+                        .font(.bold16)
+                        .foregroundStyle(currentName == songName ? .accent : .colorFont)
+                    HStack {
+                        Text(artist)
+                            .font(.light14)
+                            .foregroundStyle(currentName == songName ? .accent : .colorFont)
+                        Text(changeTimeIntToString(songTime))
+                            .font(.light14)
+                            .foregroundStyle(currentName == songName ? .accent : .colorFont)
+                    }
+                }
+                Spacer()
+                if currentName == songName {
+                    MusicIcon()
+                        .frame(width: 30, height: 30)
+                        .clipped()
                 }
             }
-            Spacer()
+
         }
     }
     

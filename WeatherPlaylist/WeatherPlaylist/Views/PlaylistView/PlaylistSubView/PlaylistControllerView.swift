@@ -27,7 +27,8 @@ struct PlaylistControllerView: View {
                 Button {
                     viewModel.pushPlayButton()
                 } label: {
-                    Image(systemName: playerManager.isPlaying == true ? "pause.fill" : "play.fill")
+                    Image(systemName: viewModel.setPlayerIconWithPlayingState())
+
                         .foregroundStyle(Color.colorBlack)
                         .font(.system(size: 40))
                 }

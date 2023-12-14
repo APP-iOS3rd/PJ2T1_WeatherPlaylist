@@ -35,6 +35,8 @@ struct NavigationHeaderView: View {
 
                     PlaylistCoverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
                        .frame(maxWidth: .infinity)
+                       .padding(.bottom,12)
+
                     PlaylistHeader()
                         .environmentObject(viewModel)
 
@@ -80,7 +82,8 @@ struct NavigationHeaderView: View {
                         Button {
                            viewModel.pushPlayButton()
                         } label: {
-                           Image(systemName:  "play.fill")
+                            Image(systemName: viewModel.setPlayerIconWithPlayingState())
+
                                .foregroundStyle(.white)
                                .font(.system(size: 24))
 

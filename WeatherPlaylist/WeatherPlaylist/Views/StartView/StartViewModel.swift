@@ -81,6 +81,13 @@ struct NavigationUtil {
   }
 }
 
-final class AppState : ObservableObject {
+class AppState: ObservableObject {
     @Published var rootViewId = UUID()
+
+    // Create a static constant instance of the class
+    static let shared = AppState()
+
+    // Private initializer to prevent creating multiple instances
+    private init() {}
+
 }
