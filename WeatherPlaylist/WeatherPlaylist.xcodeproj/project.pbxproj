@@ -22,6 +22,7 @@
 		01D7ACB62B2A026D0097410D /* PlaylistCoverImageSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACB52B2A026D0097410D /* PlaylistCoverImageSmallView.swift */; };
 		01D7ACBB2B2A1B730097410D /* Border+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACBA2B2A1B730097410D /* Border+Shape.swift */; };
 		01D7ACBF2B2A23AD0097410D /* NavigationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACBE2B2A23AD0097410D /* NavigationHeaderView.swift */; };
+		01D7ACC12B2AD23F0097410D /* MusicIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACC02B2AD23F0097410D /* MusicIcon.swift */; };
 		2864B1542B29A0F400DBA73C /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */; };
 		2864B1562B29A10C00DBA73C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2864B1552B29A10C00DBA73C /* CustomSlider.swift */; };
 		28A621A92B21514000575D16 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 28A621A82B21514000575D16 /* SpotifyiOS */; };
@@ -153,6 +154,7 @@
 		01D7ACB52B2A026D0097410D /* PlaylistCoverImageSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCoverImageSmallView.swift; sourceTree = "<group>"; };
 		01D7ACBA2B2A1B730097410D /* Border+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Border+Shape.swift"; sourceTree = "<group>"; };
 		01D7ACBE2B2A23AD0097410D /* NavigationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderView.swift; sourceTree = "<group>"; };
+		01D7ACC02B2AD23F0097410D /* MusicIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIcon.swift; sourceTree = "<group>"; };
 		2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		2864B1552B29A10C00DBA73C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		641F2B412B2823670001638B /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				016AE6D12B26C9880096CE89 /* HeaderView */,
 				014DFB362B215E4400B155EE /* PlayFooterCell */,
 				DA29F7C22B206E39003085B9 /* BottomDrawer */,
+				01D7ACC02B2AD23F0097410D /* MusicIcon.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				6A0DF8642B26D4D10032153F /* (null) in Sources */,
 				DAA3316D2B26FDEF00D3225F /* LocationManager.swift in Sources */,
 				DAA331882B26FF2400D3225F /* PlaylistViewModel.swift in Sources */,
+				01D7ACC12B2AD23F0097410D /* MusicIcon.swift in Sources */,
 				DADECABB2B2149F5008ADA03 /* Alignment+Extensions.swift in Sources */,
 				016AE6D32B26C9A20096CE89 /* PlayMusicListModel.swift in Sources */,
 				DA44E8EF2B26DD6000681AE5 /* SearchResponse.swift in Sources */,
