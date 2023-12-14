@@ -44,6 +44,8 @@ struct NavigationHeaderView: View {
                 .frame(maxWidth:.infinity,maxHeight: .infinity)
                 .background(Color.lightBg)
                 .overlay(BottomBorder().stroke(Color.gray.opacity(0.1), lineWidth:1))
+                .ignoresSafeArea()
+
 
 
             } else {
@@ -61,16 +63,17 @@ struct NavigationHeaderView: View {
                                     .frame(width:20,height: 20)
                                     .scaleEffect(1)
                             }
-                            Spacer()
+                            
+                            HStack{
+                                PlaylistCoverImageSmallView(coverImageUrl: viewModel.playlistInfo.image ?? "")
+                                Text(viewModel.playlistInfo.mainTitle)
+                                    .font(.headline)
+                                    .frame(maxWidth: .infinity, alignment:.leading)
+                            }
                         }
-                        .padding(.bottom,8)
+                        
 
-                        HStack{
-                            PlaylistCoverImageSmallView(coverImageUrl: viewModel.playlistInfo.image ?? "")
-                            Text(viewModel.playlistInfo.mainTitle)
-                                .font(.headline)
-                                .frame(maxWidth: .infinity, alignment:.leading)
-                        }
+                        
                      }
                     .padding()
                     .background(Color.lightBg)
@@ -91,8 +94,10 @@ struct NavigationHeaderView: View {
                         .cornerRadius(48)
                     }
                     .padding()
-                    .offset(y:80)
+                    .offset(y:60)
                 }
+                .ignoresSafeArea()
+
             }
         }
     }
