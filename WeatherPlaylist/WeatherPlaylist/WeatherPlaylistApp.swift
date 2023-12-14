@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct WeatherPlaylistApp: App {
-    @ObservedObject var appState = AppState()
+    @ObservedObject var appState = AppState.shared
     
     var body: some Scene {
         WindowGroup {
