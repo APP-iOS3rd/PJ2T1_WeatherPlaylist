@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PlayMusicView: View {
-    //    @State var temp: MusicModel
     @State var temp: PlaylistTrackModel
     
     @Environment(\.dismiss) var dismiss
@@ -19,7 +18,7 @@ struct PlayMusicView: View {
     
     var body: some View {
         NavigationStack {
-            HeaderView(title: viewModel.playMusicModel.playlistTitle)
+            HeaderView()
             ZStack {
                 VStack {
                     musicImageView
@@ -122,7 +121,7 @@ extension PlayMusicView {
                     .scaleEffect(1)
                 
             }
-            .padding(.vertical,24)
+            .padding(.vertical,20)
             .padding(.horizontal)
             
         }
@@ -166,7 +165,7 @@ extension PlayMusicView {
             }
             .padding(.horizontal)
         }
-        .padding(.top, 14)
+        .padding(.top, 10)
         .padding(.horizontal, 0)
         
     }
