@@ -44,9 +44,11 @@ struct PlaylistScrollView: View {
                                 }
                                 Text(model.mainTitle)
                                     .font(.bold14)
-                                Text(model.singers ?? "가수들")
+                                    .foregroundStyle(Color.colorBlack)
+                                Text(model.singers ?? "Various Artists")
                                     .font(.light10)
                                     .lineLimit(1)
+                                    .foregroundStyle(Color.colorBlack)
                             }.frame(width: 100)
                                 .padding(.vertical,20)
                                 .padding(.horizontal,10)

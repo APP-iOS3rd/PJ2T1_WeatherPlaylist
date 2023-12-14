@@ -28,15 +28,24 @@ struct MyPageView: View {
                         Spacer()
                         Toggle(isOn: $weather.isChecking, label: {})
                     }
-                    Button {
-                        UserDefaults.standard.removeObject(forKey: "AccessToken")
-                        UserDefaults.standard.removeObject(forKey: "RefreshToken")
-                        appState.rootViewId = UUID()
-                    } label: {
-                        Text("로그아웃")
+                    Spacer()
+                    
+                    HStack{
+                        Spacer()
+                        Button {
+                            UserDefaults.standard.removeObject(forKey: "AccessToken")
+                            UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                            appState.rootViewId = UUID()
+                        } label: {
+                            Text("로그아웃")
+                                .foregroundStyle(Color.colorBlack)
+                                .underline()
+                                .font(.light14)
+                            
+                        }
                     }
                 }.padding(.top)
-                    .padding(.horizontal, 25)
+                .padding(.horizontal, 25)
                 Spacer()
             }.overlay(content: {
                 if viewModel.isLoading {
