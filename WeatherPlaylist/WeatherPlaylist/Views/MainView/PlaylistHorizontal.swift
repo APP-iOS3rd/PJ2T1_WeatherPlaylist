@@ -29,22 +29,18 @@ struct PlaylistHorizontal: View {
             
       
             LazyVStack(alignment: .leading) {
-<<<<<<< HEAD
-                ForEach(dummyData) { song in
-                    PlaylistRowView(id: song.id,
-                                    songName: song.songName,
-                                    artist: song.artist,
-                                    coverImage: song.coverImage,
-                                    songTime: song.songTime,
-                                    currentName: ""
-                    )
-                    
-                }
-=======
-              
->>>>>>> 1a11274 (firebase 배포 추가)
+
+//                ForEach(dummyData) { song in
+//                    PlaylistRowView(id: song.id,
+//                                    songName: song.songName,
+//                                    artist: song.artist,
+//                                    coverImage: song.coverImage,
+//                                    songTime: song.songTime,
+//                                    currentName: ""
+//                    )
+//                    
+//                }
                    
-                
             }
             .padding(EdgeInsets(top: 0,
                                 leading: 24,
