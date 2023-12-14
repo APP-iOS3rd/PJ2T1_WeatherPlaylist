@@ -28,6 +28,7 @@ final class MainPageViewModel: ObservableObject {
     @Published var appState = AppState.shared
     
     init() {
+        fetchProfile()
         settingWeatherData()
         WeatherAPI.shared.delegate = self
     }

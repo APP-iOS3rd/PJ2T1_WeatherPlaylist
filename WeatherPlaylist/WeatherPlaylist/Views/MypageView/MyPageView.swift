@@ -11,7 +11,6 @@ struct MyPageView: View {
     @StateObject var viewModel: ProfileViewModel = .init()
     @ObservedObject var weather: WeatherLogic = .shared
     @ObservedObject var appState = AppState.shared
-    
     var body: some View {
             VStack {
                 ProfileView()

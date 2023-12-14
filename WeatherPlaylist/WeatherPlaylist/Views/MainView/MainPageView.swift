@@ -40,7 +40,7 @@ struct MainPageView: View {
             }
         }
         .onAppear {
-            weatherLogic.isChecking = false
+//            weatherLogic.isChecking = false
         }
     }
     

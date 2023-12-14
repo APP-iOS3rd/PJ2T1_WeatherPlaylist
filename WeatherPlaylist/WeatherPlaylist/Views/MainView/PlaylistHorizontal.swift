@@ -11,7 +11,6 @@ struct PlaylistHorizontal: View {
     @State var sectionTitle: String = ""
     @State var sectionSubTitle: String = "추천 선곡"
     
-    let dummyData = MusicListDummyManager().list.prefix(4)
     @State var playlistInfo: PlayListInfo = .init(playlistName: "aaaa",
                                                   playlistDescription: "aaaaaaa",
                                                   coverImageUrl: "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000bebbefacbaef716e41536fab68d4",
@@ -30,16 +29,18 @@ struct PlaylistHorizontal: View {
             
       
             LazyVStack(alignment: .leading) {
-                ForEach(dummyData) { song in
-                    PlaylistRowView(id: song.id,
-                                    songName: song.songName,
-                                    artist: song.artist,
-                                    coverImage: song.coverImage,
-                                    songTime: song.songTime)
-                    
-                }
+
+//                ForEach(dummyData) { song in
+//                    PlaylistRowView(id: song.id,
+//                                    songName: song.songName,
+//                                    artist: song.artist,
+//                                    coverImage: song.coverImage,
+//                                    songTime: song.songTime,
+//                                    currentName: ""
+//                    )
+//                    
+//                }
                    
-                
             }
             .padding(EdgeInsets(top: 0,
                                 leading: 24,

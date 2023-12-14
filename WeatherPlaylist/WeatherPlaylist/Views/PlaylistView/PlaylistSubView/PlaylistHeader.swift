@@ -1,5 +1,5 @@
 //
-//  PlaylistStickyHeader.swift
+//  PlaylistHeader.swift
 //  WeatherPlaylist
 //
 //  Created by seobe22 on 12/6/23.
@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-struct PlaylistStickyHeader: View {
+struct PlaylistHeader: View {
     @EnvironmentObject var viewModel: PlaylistViewModel
     
     var body: some View {
         VStack(alignment: .center) {
             VStack(alignment: .center, spacing: 6) {
                 Text(viewModel.playlistInfo.mainTitle)
-                    .font(.appFont(for: .Bold, size: 22))
+                    .font(.bold24)
+                    .lineLimit(2)
                 
                 Text(viewModel.playlistInfo.subitle)
                     .font(.light10)
@@ -25,9 +26,7 @@ struct PlaylistStickyHeader: View {
             PlaylistControllerView()
                 .environmentObject(viewModel)
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .background(Rectangle().foregroundStyle(Color.colorBg))
-        .padding(.bottom, 16)
+        .frame(minWidth: 0, maxWidth: .infinity) 
     }
 }
 
