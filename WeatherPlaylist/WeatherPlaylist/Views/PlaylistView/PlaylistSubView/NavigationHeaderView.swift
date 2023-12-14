@@ -80,7 +80,7 @@ struct NavigationHeaderView: View {
                         Button {
                            viewModel.pushPlayButton()
                         } label: {
-                           Image(systemName:  "play.fill")
+                            Image(systemName:  PlayerManager.shared.isPlaying ? "pause.fill" : "play.fill")
                                .foregroundStyle(.white)
                                .font(.system(size: 24))
 
