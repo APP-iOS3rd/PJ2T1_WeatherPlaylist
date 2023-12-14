@@ -15,7 +15,7 @@ struct PlaylistView: View {
     @Environment(\.dismiss) var dismiss
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
-    let playerManager = PlayerManager.shared
+    @StateObject var playerManager = PlayerManager.shared
     
     
     var body: some View {
@@ -30,7 +30,8 @@ struct PlaylistView: View {
                                                 songName: song.songName,
                                                 artist: song.artist,
                                                 coverImage: song.coverImage,
-                                                songTime: song.songTime
+                                                songTime: song.songTime,
+                                                currentName: playerManager.track?.songName ?? ""
                                 )
                                 .onTapGesture {
                                     playerManager.playTrack(track: song,
