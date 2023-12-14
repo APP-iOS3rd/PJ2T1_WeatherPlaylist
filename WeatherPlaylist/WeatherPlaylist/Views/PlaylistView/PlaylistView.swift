@@ -15,6 +15,7 @@ struct PlaylistView: View {
     @Environment(\.dismiss) var dismiss
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
+    let playerManager = PlayerManager.shared
     
     
     var body: some View {
@@ -32,6 +33,9 @@ struct PlaylistView: View {
                                                 coverImage: song.coverImage,
                                                 songTime: song.songTime)
                                 .onTapGesture {
+                                    playerManager.playTrack(track: song,
+                                                            playlistID: viewModel.playlistInfo.id,
+                                                            tracklist: viewModel.playlist)
                                     self.isShowingPlayer.toggle()
                                 }
                                 .fullScreenCover(isPresented: $isShowingPlayer){
