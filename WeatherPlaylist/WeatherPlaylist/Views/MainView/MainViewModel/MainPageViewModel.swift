@@ -26,6 +26,7 @@ final class MainPageViewModel: ObservableObject {
     private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
 
     init() {
+        fetchProfile()
         settingWeatherData()
         WeatherAPI.shared.delegate = self
     }
