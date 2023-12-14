@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct WeatherPlaylistApp: App {
+    @ObservedObject var appState = AppState()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
+                .id(appState.rootViewId)
+                .environmentObject(appState)
         }
     }
 }
