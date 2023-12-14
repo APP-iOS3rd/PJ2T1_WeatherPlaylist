@@ -15,15 +15,15 @@ struct PlaylistView: View {
     @Environment(\.dismiss) var dismiss
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
-    let playerManager = PlayerManager.shared
     
     
     var body: some View {
         NavigationView {
-            ZStack(alignment:.bottom) {
-                ScrollView(.vertical, showsIndicators: false) {
-                    PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
-                    LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
+            ScrollView(.vertical, showsIndicators: false) {
+                ZStack(alignment: .top) {
+                    
+                    // Bottom Layer : 플레이리스트
+                    VStack(alignment: .leading) {
                         Section {
                             ForEach(viewModel.playlist) { song in
                                 PlaylistRowView(id: song.id,
@@ -32,10 +32,6 @@ struct PlaylistView: View {
                                                 coverImage: song.coverImage,
                                                 songTime: song.songTime)
                                 .onTapGesture {
-                                    playerManager.playTrack(track: song,
-                                                            playlistID: viewModel.playlistInfo.id,
-                                                            tracklist: viewModel.playlist
-                                    )
                                     self.isShowingPlayer.toggle()
                                 }
                                 .fullScreenCover(isPresented: $isShowingPlayer){
@@ -95,5 +91,3 @@ struct PlaylistView: View {
 //#Preview {
 //    PlaylistView(viewModel: .init(playlistInfo: "3cEYpjA9oz9GiPac4AsH4n"))
 //}
-
-
