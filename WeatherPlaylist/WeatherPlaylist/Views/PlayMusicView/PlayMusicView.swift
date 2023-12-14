@@ -268,9 +268,6 @@ extension PlayMusicView {
                                 }
                                 .listRowBackground(Color.gray.opacity(0.7))
                             }
-                            .onMove(perform: moveTrack)
-                            .onDelete(perform: deleteTrack)
-                            
                         }
                         
                         
@@ -278,11 +275,6 @@ extension PlayMusicView {
                     
                     
                 }.background(Color.gray.opacity(0.9))
-                 .toolbar {
-                        ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                            EditButton()
-                        }
-                    }
             }
             
         }
