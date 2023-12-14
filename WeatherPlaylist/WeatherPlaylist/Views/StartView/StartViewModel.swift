@@ -89,4 +89,5 @@ class AppState: ObservableObject {
 
     // Private initializer to prevent creating multiple instances
     private init() {}
+
 }

@@ -16,7 +16,7 @@ struct PlaylistView: View {
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
     @StateObject var playerManager = PlayerManager.shared
-    
+
     
     var body: some View {
         NavigationView {
@@ -32,6 +32,7 @@ struct PlaylistView: View {
                                                 coverImage: song.coverImage,
                                                 songTime: song.songTime,
                                                 currentName: playerManager.track?.songName ?? ""
+
                                 )
                                 .onTapGesture {
                                     playerManager.playTrack(track: song,

@@ -14,6 +14,7 @@ struct PlaylistRowView: View {
     var coverImage: String
     var songTime: Int
     var currentName: String
+
     
     var body: some View {
         // MARK: 이미지 임시 구성
@@ -26,7 +27,7 @@ struct PlaylistRowView: View {
             }
             .frame(width: 48, height: 48)
             .padding(.trailing, 24)
-            
+
             HStack {
                 VStack(alignment: .leading) {
                     Text(songName)
@@ -48,6 +49,7 @@ struct PlaylistRowView: View {
                         .clipped()
                 }
             }
+
         }
     }
     

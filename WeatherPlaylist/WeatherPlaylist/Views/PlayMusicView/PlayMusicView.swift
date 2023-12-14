@@ -271,6 +271,7 @@ extension PlayMusicView {
                     }.scrollContentBackground(.hidden)
                     
                 }.background(Color.gray.opacity(0.9))
+
             }
             
         }
