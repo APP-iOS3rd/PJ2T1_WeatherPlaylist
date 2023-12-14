@@ -10,7 +10,6 @@ import SwiftUI
 struct PlaylistVertical: View {
     @ObservedObject var viewModel: MainPageViewModel
     var recommendedModelListIndex: Int // 추가된 부분
-    @ObservedObject var weatherLogic = WeatherLogic.shared
     
     var body: some View {
         Section{
