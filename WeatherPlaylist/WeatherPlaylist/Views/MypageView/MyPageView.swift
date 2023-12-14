@@ -44,10 +44,13 @@ struct MyPageView: View {
                             
                         }
                     }
-                }.padding(.top)
+                }
+                .padding(.top)
                 .padding(.horizontal, 25)
                 Spacer()
-            }.overlay(content: {
+                
+            }
+            .overlay(content: {
                 if viewModel.isLoading {
                     ZStack {
                         Rectangle().ignoresSafeArea()
