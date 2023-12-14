@@ -235,44 +235,49 @@ extension PlayMusicView {
             NavigationView {
                 VStack{
                     List {
-                        ForEach(viewModel.playlistModelList.indices, id: \.self) { index in
-                            HStack{
-                                
-                                let playlistModel = viewModel.playlistModelList[index]
-                                
-                                AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
+                        if let playlist = player.tracks {
+                            ForEach(playlist.indices, id: \.self) { index in
+                                HStack{
+                                    let playlistModel = playlist[index]
+                                    
+                                    AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(4)
+                                    
+                                    
+                                    VStack(alignment: .leading){
+                                        Text(playlistModel.songName)
+                                            .font(.headline)
+                                            .foregroundStyle(playlistModel.songName == player.track?.songName ? .accent : .colorBlack)
+                                        Text(playlistModel.artist)
+                                            .font(.body)
+                                            .foregroundStyle(playlistModel.songName == player.track?.songName ? .accent : .colorBlack)
+                                    }
                                 }
-                                .frame(width: 50, height: 50)
-                                .cornerRadius(4)
-                                
-                                
-                                VStack(alignment: .leading){
-                                    Text(playlistModel.songName)
-                                        .font(.headline)
-                                        .foregroundStyle(.colorBlack)
-                                    Text(playlistModel.artist)
-                                        .font(.body)
-                                        .foregroundStyle(.colorBlack)
+                                .listRowBackground(Color.gray.opacity(0.7))
+                                .onTapGesture {
+                                    player.playTrack(track: playlist[index], 
+                                                     playlistID: player.currentPlaylistID,
+                                                     tracklist: player.tracks!)
                                 }
                             }
-                            .listRowBackground(Color.gray.opacity(0.7))
+//                            .onMove(perform: moveTrack)
+//                            .onDelete(perform: deleteTrack)
                         }
-                        .onMove(perform: moveTrack)
-                        .onDelete(perform: deleteTrack)
                     }
                     .scrollContentBackground(.hidden)
                     
                 }
-                
                 .background(Color.gray.opacity(0.9))
-                .toolbar {
-                    ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                        EditButton()
-                    }
-                }
+//                .toolbar {
+//                    ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+//                        EditButton()
+//                    }
+//                }
             }
             
             

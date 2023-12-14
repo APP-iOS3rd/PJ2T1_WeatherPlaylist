@@ -18,10 +18,10 @@ class PlayerManager: ObservableObject {
     @Published var isShuffling = false
     @Published var songTime = 0.0
     @Published var track: PlaylistTrackModel?
-    var tracks: [PlaylistTrackModel]?
-    private var currentPlaylistID: String = ""
     private var currentIndex = 0
     private var playerItems: [AVPlayerItem] = []
+    var tracks: [PlaylistTrackModel]?
+    var currentPlaylistID: String = ""
 }
 
 extension PlayerManager {
