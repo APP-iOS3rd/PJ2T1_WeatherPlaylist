@@ -74,7 +74,7 @@ extension PlaylistViewModel {
             switch result {
             case .success(let response) :
                 isLoading = false
-                playlist = response.toPlaylistTrackModel
+                playlist = response.toPlaylistTrackModel.filter { !$0.url.isEmpty }
             case .failure(let error):
                 isLoading = false
             }
