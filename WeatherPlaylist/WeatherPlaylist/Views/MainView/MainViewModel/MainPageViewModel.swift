@@ -24,7 +24,9 @@ final class MainPageViewModel: ObservableObject {
     // 데이터가 로딩 중인지 파악 true 되어야 MainView가 열릴 수 있음
     @Published var isLoading: Bool = false
     private let profileManager = HTTPManager<UserInfoDTO>(apiType: .getUserInfo)
-
+    
+    @Published var appState = AppState.shared
+    
     init() {
         fetchProfile()
         settingWeatherData()
@@ -54,7 +56,7 @@ final class MainPageViewModel: ObservableObject {
     }
 
     func fetchPlayListModel() {
-        
+  
         // 쿼리 수 만큼 반복
         for index in 0..<spotifyQuery.count {
             let manager: HTTPManager<SearchResponse> = HTTPManager<SearchResponse>(apiType: .serchPlaylist(query: spotifyQuery[index]))
@@ -72,19 +74,21 @@ final class MainPageViewModel: ObservableObject {
                     print("success : \(recommendedModelList)")
                     // 배열이 해당 인덱스에 값을 가졌는지 확인 (있으면 리스트 바꾸고 없으면 리스트 추가)
                     if index < self.recommendedModelList.count {
-                        // 배열의 인덱스에 값을 할당
+                        // 리스트 바꾸기
                         self.recommendedModelList[index] = recommendedModelList
                     } else {
-                        // 배열이 해당 인덱스에 값이 없으면 배열에 새로운 요소를 추가
+                        // 인덱스가 범위를 벗어난 경우 리스트 추가
                         self.recommendedModelList.append(recommendedModelList)
                     }
-
                 case .failure(let error):
                     switch error {
                     case .httpError(let httpError) :
                         switch httpError {
                         case .authError :
                             print("로그아웃됨")
+                            UserDefaults.standard.removeObject(forKey: "AccessToken")
+                            UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                            appState.rootViewId = UUID()
                         default:
                             print(error.errorDescription)
                         }

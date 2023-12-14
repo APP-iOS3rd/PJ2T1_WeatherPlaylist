@@ -20,8 +20,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct WeatherPlaylistApp: App {
+    @ObservedObject var appState = AppState.shared
+
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @ObservedObject var appState = AppState()
     
     var body: some Scene {
         WindowGroup {
