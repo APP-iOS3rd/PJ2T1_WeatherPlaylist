@@ -20,7 +20,7 @@ struct PlaylistScrollView: View {
                 .padding(.top, 50)
                 .padding(.bottom,-10)
             ScrollView(.horizontal) {
-                LazyHStack {
+                LazyHStack(alignment: .top) {
                     ForEach(viewModel.playlistModelList) { model in
                         NavigationLink(destination: {PlaylistView(viewModel: .init(playlistInfo: model, uid: viewModel.uid))}) {
                             VStack(alignment:.leading) {
