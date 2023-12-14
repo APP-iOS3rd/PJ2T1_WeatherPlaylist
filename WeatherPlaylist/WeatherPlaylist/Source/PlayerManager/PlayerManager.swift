@@ -104,6 +104,8 @@ extension PlayerManager {
             } else {
                 self.player = .init(playerItem: self.playerItems[self.currentIndex])
             }
+        } else {
+            self.pause()
         }
         self.play()
     }

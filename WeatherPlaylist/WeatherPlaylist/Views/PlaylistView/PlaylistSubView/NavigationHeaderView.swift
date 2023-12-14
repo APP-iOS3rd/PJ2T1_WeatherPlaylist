@@ -81,7 +81,7 @@ struct NavigationHeaderView: View {
                         Button {
                            viewModel.pushPlayButton()
                         } label: {
-                            Image(systemName:  PlayerManager.shared.isPlaying ? "pause.fill" : "play.fill")
+                            Image(systemName: viewModel.setPlayerIconWithPlayingState())
                                .foregroundStyle(.white)
                                .font(.system(size: 24))
 

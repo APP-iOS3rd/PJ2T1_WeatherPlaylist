@@ -31,7 +31,7 @@ extension PlaylistViewModel {
     }
     
     func pushPlayButton() {
-        if self.player.isPlaying {
+        if self.player.isPlaying && self.playlistInfo.id == self.player.currentPlaylistID {
             player.pause()
         } else {
             player.playTrackList(tracklist: self.playlist, playlistID: self.playlistInfo.id)
@@ -92,6 +92,14 @@ extension PlaylistViewModel {
                 print(error.errorDescription)
                 isLoading = false
             }
+        }
+    }
+    func setPlayerIconWithPlayingState() -> String {
+        if self.playlistInfo.id == self.player.currentPlaylistID &&
+            self.player.isPlaying {
+            return "pause.fill"
+        } else {
+            return "play.fill"
         }
     }
 }
