@@ -21,9 +21,9 @@ struct PlaylistView: View {
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
-                ZStack(alignment:.bottom) {
-                    PlaylistCoverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
-                    LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
+                ZStack(alignment: .top) {
+                    // Bottom Layer : 플레이리스트
+                    VStack(alignment: .leading) {
                         Section {
                             ForEach(viewModel.playlist) { song in
                                 PlaylistRowView(id: song.id,
@@ -34,8 +34,7 @@ struct PlaylistView: View {
                                 .onTapGesture {
                                     playerManager.playTrack(track: song,
                                                             playlistID: viewModel.playlistInfo.id,
-                                                            tracklist: viewModel.playlist
-                                    )
+                                                            tracklist: viewModel.playlist)
                                     self.isShowingPlayer.toggle()
                                 }
                                 .fullScreenCover(isPresented: $isShowingPlayer){
@@ -95,5 +94,3 @@ struct PlaylistView: View {
 //#Preview {
 //    PlaylistView(viewModel: .init(playlistInfo: "3cEYpjA9oz9GiPac4AsH4n"))
 //}
-
-
