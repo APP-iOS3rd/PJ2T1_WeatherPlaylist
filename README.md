@@ -6,7 +6,7 @@
 
 # 배포주소
 
-> [Firebase 배포]([https://appdistribution.firebase.dev/i/e11c50d822e09f64](https://appdistribution.firebase.dev/i/e11c50d822e09f64))
+> [Firebase 배포](https://appdistribution.firebase.dev/i/e11c50d822e09f64)
 
 # 목차
 
@@ -40,9 +40,9 @@
 
 # API
 
-[OpenWeather]([https://openweathermap.org/current](https://openweathermap.org/current))
+[OpenWeather](https://openweathermap.org/current)
 
-[Spotify]([https://developer.spotify.com/documentation/web-api](https://developer.spotify.com/documentation/web-api))
+[Spotify](https://developer.spotify.com/documentation/web-api)
 
 # **사용 기술**
 
