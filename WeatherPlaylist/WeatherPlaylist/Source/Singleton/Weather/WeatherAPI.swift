@@ -21,7 +21,7 @@ class WeatherAPI: ObservableObject {
     @Published var isChecking: Bool = UserDefaults.standard.bool(forKey: "weatherChecking") {
         didSet {
             UserDefaults.standard.setValue(self.isChecking, forKey: "weatherChecking")
-            print(self.isChecking ? "체크중" : "체크해제")
+            //print(self.isChecking ? "체크중" : "체크해제")
         }
     }
   
@@ -92,7 +92,8 @@ class WeatherAPI: ObservableObject {
                 let json = try JSONDecoder().decode(WeatherTotalData.self, from: data)
                 DispatchQueue.main.async {
                     self.weatherInformation = [json]
-                
+                    
+                    print(self.isChecking ? "체크중" : "체크해제")
                     
                     if self.isChecking == true {
                         print("fetchUserWeatherData 실행")

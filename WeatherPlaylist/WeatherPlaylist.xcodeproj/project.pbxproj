@@ -72,7 +72,6 @@
 		DA637F902B20435800BB3612 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA637F8F2B20435800BB3612 /* ImageModifier.swift */; };
 		DAA3316A2B26FDEF00D3225F /* WeatherTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331642B26FDEF00D3225F /* WeatherTestView.swift */; };
 		DAA3316B2B26FDEF00D3225F /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331662B26FDEF00D3225F /* WeatherModel.swift */; };
-		DAA3316C2B26FDEF00D3225F /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331672B26FDEF00D3225F /* WeatherLogic.swift */; };
 		DAA3316D2B26FDEF00D3225F /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331682B26FDEF00D3225F /* LocationManager.swift */; };
 		DAA3316E2B26FDEF00D3225F /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA331692B26FDEF00D3225F /* WeatherAPI.swift */; };
 		DAA331722B26FE0800D3225F /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3316F2B26FE0800D3225F /* StartView.swift */; };
@@ -192,7 +191,6 @@
 		DA637F8F2B20435800BB3612 /* ImageModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifier.swift; sourceTree = "<group>"; };
 		DAA331642B26FDEF00D3225F /* WeatherTestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherTestView.swift; sourceTree = "<group>"; };
 		DAA331662B26FDEF00D3225F /* WeatherModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
-		DAA331672B26FDEF00D3225F /* WeatherLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 		DAA331682B26FDEF00D3225F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DAA331692B26FDEF00D3225F /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		DAA3316F2B26FE0800D3225F /* StartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -561,7 +559,6 @@
 			children = (
 				DAA331642B26FDEF00D3225F /* WeatherTestView.swift */,
 				DAA331652B26FDEF00D3225F /* Model */,
-				DAA331672B26FDEF00D3225F /* WeatherLogic.swift */,
 				DAA331682B26FDEF00D3225F /* LocationManager.swift */,
 				DAA331692B26FDEF00D3225F /* WeatherAPI.swift */,
 			);
@@ -741,7 +738,6 @@
 				6A0DF8672B26D4D10032153F /* (null) in Sources */,
 				DAA331862B26FF0B00D3225F /* AuthManager.swift in Sources */,
 				DAA3316E2B26FDEF00D3225F /* WeatherAPI.swift in Sources */,
-				DAA3316C2B26FDEF00D3225F /* WeatherLogic.swift in Sources */,
 				DA29F7CA2B206E39003085B9 /* BottomDrawer.swift in Sources */,
 				DAF506EA2B281E4C006B134E /* SigningManager.swift in Sources */,
 				DA637F692B1F1F6200BB3612 /* ContentView.swift in Sources */,
