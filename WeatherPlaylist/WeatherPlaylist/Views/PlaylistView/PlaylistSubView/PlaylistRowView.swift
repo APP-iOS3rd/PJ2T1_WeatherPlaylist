@@ -27,20 +27,27 @@ struct PlaylistRowView: View {
             .frame(width: 48, height: 48)
             .padding(.trailing, 24)
             
-            VStack(alignment: .leading) {
-                Text(songName)
-                    .font(.bold16)
-                    .foregroundStyle(currentName == songName ? .accent : .colorFont)
-                HStack {
-                    Text(artist)
-                        .font(.light14)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(songName)
+                        .font(.bold16)
                         .foregroundStyle(currentName == songName ? .accent : .colorFont)
-                    Text(changeTimeIntToString(songTime))
-                        .font(.light14)
-                        .foregroundStyle(currentName == songName ? .accent : .colorFont)
+                    HStack {
+                        Text(artist)
+                            .font(.light14)
+                            .foregroundStyle(currentName == songName ? .accent : .colorFont)
+                        Text(changeTimeIntToString(songTime))
+                            .font(.light14)
+                            .foregroundStyle(currentName == songName ? .accent : .colorFont)
+                    }
+                }
+                Spacer()
+                if currentName == songName {
+                    MusicIcon()
+                        .frame(width: 30, height: 30)
+                        .clipped()
                 }
             }
-            Spacer()
         }
     }
     
