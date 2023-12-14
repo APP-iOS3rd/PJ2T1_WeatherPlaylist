@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyPageView: View {
     @StateObject var viewModel: ProfileViewModel = .init()
-    @ObservedObject var weather: WeatherLogic = .shared
+    @ObservedObject var weather: WeatherAPI = .shared
     @EnvironmentObject var appState: AppState
     
     var body: some View {
