@@ -145,24 +145,24 @@ extension PlayMusicView {
             .padding(.horizontal)
             
             HStack{
-//                HStack {
-                    Slider(value: $player.songTime,
-                           in: 0...30,
-                           step: 1,
-                           onEditingChanged: { data in
-                        if data == true {
-                            player.pause()
-                            let value = player.songTime
-                            player.changeTime(time: value)
-                        } else {
-                            let value = player.songTime
-                            player.changeTime(time: value)
-                            player.play()
-                        }
-                    })
-                    
-                    Spacer()
-//                }
+                //                HStack {
+                Slider(value: $player.songTime,
+                       in: 0...30,
+                       step: 1,
+                       onEditingChanged: { data in
+                    if data == true {
+                        player.pause()
+                        let value = player.songTime
+                        player.changeTime(time: value)
+                    } else {
+                        let value = player.songTime
+                        player.changeTime(time: value)
+                        player.play()
+                    }
+                })
+                
+                Spacer()
+                //                }
             }
             .padding(.horizontal)
         }
@@ -235,46 +235,55 @@ extension PlayMusicView {
             NavigationView {
                 VStack{
                     List {
-                        ForEach(viewModel.playlistModelList.indices, id: \.self) { index in
-                            HStack{
-                                
-                                let playlistModel = viewModel.playlistModelList[index]
-                                
-                                AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
+                        if let tracks = PlayerManager.shared.tracks {
+                            ForEach(tracks.indices, id: \.self) { index in
+                                HStack{
+                                    
+                                    let playlistModel = tracks[index]
+                                    
+                                    AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(4)
+                                    
+                                    
+                                    VStack(alignment: .leading){
+                                        Text(playlistModel.songName)
+                                            .font(.headline)
+                                            .foregroundStyle(.colorBlack)
+                                        Text(playlistModel.artist)
+                                            .font(.body)
+                                            .foregroundStyle(.colorBlack)
+                                    }
                                 }
-                                .frame(width: 50, height: 50)
-                                .cornerRadius(4)
-                                
-                                
-                                VStack(alignment: .leading){
-                                    Text(playlistModel.songName)
-                                        .font(.headline)
-                                        .foregroundStyle(.colorBlack)
-                                    Text(playlistModel.artist)
-                                        .font(.body)
-                                        .foregroundStyle(.colorBlack)
+                                .onTapGesture {
+                                    player.playTrack(track: tracks[index],
+                                                     playlistID: tracks[index].id,
+                                                            tracklist: tracks
+                                    )
+                                    self.isShowingPlayer.toggle()
                                 }
+                                .listRowBackground(Color.gray.opacity(0.7))
                             }
-                            .listRowBackground(Color.gray.opacity(0.7))
+                            .onMove(perform: moveTrack)
+                            .onDelete(perform: deleteTrack)
+                            
                         }
-                        .onMove(perform: moveTrack)
-                        .onDelete(perform: deleteTrack)
-                    }
-                    .scrollContentBackground(.hidden)
+                        
+                        
+                    }.scrollContentBackground(.hidden)
                     
-                }
-                
-                .background(Color.gray.opacity(0.9))
-                .toolbar {
-                    ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                        EditButton()
+                    
+                }.background(Color.gray.opacity(0.9))
+                 .toolbar {
+                        ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                            EditButton()
+                        }
                     }
-                }
             }
-            
             
         }
     }

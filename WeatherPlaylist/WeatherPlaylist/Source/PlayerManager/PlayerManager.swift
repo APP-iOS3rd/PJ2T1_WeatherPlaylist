@@ -18,15 +18,19 @@ class PlayerManager: ObservableObject {
     @Published var isShuffling = false
     @Published var songTime = 0.0
     @Published var track: PlaylistTrackModel?
-    private var tracks: [PlaylistTrackModel]?
+    @Published var tracks: [PlaylistTrackModel]?
     private var currentPlaylistID: String = ""
     private var currentIndex = 0
     private var playerItems: [AVPlayerItem] = []
+    init() {
+        HapticManager.shared.setupGenerator()
+    }
 }
 
 extension PlayerManager {
     // 재생
     func play() {
+        HapticManager.shared.createImpact()
         guard let player = self.player else { return }
         setTimeChecker()
         player.play()
@@ -103,12 +107,16 @@ extension PlayerManager {
     }
     // 정지
     func pause() {
+        HapticManager.shared.createImpact()
+
         guard let player = self.player else { return }
         player.pause()
         self.isPlaying = false
     }
     // 다음 트랙으로 이동
     func goNextTrack() {
+        HapticManager.shared.createImpact()
+
         guard let player = self.player else { return }
         player.pause()
         player.seek(to: .zero)
@@ -137,6 +145,8 @@ extension PlayerManager {
     }
     // 이전 트랙으로 이동
     func goPrevTrack() {
+        HapticManager.shared.createImpact()
+
         guard let player = self.player else { return }
         player.pause()
         player.seek(to: .zero)

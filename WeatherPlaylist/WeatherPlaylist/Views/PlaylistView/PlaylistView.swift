@@ -20,9 +20,9 @@ struct PlaylistView: View {
     
     var body: some View {
         NavigationView {
-            ZStack(alignment:.bottom) {
-                ScrollView(.vertical, showsIndicators: false) {
-                    PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
+            ScrollView(.vertical, showsIndicators: false) {
+                ZStack(alignment:.bottom) {
+                    PlaylistCoverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
                         Section {
                             ForEach(viewModel.playlist) { song in
