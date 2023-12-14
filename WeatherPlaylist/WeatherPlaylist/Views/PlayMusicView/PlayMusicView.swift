@@ -89,7 +89,7 @@ extension PlayMusicView {
             //                }
             //            }
             AsyncImage(url:
-                        URL(string: viewModel.playMusicModel.coverImage)) {
+                        URL(string: player.track?.coverImage ?? "")) {
                 image in
                 image
                     .resizable()
@@ -107,10 +107,10 @@ extension PlayMusicView {
             
             HStack{
                 VStack{
-                    Text(viewModel.playMusicModel.songName)
+                    Text(player.track?.songName ?? "")
                         .font(.bold28)
                         .frame(maxWidth: .infinity,alignment: .leading)
-                    Text(viewModel.playMusicModel.artist)
+                    Text(player.track?.artist ?? "")
                         .font(.regular18)
                         .frame(maxWidth: .infinity,alignment: .leading)
                 }
@@ -178,23 +178,33 @@ extension PlayMusicView {
                 Image(systemName: "shuffle")
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(.colorBlack)
+                    .foregroundStyle(player.isShuffling ? .accent : .colorBlack)
                     .frame(height: 22)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.isShuffling.toggle()
+                    }
                 Spacer()
                 Image(systemName: "backward.end.fill")
                     .resizable()
                     .scaledToFit()
                     .foregroundStyle(.colorBlack)
                     .frame(height: 24)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.goPrevTrack()
+                    }
                 Spacer()
-                Image(systemName: "play.fill")
+                Image(systemName: player.isPlaying ? "pause.fill" : "play.fill")
                     .resizable()
                     .scaledToFit()
                     .foregroundStyle(.colorBlack)
                     .frame(height: 32)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        if player.isPlaying {
+                            player.pause()
+                        } else {
+                            player.play()
+                        }
+                    }
                 
                 Spacer()
                 Image(systemName: "forward.end.fill")
@@ -202,14 +212,18 @@ extension PlayMusicView {
                     .scaledToFit()
                     .foregroundStyle(.colorBlack)
                     .frame(height: 24)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.goNextTrack()
+                    }
                 Spacer()
                 Image(systemName: "repeat")
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(.colorBlack)
+                    .foregroundStyle(player.isRepeating ? .accent : .colorBlack)
                     .frame(height: 22)
-                    .onTapGesture {}
+                    .onTapGesture {
+                        player.isRepeating.toggle()
+                    }
                 
             }.padding()
         }

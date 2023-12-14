@@ -12,21 +12,13 @@ struct PlaylistView: View {
     
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
+    let playerManager = PlayerManager.shared
     
     var body: some View {
         NavigationView {
             ZStack(alignment:.bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
-                  
-                    VStack(alignment: .center, spacing: 6) {
-                        Text(viewModel.playlistInfo.mainTitle)
-                            .font(.appFont(for: .Bold, size: 22))
-                        
-                        Text(viewModel.playlistInfo.subitle)
-                            .font(.light10)
-                    }
-                    .padding(.bottom, 32)
 
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
                         Section {
@@ -37,6 +29,10 @@ struct PlaylistView: View {
                                                 coverImage: song.coverImage,
                                                 songTime: song.songTime)
                                 .onTapGesture {
+                                    playerManager.playTrack(track: song,
+                                                            playlistID: viewModel.playlistInfo.id,
+                                                            tracklist: viewModel.playlist
+                                    )
                                     self.isShowingPlayer.toggle()
                                 }
                                 .fullScreenCover(isPresented: $isShowingPlayer){
