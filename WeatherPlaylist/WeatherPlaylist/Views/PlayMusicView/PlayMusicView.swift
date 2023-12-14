@@ -240,7 +240,7 @@ extension PlayMusicView {
                                 HStack{
                                     
                                     let playlistModel = tracks[index]
-                                    
+      
                                     AsyncImage(url: URL(string: playlistModel.coverImage)){ image in
                                         image.resizable()
                                     } placeholder: {
@@ -253,10 +253,10 @@ extension PlayMusicView {
                                     VStack(alignment: .leading){
                                         Text(playlistModel.songName)
                                             .font(.headline)
-                                            .foregroundStyle(.colorBlack)
+                                            .foregroundStyle(playlistModel.songName == player.track?.songName ? .accent : .colorBlack)
                                         Text(playlistModel.artist)
                                             .font(.body)
-                                            .foregroundStyle(.colorBlack)
+                                            .foregroundStyle(playlistModel.songName == player.track?.songName ? .accent : .colorBlack)
                                     }
                                 }
                                 .onTapGesture {

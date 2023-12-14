@@ -18,10 +18,10 @@ class PlayerManager: ObservableObject {
     @Published var isShuffling = false
     @Published var songTime = 0.0
     @Published var track: PlaylistTrackModel?
-    @Published var tracks: [PlaylistTrackModel]?
-    private var currentPlaylistID: String = ""
     private var currentIndex = 0
     private var playerItems: [AVPlayerItem] = []
+    var tracks: [PlaylistTrackModel]?
+    var currentPlaylistID: String = ""
     init() {
         HapticManager.shared.setupGenerator()
     }
@@ -80,10 +80,13 @@ extension PlayerManager {
     func playTrackList(tracklist: [PlaylistTrackModel], playlistID: String) {
         self.tracks = tracklist
         self.track = tracklist[currentIndex]
+        print(playlistID, " : ",currentPlaylistID)
         
         if self.currentPlaylistID != playlistID {
             self.currentPlaylistID = playlistID
             self.currentIndex = 0
+            self.playerItems = []
+            
             tracklist.forEach {
                 if let url = URL(string: $0.url) {
                     let item = AVPlayerItem(url: url)
@@ -95,9 +98,12 @@ extension PlayerManager {
                 }
             }
             createPlayer()
-            self.player = .init(playerItem: self.playerItems[self.currentIndex])
-        } else {
-            
+            if let player = self.player {
+                self.track = tracklist[currentIndex]
+                player.replaceCurrentItem(with: playerItems[currentIndex])
+            } else {
+                self.player = .init(playerItem: self.playerItems[self.currentIndex])
+            }
         }
         self.play()
     }
