@@ -23,9 +23,9 @@
 		01D7ACBB2B2A1B730097410D /* Border+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACBA2B2A1B730097410D /* Border+Shape.swift */; };
 		01D7ACBF2B2A23AD0097410D /* NavigationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACBE2B2A23AD0097410D /* NavigationHeaderView.swift */; };
 		01D7ACC12B2AD23F0097410D /* MusicIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACC02B2AD23F0097410D /* MusicIcon.swift */; };
-		2864B1542B29A0F400DBA73C /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */; };
 		2864B1562B29A10C00DBA73C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2864B1552B29A10C00DBA73C /* CustomSlider.swift */; };
 		28A621A92B21514000575D16 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 28A621A82B21514000575D16 /* SpotifyiOS */; };
+		28DC2B4F2B2AE79000312FAB /* SpotifyAPI.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 28DC2B4E2B2AE79000312FAB /* SpotifyAPI.xcconfig */; };
 		641F2B422B2823670001638B /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 641F2B412B2823670001638B /* ApiKeys.plist */; };
 		64279A252B21B0C900065F24 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		64279A292B21B69200065F24 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -155,8 +155,8 @@
 		01D7ACBA2B2A1B730097410D /* Border+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Border+Shape.swift"; sourceTree = "<group>"; };
 		01D7ACBE2B2A23AD0097410D /* NavigationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderView.swift; sourceTree = "<group>"; };
 		01D7ACC02B2AD23F0097410D /* MusicIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIcon.swift; sourceTree = "<group>"; };
-		2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		2864B1552B29A10C00DBA73C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
+		28DC2B4E2B2AE79000312FAB /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };
 		641F2B412B2823670001638B /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		6A0DB8032B29312A00C88675 /* PlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		6A0DB8052B2950E600C88675 /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
@@ -579,7 +579,7 @@
 		DAA3317A2B26FE1D00D3225F /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */,
+				28DC2B4E2B2AE79000312FAB /* SpotifyAPI.xcconfig */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -702,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA29F7DD2B206F41003085B9 /* Pretendard-SemiBold.otf in Resources */,
+				28DC2B4F2B2AE79000312FAB /* SpotifyAPI.xcconfig in Resources */,
 				645705332B26D8DB00E8B134 /* (null) in Resources */,
 				DA637F6E2B1F1F6400BB3612 /* Preview Assets.xcassets in Resources */,
 				DA29F7D62B206F41003085B9 /* Pretendard-Light.otf in Resources */,
@@ -713,7 +714,6 @@
 				DAABEE0E2B2A9F1300C5B676 /* GoogleService-Info.plist in Resources */,
 				DA637F6B2B1F1F6400BB3612 /* Assets.xcassets in Resources */,
 				DA29F7D52B206F41003085B9 /* Pretendard-ExtraBold.otf in Resources */,
-				2864B1542B29A0F400DBA73C /* SpotifyAPI.xcconfig in Resources */,
 				DA29F7DC2B206F41003085B9 /* Pretendard-Regular.otf in Resources */,
 				DA29F7D72B206F41003085B9 /* Pretendard-Black.otf in Resources */,
 				DA29F7D82B206F41003085B9 /* Pretendard-Medium.otf in Resources */,
@@ -821,7 +821,6 @@
 /* Begin XCBuildConfiguration section */
 		DA637F6F2B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -885,7 +884,6 @@
 		};
 		DA637F702B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -942,7 +940,6 @@
 		};
 		DA637F722B1F1F6400BB3612 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -985,7 +982,6 @@
 		};
 		DA637F732B1F1F6400BB3612 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2864B1532B29A0F400DBA73C /* SpotifyAPI.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
