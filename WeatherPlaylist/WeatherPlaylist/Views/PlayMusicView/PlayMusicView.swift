@@ -73,11 +73,12 @@ struct PlayMusicView: View {
                     HStack{
                         albumImage
                             .frame(width: proxy.size.height * 0.6,height: proxy.size.height  * 0.6)
+                        Spacer()
                         VStack{
                             albumText
                             musicController
                             musicSlider
-                        }.frame(width: proxy.size.width * 0.6)
+                        }.frame(width: proxy.size.width * 0.67)
                     }
                 }
             }.padding(safeAreaInsets)
