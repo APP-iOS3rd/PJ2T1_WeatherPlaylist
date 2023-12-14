@@ -11,7 +11,7 @@ struct RootView: View {
     var playerManager = PlayerManager.shared
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             MainPageView()
             PlayFooterCell()
                 .environmentObject(playerManager)

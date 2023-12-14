@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  PlaylistView.swift
 //  WeatherPlaylist
 //
 //  Created by seobe22 on 12/6/23.
@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct PlaylistView: View {
-    @StateObject var viewModel: PlaylistViewModel
     
+    let coloredNavAppearance = UINavigationBarAppearance()
+ 
+    @StateObject var viewModel: PlaylistViewModel
+    @Environment(\.dismiss) var dismiss
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
     let playerManager = PlayerManager.shared
+    
     
     var body: some View {
         NavigationView {
             ZStack(alignment:.bottom) {
                 ScrollView(.vertical, showsIndicators: false) {
                     PlaylistCorverImageView(coverImageUrl: viewModel.playlistInfo.image ?? "")
-
                     LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
                         Section {
                             ForEach(viewModel.playlist) { song in
@@ -39,23 +42,58 @@ struct PlaylistView: View {
                                     PlayMusicView(temp: song)
                                 }
                             }
-                        } header: {
-                            PlaylistStickyHeader()
-                                .environmentObject(viewModel)
                         }
                     }
+                    .padding(.horizontal,24)
+                    .padding(.top,420)
+                    .padding(.bottom, 50)
+                    .background(Color.clear)
+                    
+                    
+                    // Top Layer : Sticky Header
+                    GeometryReader { gr in
+                        VStack {
+                            // Header 높이
+                            let h = self.calculateHeight(minHeight: 140,
+                                                         maxHeight: 380,
+                                                         yOffset: gr.frame(in: .global).minY)
+                            
+                            // showDescr의 h값은 minheight값 보다 커야합니다.
+                            NavigationHeaderView(viewModel: viewModel, showDescr: h > 140 ? true : false, onDismiss: {dismiss()})
+                                .frame(width: gr.size.width, height: h)
+                                // 상단에 고정하기 위함
+                                .offset(y: gr.frame(in: .global).origin.y < 0 // 올라가는지 체크
+                                        ? abs(gr.frame(in: .global).origin.y) // 올라갈 때, 아래로 민다.
+                                        : -gr.frame(in: .global).origin.y) // 올라가지 않을 때, 밀어올린다.
+                           
+                        }
+                    }
+                    
                 }
-                .padding(EdgeInsets(top: 0,
-                                    leading: 24,
-                                    bottom: 0,
-                                    trailing: 24))
-                
-//                PlayFooterCell()
             }
+              
         }
-        .navigationBarBackButtonTitleHidden()
+        .gesture(
+            DragGesture().onEnded{ value in
+                if value.location.x - value.startLocation.x > 150 {
+                    dismiss()
+                }
+            }
+        )
+        .navigationBarHidden(true)
+    }
+        
+    func calculateHeight(minHeight: CGFloat, maxHeight: CGFloat, yOffset: CGFloat) -> CGFloat {
+        // SCROLL UP: yOffset은 음수가 됩니다.
+        if maxHeight + yOffset < minHeight {
+            return minHeight
+        }
+        // SCROLL DOWN
+        return maxHeight + yOffset
     }
 }
 //#Preview {
 //    PlaylistView(viewModel: .init(playlistInfo: "3cEYpjA9oz9GiPac4AsH4n"))
 //}
+
+
