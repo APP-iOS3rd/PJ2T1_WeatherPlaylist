@@ -23,7 +23,6 @@
 		01D7ACBB2B2A1B730097410D /* Border+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACBA2B2A1B730097410D /* Border+Shape.swift */; };
 		01D7ACBF2B2A23AD0097410D /* NavigationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACBE2B2A23AD0097410D /* NavigationHeaderView.swift */; };
 		01D7ACC12B2AD23F0097410D /* MusicIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACC02B2AD23F0097410D /* MusicIcon.swift */; };
-		01D7ACCC2B2B43C30097410D /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACCB2B2B43C30097410D /* WeatherLogic.swift */; };
 		01D7ACCE2B2B446B0097410D /* SizePreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D7ACCD2B2B446B0097410D /* SizePreferenceKey.swift */; };
 		2864B1562B29A10C00DBA73C /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2864B1552B29A10C00DBA73C /* CustomSlider.swift */; };
 		28A621A92B21514000575D16 /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 28A621A82B21514000575D16 /* SpotifyiOS */; };
@@ -156,7 +155,6 @@
 		01D7ACBA2B2A1B730097410D /* Border+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Border+Shape.swift"; sourceTree = "<group>"; };
 		01D7ACBE2B2A23AD0097410D /* NavigationHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeaderView.swift; sourceTree = "<group>"; };
 		01D7ACC02B2AD23F0097410D /* MusicIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicIcon.swift; sourceTree = "<group>"; };
-		01D7ACCB2B2B43C30097410D /* WeatherLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 		01D7ACCD2B2B446B0097410D /* SizePreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizePreferenceKey.swift; sourceTree = "<group>"; };
 		2864B1552B29A10C00DBA73C /* CustomSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSlider.swift; sourceTree = "<group>"; };
 		28DC2B4E2B2AE79000312FAB /* SpotifyAPI.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SpotifyAPI.xcconfig; sourceTree = "<group>"; };

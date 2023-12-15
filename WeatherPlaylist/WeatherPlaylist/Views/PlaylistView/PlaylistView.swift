@@ -17,7 +17,7 @@ struct PlaylistView: View {
     @State private var isShowingPlayer = false
     @StateObject var playerManager = PlayerManager.shared
     @Environment(\.safeAreaInsets) private var safeAreaInsets
-    
+  
     @Environment(\.verticalSizeClass) private var verticalSizeClass
     var body: some View {
         NavigationView {
