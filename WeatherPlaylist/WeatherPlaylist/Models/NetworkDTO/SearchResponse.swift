@@ -16,7 +16,6 @@ extension SearchResponse {
         self.playlists.items.map { item in
                 .init(id: item.id,
                       playlist: [],
-                      weatherType: .rainy,
                       mainTitle: item.name,
                       subitle:  item.description,
                       tracks: URL(string:item.tracks.href),

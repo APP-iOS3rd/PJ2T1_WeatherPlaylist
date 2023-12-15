@@ -13,7 +13,6 @@ import Foundation
 struct RecommendedPlayListModel: Identifiable, Hashable {
     var id: String
     var playlist: [MusicModel]
-    var weatherType: WeatherType
     var mainTitle: String
     var subitle: String
     var tracks: URL?

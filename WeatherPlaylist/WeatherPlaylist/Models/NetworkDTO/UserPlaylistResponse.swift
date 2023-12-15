@@ -20,7 +20,6 @@ extension UserPlaylistResponse {
         self.items.map { item in
                 return .init(id: item.id,
                       playlist: [],
-                      weatherType: .rainy,
                       mainTitle: item.name,
                       subitle:  item.description,
                       tracks: URL(string:item.tracks.href),
