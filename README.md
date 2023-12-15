@@ -5,7 +5,9 @@
 # 배포주소
 
 > [Firebase 배포](https://appdistribution.firebase.dev/i/e11c50d822e09f64)
+> 
 > 테스트 계정 : spotifytester12312@gmail.com
+> 
 > 테스트 비번 : 1q2w3e4r1!
 # 목차
 
