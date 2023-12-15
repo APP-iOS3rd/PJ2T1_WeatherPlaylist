@@ -16,8 +16,9 @@ struct PlaylistView: View {
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
     @StateObject var playerManager = PlayerManager.shared
-
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
     
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
@@ -45,9 +46,11 @@ struct PlaylistView: View {
                                 }
                             }
                         }
+                       
                     }
+                    .padding(safeAreaInsets)
                     .padding(.horizontal,24)
-                    .padding(.top, 440)
+                    .padding(.top, 380)
                     .padding(.bottom, 50)
                     .background(Color.clear)
                     
