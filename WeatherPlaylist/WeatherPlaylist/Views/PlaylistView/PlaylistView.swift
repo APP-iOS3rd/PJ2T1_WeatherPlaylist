@@ -47,7 +47,7 @@ struct PlaylistView: View {
                         }
                     }
                     .padding(.horizontal,24)
-                    .padding(.top,420)
+                    .padding(.top, 440)
                     .padding(.bottom, 50)
                     .background(Color.clear)
                     
