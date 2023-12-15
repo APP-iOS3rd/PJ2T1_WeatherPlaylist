@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     @Environment(\.dismiss) var dismiss
-    @State var title: String = ""
+  //  @State var title: String = ""
     var body: some View {
         HStack {
             Button{
@@ -24,9 +24,9 @@ struct HeaderView: View {
             }
  
             Spacer()
-            Text(title)
-                .font(.appFont(for: .Medium, size: 14))
-                .frame(maxWidth:.infinity,alignment: .center)
+//            Text(title)
+//                .font(.appFont(for: .Medium, size: 14))
+//                .frame(maxWidth:.infinity,alignment: .center)
             Spacer()
             // right tool button 추가시
 //              Image(systemName: "magnifyingglass")
@@ -34,8 +34,10 @@ struct HeaderView: View {
 //                .scaledToFit()
 //                .frame(height: 20)
         }
-        .padding(.vertical, 18)
-        .padding(.horizontal, 12)
+        
+        .padding(.top, 28)
+        .padding(.bottom, 4)
+        .padding(.horizontal, 24)
     }
 }
 

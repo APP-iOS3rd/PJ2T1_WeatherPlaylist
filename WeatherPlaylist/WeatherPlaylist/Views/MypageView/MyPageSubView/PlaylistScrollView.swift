@@ -20,7 +20,7 @@ struct PlaylistScrollView: View {
                 .padding(.top, 50)
                 .padding(.bottom,-10)
             ScrollView(.horizontal) {
-                LazyHStack {
+                LazyHStack(alignment: .top) {
                     ForEach(viewModel.playlistModelList) { model in
                         NavigationLink(destination: {PlaylistView(viewModel: .init(playlistInfo: model, uid: viewModel.uid))}) {
                             VStack(alignment:.leading) {
@@ -44,9 +44,11 @@ struct PlaylistScrollView: View {
                                 }
                                 Text(model.mainTitle)
                                     .font(.bold14)
-                                Text(model.singers ?? "가수들")
+                                    .foregroundStyle(Color.colorBlack)
+                                Text(model.singers ?? "Various Artists")
                                     .font(.light10)
                                     .lineLimit(1)
+                                    .foregroundStyle(Color.colorBlack)
                             }.frame(width: 100)
                                 .padding(.vertical,20)
                                 .padding(.horizontal,10)

@@ -18,7 +18,21 @@ struct MyPageView: View {
                 ProfileView()
                     .padding(.top)
                     .environmentObject(viewModel)
-                
+                HStack{
+                    Spacer()
+                    Button {
+                        UserDefaults.standard.removeObject(forKey: "AccessToken")
+                        UserDefaults.standard.removeObject(forKey: "RefreshToken")
+                        appState.rootViewId = UUID()
+                    } label: {
+                        Text("로그아웃")
+                            .foregroundStyle(Color.colorBlack)
+                            .underline()
+                            .font(.light14)
+                        
+                    }
+                }
+                .padding()
                 PlaylistScrollView(title: "저장한 플레이리스트")
                     .environmentObject(viewModel)
                 VStack(alignment: .leading){
@@ -30,17 +44,16 @@ struct MyPageView: View {
                         Spacer()
                         Toggle(isOn: $weather.isChecking, label: {})
                     }
-                    Button {
-                        UserDefaults.standard.removeObject(forKey: "AccessToken")
-                        UserDefaults.standard.removeObject(forKey: "RefreshToken")
-                        appState.rootViewId = UUID()
-                    } label: {
-                        Text("로그아웃")
-                    }
-                }.padding(.top)
-                    .padding(.horizontal, 25)
+                    Spacer()
+                    
+                    
+                }
+                .padding(.top)
+                .padding(.horizontal, 25)
                 Spacer()
-            }.overlay(content: {
+                
+            }
+            .overlay(content: {
                 if viewModel.isLoading {
                     ZStack {
                         Rectangle().ignoresSafeArea()

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PlayMusicView: View {
-    //    @State var temp: MusicModel
     @State var temp: PlaylistTrackModel
     
     @Environment(\.dismiss) var dismiss
@@ -17,23 +16,20 @@ struct PlayMusicView: View {
     @StateObject var viewModel: PlayMusicViewModel  = .init()
     @StateObject var player = PlayerManager.shared
     
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
+  
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     var body: some View {
-        NavigationStack {
-            HeaderView(title: viewModel.playMusicModel.playlistTitle)
-            ZStack {
-                VStack {
-                    musicImageView
-                    musicSlider
-                    musicController
-                    Spacer()
-                        .scaleEffect(0)
-                }
-                .padding(.horizontal)
+ 
+        NavigationStack{
+            HeaderView()
+            VStack {
+                musicImageView
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-            // .background(Color.lightBg)
+            .padding(.horizontal)
             .bottomDrawerView(
-                bottomDrawerHeight: 80,
+                bottomDrawerHeight: 70,
                 drawerTopCornersRadius: 16,
                 ignoreTopSafeAres: false) {
                     bottomDrawer
@@ -58,16 +54,46 @@ struct PlayMusicView: View {
                 }
             }
         )
-        
-        .background(Color.lightBg)
     }
+     
     
-    func moveTrack(from source: IndexSet, to destination: Int) {
-        viewModel.playlistModelList.move(fromOffsets: source, toOffset: destination)
-    }
+//    func moveTrack(from source: IndexSet, to destination: Int) {
+//        viewModel.playlistModelList.move(fromOffsets: source, toOffset: destination)
+//    }
+//    
+//    func deleteTrack(at offsets: IndexSet) {
+//        viewModel.playlistModelList.remove(atOffsets: offsets)
+//    }
     
-    func deleteTrack(at offsets: IndexSet) {
-        viewModel.playlistModelList.remove(atOffsets: offsets)
+    @ViewBuilder
+    var musicImageView: some View{
+        if verticalSizeClass == .compact {
+            GeometryReader{ proxy in
+                VStack(alignment: .center){
+                    HStack{
+                        albumImage
+                            .frame(width: proxy.size.height * 0.6,height: proxy.size.height  * 0.6)
+                        Spacer()
+                        VStack{
+                            albumText
+                            musicController
+                            musicSlider
+                        }.frame(width: proxy.size.width * 0.67)
+                    }
+                }
+            }.padding(safeAreaInsets)
+                
+        } else{
+            GeometryReader{ proxy in
+                VStack {
+                    albumImage
+                        .frame(width: proxy.size.width * 0.95,height: proxy.size.width * 0.95)
+                    albumText
+                    musicSlider
+                    musicController
+                }
+            }.padding(0)
+        }
     }
 }
 
@@ -76,58 +102,45 @@ struct PlayMusicView: View {
 //}
 
 extension PlayMusicView {
-    
-    private var musicImageView: some View{
-        VStack{
-            // Image 로드시,
-            //            CachedImage(url: nil){ phase in
-            //                switch phase {
-            //                case .success(let image) :
-            //                    image.resizable()
-            //                case .empty, .failure(_) :
-            //                    ProgressView()
-            //                }
-            //            }
-            AsyncImage(url:
-                        URL(string: player.track?.coverImage ?? "")) {
-                image in
-                image
-                    .resizable()
-                    .padding(8)
-                
-            } placeholder: {
-                ProgressView()
-            }
-            .scaledToFill()
-            .frame(maxWidth:340, maxHeight: 340)
-            .clipShape(Rectangle())
-            .cornerRadius(10)
-            .scaleEffect(1)
-            //.padding(.horizontal,15)
+    private var albumImage: some View {
             
-            HStack{
-                VStack{
-                    Text(player.track?.songName ?? "")
-                        .font(.bold28)
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                    Text(player.track?.artist ?? "")
-                        .font(.regular18)
-                        .frame(maxWidth: .infinity,alignment: .leading)
-                }
-                Image(systemName: "heart")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width:20,height: 20)
-                //MARK: - 살짝 커졌다 작아지는 애니메이션?
-                    .scaleEffect(1)
-                
+        AsyncImage(url:
+                    URL(string: player.track?.coverImage ?? "")) {
+            image in
+            image
+                .resizable()
+                .aspectRatio(1, contentMode: .fit)
+        } placeholder: {
+            ProgressView()
+        }
+      //  .scaledToFill()
+        .cornerRadius(10)
+        .clipShape(Rectangle())
+        .padding(.vertical,0)
+        .padding(.horizontal,8)
+    }
+    private var albumText: some View{
+        HStack{
+            VStack{
+                Text(player.track?.songName ?? "")
+                    .font(.bold24)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity,alignment: .leading)
+                Text(player.track?.artist ?? "")
+                    .font(.regular18)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity,alignment: .leading)
             }
-            .padding(.vertical,24)
-            .padding(.horizontal)
+            Image(systemName: "heart")
+                .resizable()
+                .scaledToFit()
+                .frame(width:20,height: 20)
+            //MARK: - 살짝 커졌다 작아지는 애니메이션?
+                .scaleEffect(1)
             
         }
-        //.padding()
-        
+        .padding(.vertical,0)
+        .padding(.horizontal)
     }
     
     private var musicSlider: some View{
@@ -143,9 +156,10 @@ extension PlayMusicView {
             .fontWeight(.medium)
             .foregroundColor(.gray)
             .padding(.horizontal)
+            .offset(y:8)
             
             HStack{
-                //                HStack {
+             
                 Slider(value: $player.songTime,
                        in: 0...30,
                        step: 1,
@@ -160,13 +174,10 @@ extension PlayMusicView {
                         player.play()
                     }
                 })
-                
-                Spacer()
-                //                }
             }
             .padding(.horizontal)
         }
-        .padding(.top, 14)
+        .padding(.top, 4)
         .padding(.horizontal, 0)
         
     }
@@ -279,3 +290,4 @@ extension PlayMusicView {
     }
     
 }
+ 

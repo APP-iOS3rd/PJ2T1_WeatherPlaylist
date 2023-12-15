@@ -72,6 +72,7 @@ extension MainPageView {
             Spacer()
             NavigationLink {
                 MyPageView()
+                    .navigationBarBackButtonTitleHidden()
             }label: {
                 CachedImage(url: viewModel.profileURL) {phase in
                     switch phase {

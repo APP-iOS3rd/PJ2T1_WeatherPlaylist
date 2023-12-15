@@ -16,8 +16,9 @@ struct PlaylistView: View {
     @State var isLightMode: Bool = true
     @State private var isShowingPlayer = false
     @StateObject var playerManager = PlayerManager.shared
-
-    
+    @Environment(\.safeAreaInsets) private var safeAreaInsets
+  
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
@@ -45,9 +46,11 @@ struct PlaylistView: View {
                                 }
                             }
                         }
+                       
                     }
+                    .padding(safeAreaInsets)
                     .padding(.horizontal,24)
-                    .padding(.top,420)
+                    .padding(.top, 380)
                     .padding(.bottom, 50)
                     .background(Color.clear)
                     
@@ -63,18 +66,22 @@ struct PlaylistView: View {
                             // showDescr의 h값은 minheight값 보다 커야합니다.
                             NavigationHeaderView(viewModel: viewModel, showDescr: h > 140 ? true : false, onDismiss: {dismiss()})
                                 .frame(width: gr.size.width, height: h)
-                                // 상단에 고정하기 위함
                                 .offset(y: gr.frame(in: .global).origin.y < 0 // 올라가는지 체크
-                                        ? abs(gr.frame(in: .global).origin.y) // 올라갈 때, 아래로 민다.
-                                        : -gr.frame(in: .global).origin.y) // 올라가지 않을 때, 밀어올린다.
+                                        ? abs(gr.frame(in: .global).origin.y + 25) // 올라갈 때, 아래로 민다.
+                                        : -gr.frame(in: .global).origin.y + 15) // 올라가지 않을 때, 밀어올린다.
+                                .edgesIgnoringSafeArea(.all)
                            
                         }
                     }
+                    .ignoresSafeArea()
                     
                 }
+                
             }
+            .ignoresSafeArea()
               
         }
+      
         .gesture(
             DragGesture().onEnded{ value in
                 if value.location.x - value.startLocation.x > 150 {
